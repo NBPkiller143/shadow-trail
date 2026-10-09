@@ -136,10 +136,20 @@
     .daily-grade-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-weight: 900; font-size: 12px; margin-left: 6px; }
     .grade-S { background: #eab308; color: #000; } .grade-A { background: #10b981; color: #fff; } .grade-B { background: #38bdf8; color: #000; } .grade-C { background: #64748b; color: #fff; }
 
-    /* On-screen Save Export/Import Modal */
+    .touch-btn.active { border-color: #38bdf8 !important; box-shadow: 0 0 16px rgba(56, 189, 248, 0.7) !important; background: rgba(56, 189, 248, 0.4) !important; }
     #save-io-modal, #copy-fallback-modal { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.88); z-index: 90; display: none; align-items: center; justify-content: center; pointer-events: auto; }
     #txt-save-io { width: 100%; height: 130px; background: #0f172a; color: #38bdf8; border: 1px solid #38bdf8; border-radius: 6px; padding: 10px; font-family: monospace; font-size: 11px; resize: none; }
     #rotate-hint { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #020617; z-index: 100; display: none; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; }
+
+    /* Clean A4 Print Layout for Certificate */
+    @media print {
+      body { background: #fff !important; color: #000 !important; }
+      body * { visibility: hidden !important; }
+      #certificate-screen, #certificate-screen #certificate-paper, #certificate-screen #certificate-paper * { visibility: visible !important; }
+      #certificate-screen { position: absolute !important; left: 0 !important; top: 0 !important; width: 100% !important; height: auto !important; background: transparent !important; display: block !important; padding: 0 !important; }
+      #certificate-paper { box-shadow: none !important; border: 4px double #0284c7 !important; margin: 20px auto !important; width: 90% !important; max-width: 680px !important; }
+      .btn { display: none !important; }
+    }
   </style>
 </head>
 <body>
@@ -233,6 +243,7 @@
           <button class="btn btn-secondary" id="btn-map-back">MAIN MENU</button>
           <button class="btn btn-warning" id="btn-map-daily">⭐ DAILY CHALLENGE</button>
           <button class="btn btn-secondary" id="btn-map-casefile">CASE FILE</button>
+          <button class="btn btn-success" id="btn-map-cert">🏆 CERTIFICATE</button>
           <button class="btn btn-danger" id="btn-map-reset" style="font-size: 12px;">RESET PROGRESS</button>
         </div>
       </div>
@@ -251,12 +262,12 @@
       </div>
       <div class="modal-box" style="max-width: 620px; text-align: left; margin: 10px auto;">
         <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; margin-bottom: 12px;">
-          <div><div style="font-size: 11px; color: #94a3b8; text-transform: uppercase;">TODAY'S SECTOR</div><div id="daily-sector-name" style="font-size: 20px; font-weight: 800; color: #38bdf8;">Sector Loading</div></div>
+          <div><div style="font-size: 11px; color: #94a3b8; text-transform: uppercase;">TODAY'S SECTOR</div><div id="daily-sector-name" style="font-size: 20px; font-weight: 800; color: #38bdf8;">Sector 1: Abandoned Neighbourhood</div></div>
           <div style="text-align: right;"><div style="font-size: 11px; color: #94a3b8; text-transform: uppercase;">STREAK</div><div id="daily-streak-val" style="font-size: 20px; font-weight: 800; color: #f59e0b;">🔥 0 Days</div></div>
         </div>
         <div style="background: rgba(30, 41, 59, 0.6); padding: 12px; border-radius: 8px; margin-bottom: 12px;">
           <div style="font-size: 11px; font-weight: 800; color: #fbbf24; text-transform: uppercase; margin-bottom: 4px;">ACTIVE RULE MODIFIER</div>
-          <div id="daily-modifier-desc" style="font-size: 13px; color: #f1f5f9;">Loading...</div>
+          <div id="daily-modifier-desc" style="font-size: 13px; color: #f1f5f9;">Active Daily Modifier: Clean Trail Investigation.</div>
         </div>
         <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 8px; margin-bottom: 16px; border-left: 3px solid #34d399;">
           <div style="font-size: 11px; font-weight: 800; color: #34d399; text-transform: uppercase;">TODAY'S BEST RECORD</div>
@@ -393,10 +404,10 @@
       <div class="modal-box">
         <div class="modal-title" id="briefing-title">MISSION BRIEFING</div>
         <div style="font-size: 13px; color: #38bdf8; font-weight: bold; margin-bottom: 10px;" id="briefing-location">LOCATION</div>
-        <p class="modal-subtitle" id="briefing-story">Story text...</p>
+        <p class="modal-subtitle" id="briefing-story">Local environmental reports indicate toxic effluent runoffs disrupting community sanitation.</p>
         <div style="background: rgba(30, 41, 59, 0.5); padding: 12px; border-radius: 8px; margin-bottom: 16px; font-size: 13px; text-align: left; border-left: 3px solid #38bdf8;">
           <strong style="color: #38bdf8;" id="briefing-obj-label">OBJECTIVE:</strong>
-          <div id="briefing-objective" style="margin-top: 4px; color: #e2e8f0;">Details...</div>
+          <div id="briefing-objective" style="margin-top: 4px; color: #e2e8f0;">Recover 3 evidence clues, evade the Shadow in safe zones, and head to the sector extraction point.</div>
         </div>
         <button class="btn btn-primary" id="btn-briefing-start">COMMENCE INVESTIGATION</button>
       </div>
@@ -407,8 +418,8 @@
       <div class="modal-box" style="display: flex; gap: 18px; align-items: center; text-align: left; max-width: 580px;">
         <div id="npc-portrait" style="width: 74px; height: 74px; border-radius: 50%; background: #1e293b; border: 2px solid #38bdf8; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden;"></div>
         <div style="flex: 1;">
-          <div id="npc-name" style="font-size: 16px; font-weight: 800; color: #38bdf8; margin-bottom: 4px;">NPC NAME</div>
-          <div id="npc-text" style="font-size: 13px; color: #e2e8f0; line-height: 1.4; margin-bottom: 12px;">Dialogue text...</div>
+          <div id="npc-name" style="font-size: 16px; font-weight: 800; color: #38bdf8; margin-bottom: 4px;">COMMUNITY GUARDIAN</div>
+          <div id="npc-text" style="font-size: 13px; color: #e2e8f0; line-height: 1.4; margin-bottom: 12px;">Inspector, we have witnessed illegal chemical discharge into the regional drainage network!</div>
           <button class="btn btn-primary" id="btn-npc-continue" style="font-size: 12px; padding: 6px 16px;">CONTINUE</button>
         </div>
       </div>
@@ -418,7 +429,7 @@
     <div class="ui-layer" id="minigame-layer" style="display: none;">
       <div class="modal-box" style="max-width: 560px;">
         <div class="modal-title" id="minigame-title" style="font-size: 20px; color: #fbbf24;">ENVIRONMENTAL REPAIR</div>
-        <p class="modal-subtitle" id="minigame-desc">Align mechanism.</p>
+        <p class="modal-subtitle" id="minigame-desc">Interact to repair valves, connect telemetry relays, or calibrate filtration stages.</p>
         <canvas id="minigame-canvas" width="420" height="260" style="display: block; margin: 0 auto; background: #0b1329; border-radius: 8px; border: 1px solid rgba(56,189,248,0.3); cursor: pointer;"></canvas>
         <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
           <button class="btn btn-secondary" id="btn-minigame-skip" style="display: none; font-size: 12px; color: #fbbf24;">SKIP PUZZLE (ASSIST)</button>
@@ -430,7 +441,7 @@
     <div class="ui-layer" id="decision-layer" style="display: none;">
       <div class="modal-box" style="width: 640px;">
         <div class="modal-title" style="color: #fbbf24; font-size: 22px;">ENVIRONMENTAL DILEMMA</div>
-        <p class="modal-subtitle" id="decision-question">Decision text...</p>
+        <p class="modal-subtitle" id="decision-question">Evaluate civic environmental impact to protect community health and water resources.</p>
         <div id="decision-options" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px;"></div>
         <div id="decision-feedback" style="font-size: 13px; min-height: 20px; color: #f87171;"></div>
       </div>
@@ -448,7 +459,7 @@
         </div>
         <div style="background: rgba(14, 165, 233, 0.12); border-left: 3px solid #38bdf8; padding: 10px 14px; border-radius: 6px; text-align: left; margin-bottom: 16px; font-size: 12px;">
           <strong style="color: #38bdf8;">DID YOU KNOW?</strong>
-          <div id="fact-card-text" style="color: #cbd5e1; margin-top: 4px;">Environmental fact here...</div>
+          <div id="fact-card-text" style="color: #cbd5e1; margin-top: 4px;">Source segregation and water protection safeguard community groundwater from toxic industrial leachate.</div>
         </div>
         <button class="btn btn-success" id="btn-complete-next">NEXT SECTOR</button>
         <button class="btn btn-secondary" id="btn-complete-map">LEVEL MAP</button>
@@ -499,15 +510,15 @@
       <div style="background: #f8fafc; color: #0f172a; border: 8px double #0284c7; border-radius: 12px; padding: 26px; max-width: 650px; width: 92%; box-shadow: 0 20px 60px rgba(0,0,0,0.9); margin: 20px 0; text-align: center;" id="certificate-paper">
         <div style="font-size: 38px; margin-bottom: 4px;" id="cert-emblem">🇮🇳 🌿</div>
         <h2 style="font-size: 22px; color: #0284c7; text-transform: uppercase; letter-spacing: 2px;" id="cert-heading">SWACHH BHARAT CITIZEN CERTIFICATE</h2>
-        <p style="font-size: 12px; color: #64748b; margin-top: 4px;">NATIONAL CLEAN ENVIRONMENT & SANITATION COUNCIL</p>
+        <p style="font-size: 12px; color: #64748b; margin-top: 4px;">COMMEMORATIVE CIVIC RECOGNITION | SWACHH BHARAT CITIZEN INITIATIVE</p>
         <div style="margin: 18px 0; font-size: 14px; line-height: 1.6;" id="cert-body">
           This certifies that <b id="cert-name" style="font-size: 20px; color: #0f172a; text-decoration: underline;">Inspector Kabir Rao</b><br>
           has investigated all 20 pollution sectors, stopped industrial effluents, and dissolved the Shadow forever.
         </div>
         <div style="display: flex; justify-content: space-around; margin: 15px 0; font-weight: bold; font-size: 14px;">
-          <div>STARS: <span id="cert-stars" style="color: #d97706;">60/60</span></div>
-          <div>ECO-POINTS: <span id="cert-eco" style="color: #059669;">3200</span></div>
-          <div>ENDING: <span id="cert-rank" style="color: #2563eb;">True Clean Guardian</span></div>
+          <div>STARS: <span id="cert-stars" style="color: #d97706;">0/60</span></div>
+          <div>ECO-POINTS: <span id="cert-eco" style="color: #059669;">0</span></div>
+          <div>ENDING: <span id="cert-rank" style="color: #2563eb;">Honorable Guardian</span></div>
         </div>
         <p style="font-size: 12px; font-style: italic; color: #64748b;">"Cleanliness is civic strength. Vigilance is our shield."</p>
       </div>
@@ -572,9 +583,61 @@
   const SAVE_KEY_V1 = 'SHADOW_TRAIL_V1_SAVE';
   const SAVE_KEY_BACKUP = 'SHADOW_TRAIL_BACKUP_SAVE';
 
+  function getLocalDateKey() {
+    const now = new Date();
+    return `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}`;
+  }
+
+  function getFormattedDate(str) {
+    if (!str || str.length !== 8) return str;
+    return `${str.substring(0,4)}-${str.substring(4,6)}-${str.substring(6,8)}`;
+  }
+
+  function validateAndSanitizeSave(raw) {
+    if (!raw || typeof raw !== 'object') return null;
+    return {
+      version: "2.2",
+      unlockedLevel: Math.max(1, Math.min(20, parseInt(raw.unlockedLevel, 10) || 1)),
+      completedLevels: (raw.completedLevels && typeof raw.completedLevels === 'object' && !Array.isArray(raw.completedLevels)) ? raw.completedLevels : {},
+      bestTimes: (raw.bestTimes && typeof raw.bestTimes === 'object' && !Array.isArray(raw.bestTimes)) ? raw.bestTimes : {},
+      levelStars: (raw.levelStars && typeof raw.levelStars === 'object' && !Array.isArray(raw.levelStars)) ? raw.levelStars : {},
+      cluesFound: (raw.cluesFound && typeof raw.cluesFound === 'object' && !Array.isArray(raw.cluesFound)) ? raw.cluesFound : {},
+      ecoBadgesFound: (raw.ecoBadgesFound && typeof raw.ecoBadgesFound === 'object' && !Array.isArray(raw.ecoBadgesFound)) ? raw.ecoBadgesFound : {},
+      decisionsCompleted: (raw.decisionsCompleted && typeof raw.decisionsCompleted === 'object' && !Array.isArray(raw.decisionsCompleted)) ? raw.decisionsCompleted : {},
+      ecoPoints: Math.max(0, parseInt(raw.ecoPoints, 10) || 0),
+      outfitsUnlocked: (raw.outfitsUnlocked && typeof raw.outfitsUnlocked === 'object' && !Array.isArray(raw.outfitsUnlocked)) ? raw.outfitsUnlocked : { default: true },
+      currentOutfit: typeof raw.currentOutfit === 'string' ? raw.currentOutfit : 'default',
+      achievements: (raw.achievements && typeof raw.achievements === 'object' && !Array.isArray(raw.achievements)) ? raw.achievements : {},
+      playerName: (typeof raw.playerName === 'string' && raw.playerName.trim()) ? raw.playerName.trim().slice(0, 40) : "Inspector Kabir Rao",
+      daily: {
+        lastPlayedDate: (raw.daily && typeof raw.daily.lastPlayedDate === 'string') ? raw.daily.lastPlayedDate : "",
+        streak: Math.max(0, parseInt(raw.daily && raw.daily.streak, 10) || 0),
+        bestScoreToday: Math.max(0, parseInt(raw.daily && raw.daily.bestScoreToday, 10) || 0),
+        history: Array.isArray(raw.daily && raw.daily.history) ? raw.daily.history.slice(0, 14) : []
+      },
+      settings: {
+        masterVol: Math.max(0, Math.min(1, typeof (raw.settings && raw.settings.masterVol) === 'number' ? raw.settings.masterVol : 0.8)),
+        musicVol: Math.max(0, Math.min(1, typeof (raw.settings && raw.settings.musicVol) === 'number' ? raw.settings.musicVol : 0.7)),
+        sfxVol: Math.max(0, Math.min(1, typeof (raw.settings && raw.settings.sfxVol) === 'number' ? raw.settings.sfxVol : 0.85)),
+        soundMuted: !!(raw.settings && raw.settings.soundMuted),
+        hintsEnabled: !(raw.settings && raw.settings.hintsEnabled === false),
+        compassEnabled: !(raw.settings && raw.settings.compassEnabled === false),
+        nearMiss: !(raw.settings && raw.settings.nearMiss === false),
+        showPerf: !!(raw.settings && raw.settings.showPerf),
+        autoQuality: !(raw.settings && raw.settings.autoQuality === false),
+        difficulty: (raw.settings && ['relaxed', 'normal', 'challenge'].includes(raw.settings.difficulty)) ? raw.settings.difficulty : 'normal',
+        quality: (raw.settings && ['low', 'med', 'high'].includes(raw.settings.quality)) ? raw.settings.quality : 'high',
+        leftHanded: !!(raw.settings && raw.settings.leftHanded),
+        reducedFx: !!(raw.settings && raw.settings.reducedFx),
+        language: (raw.settings && ['en', 'hi'].includes(raw.settings.language)) ? raw.settings.language : 'en',
+        touchEnabled: (raw.settings && typeof raw.settings.touchEnabled === 'boolean') ? raw.settings.touchEnabled : null
+      }
+    };
+  }
+
   let saveState = {
     version: "2.2", unlockedLevel: 1, completedLevels: {}, bestTimes: {},
-    levelStars: {}, cluesFound: {}, ecoBadgesFound: {}, ecoPoints: 0,
+    levelStars: {}, cluesFound: {}, ecoBadgesFound: {}, decisionsCompleted: {}, ecoPoints: 0,
     outfitsUnlocked: { default: true }, currentOutfit: 'default', achievements: {},
     playerName: "Inspector Kabir Rao",
     daily: { lastPlayedDate: "", streak: 0, bestScoreToday: 0, history: [] },
@@ -598,6 +661,18 @@
 
   function decodeUnicodeSave(str) {
     return JSON.parse(decodeURIComponent(escape(atob(str))));
+  }
+
+  function checkDailyStreakValidity() {
+    const todayKey = getLocalDateKey();
+    const yDate = new Date(); yDate.setDate(yDate.getDate() - 1);
+    const yKey = `${yDate.getFullYear()}${String(yDate.getMonth()+1).padStart(2,'0')}${String(yDate.getDate()).padStart(2,'0')}`;
+    if (saveState.daily.lastPlayedDate !== todayKey && saveState.daily.lastPlayedDate !== yKey) {
+      saveState.daily.streak = 0;
+    }
+    if (saveState.daily.lastPlayedDate !== todayKey) {
+      saveState.daily.bestScoreToday = 0;
+    }
   }
 
   function loadGameData() {
@@ -624,35 +699,32 @@
         }
       }
       if (parsed) {
-        Object.assign(saveState, parsed);
-        if (!saveState.settings) saveState.settings = {};
-        if (!saveState.daily) saveState.daily = { lastPlayedDate: "", streak: 0, bestScoreToday: 0, history: [] };
-        // Daily reset if date changed
-        const todayKey = getLocalDateKey();
-        if (saveState.daily.lastPlayedDate !== todayKey) saveState.daily.bestScoreToday = 0;
-        saveState.version = "2.2";
-        saveGameData();
-        return;
+        const clean = validateAndSanitizeSave(parsed);
+        if (clean) {
+          saveState = clean;
+          checkDailyStreakValidity();
+          saveGameData();
+          return;
+        }
       }
       // V1 fallback
       const v1 = localStorage.getItem(SAVE_KEY_V1);
       if (v1) {
         const p1 = JSON.parse(v1);
-        saveState.unlockedLevel = p1.unlockedLevel || 1;
-        saveState.completedLevels = p1.completedLevels || {};
-        saveState.bestTimes = p1.bestTimes || {};
-        saveState.levelStars = p1.levelStars || {};
-        saveState.cluesFound = p1.cluesFound || {};
-        saveState.version = "2.2";
-        saveGameData();
+        const clean1 = validateAndSanitizeSave(p1);
+        if (clean1) {
+          saveState = clean1;
+          saveGameData();
+          return;
+        }
       }
     } catch (e) { console.warn("Load warning:", e); }
+    checkDailyStreakValidity();
   }
 
   function saveGameData() {
     try {
       saveState.version = "2.2";
-      // Rotate existing good save to backup
       const existing = localStorage.getItem(SAVE_KEY_V2);
       if (existing) localStorage.setItem(SAVE_KEY_BACKUP, existing);
 
@@ -667,6 +739,7 @@
       saveState.unlockedLevel = 1; saveState.completedLevels = {};
       saveState.bestTimes = {}; saveState.levelStars = {};
       saveState.cluesFound = {}; saveState.ecoBadgesFound = {};
+      saveState.decisionsCompleted = {};
       saveState.ecoPoints = 0; saveState.achievements = {};
       saveGameData(); renderMapGrid();
     }
@@ -689,7 +762,10 @@
       nextSector: "NEXT SECTOR",
       actSecure: "[E] / ACTION TO SECURE",
       shadowWhisper: "You cannot stop what negligence created!",
-      allCluesFound: "All 3 evidence clues secured! Head to the Sector Exit!"
+      allCluesFound: "All 3 evidence clues secured! Head to the Sector Exit!",
+      resume: "RESUME",
+      restart: "RESTART LEVEL",
+      titleDesc: "Follow Inspector Kabir Rao and companion Sheru across 20 regional sectors. Master the Flashlight, Clue Lens, and stealth maneuvers to dissolve the Shadow of environmental decay into morning light!"
     },
     hi: {
       titleSub: "स्वच्छ पथ संस्करण 2.2",
@@ -704,7 +780,10 @@
       nextSector: "अगला क्षेत्र",
       actSecure: "[E] / सुरक्षित करने हेतु दबाएँ",
       shadowWhisper: "लापरवाही से बनी इस गंदगी को तुम रोक नहीं सकते!",
-      allCluesFound: "तीनों सबूत मिल गए! सेक्टर निकास द्वार की ओर बढ़ें!"
+      allCluesFound: "तीनों सबूत मिल गए! सेक्टर निकास द्वार की ओर बढ़ें!",
+      resume: "पुनः आरंभ करें",
+      restart: "स्तर पुनः शुरू करें",
+      titleDesc: "इंस्पेक्टर कबीर राव और साथी शेरू के साथ 20 क्षेत्रों की जाँच करें। टॉर्च, सुराग लेंस और सतर्कता से पर्यावरण प्रदूषण की छाया को समाप्त करें!"
     }
   };
 
@@ -714,15 +793,21 @@
   }
 
   function applyLanguageToUI() {
-    const lang = saveState.settings.language || 'en';
-    const sub = document.getElementById('lbl-title-sub');
-    if (sub) sub.textContent = t('titleSub');
-    const start = document.getElementById('btn-title-start');
-    if (start) start.textContent = t('startInv');
-    const daily = document.getElementById('btn-title-daily');
-    if (daily) daily.textContent = t('dailyChall');
-    const pill = document.getElementById('status-pill');
-    if (pill) pill.textContent = t('safeZone');
+    const setTxt = (id, key) => { const el = document.getElementById(id); if (el) el.textContent = t(key); };
+    setTxt('lbl-title-sub', 'titleSub');
+    setTxt('btn-title-start', 'startInv');
+    setTxt('btn-title-daily', 'dailyChall');
+    setTxt('btn-title-map', 'levelMap');
+    setTxt('btn-title-casefile', 'caseFile');
+    setTxt('btn-title-settings', 'settings');
+    setTxt('status-pill', 'safeZone');
+    setTxt('lbl-sector-restored', 'sectorRestored');
+    setTxt('btn-complete-next', 'nextSector');
+    setTxt('btn-pause-resume', 'resume');
+    setTxt('btn-pause-restart', 'restart');
+    setTxt('btn-pause-map', 'levelMap');
+    const desc = document.getElementById('lbl-title-desc');
+    if (desc) desc.textContent = t('titleDesc');
   }
 
   // 3. NAVIGATION PREVIOUS-SCREEN STACK
@@ -934,26 +1019,55 @@
     }
   }
 
-  // 7. INPUT & AUTO-TOUCH DETECTION
+  // 7. CACHED DOM REFS & INPUT WITH FOCUS INTEGRITY
+  const DOM = {
+    hudClues: null, staminaFill: null, batteryFill: null, objPointer: null, objArrow: null, objText: null,
+    statusPill: null, warnBanner: null, toast: null, interactPrompt: null, perfOverlay: null,
+    init() {
+      this.hudClues = document.getElementById('hud-clues');
+      this.staminaFill = document.getElementById('stamina-fill');
+      this.batteryFill = document.getElementById('battery-fill');
+      this.objPointer = document.getElementById('objective-pointer');
+      this.objArrow = document.getElementById('objective-arrow');
+      this.objText = document.getElementById('objective-text');
+      this.statusPill = document.getElementById('status-pill');
+      this.warnBanner = document.getElementById('warning-banner');
+      this.toast = document.getElementById('toast-notice');
+      this.interactPrompt = document.getElementById('interact-prompt');
+      this.perfOverlay = document.getElementById('perf-overlay');
+    }
+  };
+
   const Input = {
     left: false, right: false, jump: false, action: false, sprint: false,
     hide: false, flashlightToggle: false, stickX: 0, stickY: 0,
-    reset() { this.left = this.right = this.jump = this.action = this.sprint = this.hide = this.flashlightToggle = false; this.stickX = this.stickY = 0; }
+    reset() { this.left = this.right = this.jump = this.action = this.sprint = this.hide = this.flashlightToggle = false; this.stickX = this.stickY = 0; updateTouchHideState(); }
   };
+
+  function updateTouchHideState() {
+    const hideBtn = document.getElementById('btn-hide');
+    if (hideBtn) hideBtn.classList.toggle('active', !!Input.hide);
+  }
 
   window.addEventListener('keydown', (e) => {
     initAudio();
+    if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
+    if (gameState === 'MINIGAME' && typeof handleMiniGameKey === 'function') {
+      if (handleMiniGameKey(e.code)) { e.preventDefault(); return; }
+    }
     if (e.code === 'KeyA' || e.code === 'ArrowLeft') Input.left = true;
     if (e.code === 'KeyD' || e.code === 'ArrowRight') Input.right = true;
     if (e.code === 'KeyW' || e.code === 'ArrowUp' || e.code === 'Space') { Input.jump = true; e.preventDefault(); }
     if (e.code === 'KeyE' || e.code === 'Enter') Input.action = true;
     if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') Input.sprint = true;
-    if (e.code === 'KeyC') Input.hide = !Input.hide;
+    if (e.repeat) return; // Prevent rapid firing of one-shot toggle actions
+    if (e.code === 'KeyC') { Input.hide = !Input.hide; updateTouchHideState(); }
     if (e.code === 'KeyF') Input.flashlightToggle = true;
     if (e.code === 'KeyP' || e.code === 'Escape') togglePause();
   });
 
   window.addEventListener('keyup', (e) => {
+    if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
     if (e.code === 'KeyA' || e.code === 'ArrowLeft') Input.left = false;
     if (e.code === 'KeyD' || e.code === 'ArrowRight') Input.right = false;
     if (e.code === 'KeyW' || e.code === 'ArrowUp' || e.code === 'Space') Input.jump = false;
@@ -1106,10 +1220,8 @@
         this.walkTimer += dt * 2;
       }
 
-      const sFill = document.getElementById('stamina-fill');
-      const bFill = document.getElementById('battery-fill');
-      if (sFill) sFill.style.width = `${Math.floor(this.stamina)}%`;
-      if (bFill) bFill.style.width = `${Math.floor((this.flashlightBattery / maxBat) * 100)}%`;
+      if (DOM.staminaFill) DOM.staminaFill.style.width = `${Math.floor(this.stamina)}%`;
+      if (DOM.batteryFill) DOM.batteryFill.style.width = `${Math.floor((this.flashlightBattery / maxBat) * 100)}%`;
     }
 
     draw(ctx) {
@@ -1342,12 +1454,6 @@
     update(dt, player, currentLevel) {
       this.animTime += dt;
       timeSinceLastProgress += dt;
-      const targetX = player.x - player.facing * 60;
-      const dist = targetX - this.x;
-      this.vx = Math.abs(dist) > 20 ? Math.sign(dist) * Math.min(260, Math.abs(dist) * 4) : 0;
-      this.x += this.vx * dt;
-      if (Math.abs(this.vx) > 10) this.facing = Math.sign(this.vx);
-      this.y = currentLevel.groundY;
 
       // 20s progress hint
       if (saveState.settings.hintsEnabled && timeSinceLastProgress > 20) {
@@ -1357,9 +1463,20 @@
           speak("Sheru found a clue scent! Follow him!");
           showToast("Companion Hint: Sheru caught the scent!");
         }
+        const targetClue = currentLevel.collectibles ? currentLevel.collectibles.find(c => !c.collected) : null;
+        const targetX = targetClue ? targetClue.x : (currentLevel.width - 100);
+        const dist = targetX - this.x;
+        this.vx = Math.abs(dist) > 20 ? Math.sign(dist) * Math.min(230, Math.abs(dist) * 3) : 0;
+        this.facing = targetX >= this.x ? 1 : -1;
       } else {
         this.isPointingHint = false;
+        const targetX = player.x - player.facing * 60;
+        const dist = targetX - this.x;
+        this.vx = Math.abs(dist) > 20 ? Math.sign(dist) * Math.min(260, Math.abs(dist) * 4) : 0;
+        if (Math.abs(this.vx) > 10) this.facing = Math.sign(this.vx);
       }
+      this.x += this.vx * dt;
+      this.y = currentLevel.groundY;
     }
 
     draw(ctx) {
@@ -1662,8 +1779,13 @@
     initAmbientParticles(currentLevelData.theme);
     updateBackgroundCache(currentLevelData);
 
+    currentLevelData._decisionDone = false;
+    currentLevelData._minigameDone = false;
     if (currentLevelData.collectibles) {
       currentLevelData.collectibles.forEach(c => c.collected = false);
+    }
+    if (currentLevelData.badges) {
+      currentLevelData.badges.forEach(b => b._dailyFound = false);
     }
 
     hideAllModals();
@@ -1695,8 +1817,10 @@
 
     // Level 1 tutorial popups
     if (currentLevelData.id === 1 && !isDailyChallengeMode) {
-      showToast("Tutorial: Use WASD / Joystick to move. Space to jump!");
-      setTimeout(() => showToast("Hold [E] or ACT near glowing items to secure clues!"), 4000);
+      showToast("Tutorial [1/4]: WASD or Left Joystick to move. Space to jump!");
+      setTimeout(() => showToast("Tutorial [2/4]: Press [F] or [LIGHT] for your Flashlight!"), 3500);
+      setTimeout(() => showToast("Tutorial [3/4]: Press [C] or [HIDE] to crouch safely in Shelters!"), 7000);
+      setTimeout(() => showToast("Tutorial [4/4]: Hold [E] or [ACT] near glowing items to secure clues!"), 10500);
     }
 
     if (currentLevelData.npc && !isDailyChallengeMode) {
@@ -1739,8 +1863,16 @@
       b.onclick = () => {
         if (opt.ok) {
           fb.style.color = "#34d399";
-          fb.textContent = "✓ Outstanding citizen choice! +100 Eco-Points awarded.";
-          saveState.ecoPoints += 100; saveGameData(); SFX.success();
+          const dKey = `dec_${currentLevelData ? currentLevelData.id : 0}`;
+          if (!saveState.decisionsCompleted[dKey]) {
+            saveState.decisionsCompleted[dKey] = true;
+            saveState.ecoPoints += 100;
+            saveGameData();
+            fb.textContent = "✓ Outstanding citizen choice! +100 Eco-Points awarded.";
+          } else {
+            fb.textContent = "✓ Outstanding citizen choice!";
+          }
+          SFX.success();
           setTimeout(() => {
             document.getElementById('decision-layer').style.display = 'none';
             gameState = 'PLAYING';
@@ -1757,8 +1889,10 @@
     document.getElementById('decision-layer').style.display = 'flex';
   }
 
-  // 17. 5 INTERACTIVE MINI-GAMES (Pipe Repair, Signals Wiring, Water Filter, Timing)
+  // 17. 5 INTERACTIVE MINI-GAMES (Pipe Repair, Signals Wiring, Water Filter, Pipe Rotation, Traffic Timing)
   let miniGameActive = false, miniGameFailures = 0, miniGameType = null;
+  let handleMiniGameKey = null;
+
   function startMiniGame(type, onSolved) {
     gameState = 'MINIGAME';
     miniGameType = type; miniGameActive = true; miniGameFailures = 0;
@@ -1769,81 +1903,212 @@
     mSkip.style.display = 'none';
     mLayer.style.display = 'flex';
 
-    // Mini-game state variables
-    let pipeAngles = [0, 90, 180, 270]; // for pipe rotation
+    let lastMiniTime = performance.now();
+    let meterPos = 50, meterDir = 1;
     let wiresConnected = { r: false, g: false, b: false };
-    let meterTarget = 180, meterPos = 0, meterDir = 240;
+    let filterStages = { s1: false, s2: false, s3: false };
+    let pipeAngles = [90, 180, 270];
+    let trafficTimer = 0;
+
+    function winMiniGame(msg) {
+      if (!miniGameActive) return;
+      miniGameActive = false;
+      SFX.success();
+      showToast(msg || "Mechanism resolved!");
+      setTimeout(() => {
+        mLayer.style.display = 'none';
+        gameState = 'PLAYING';
+        if (onSolved) onSolved();
+      }, 700);
+    }
+
+    function failMiniGame() {
+      miniGameFailures++;
+      SFX.wrong();
+      if (miniGameFailures >= 3) {
+        mSkip.style.display = 'block';
+      }
+    }
+
+    handleMiniGameKey = (code) => {
+      if (!miniGameActive) return false;
+      if (code === 'Space' || code === 'Enter') {
+        triggerPrimaryAction();
+        return true;
+      }
+      if (code === 'Digit1' || code === 'Numpad1') { triggerSlotAction(0); return true; }
+      if (code === 'Digit2' || code === 'Numpad2') { triggerSlotAction(1); return true; }
+      if (code === 'Digit3' || code === 'Numpad3') { triggerSlotAction(2); return true; }
+      if (code === 'Escape' && miniGameFailures >= 3) {
+        skipAction();
+        return true;
+      }
+      return false;
+    };
+
+    function triggerPrimaryAction() {
+      SFX.switchClick();
+      if (type === 'pipe_repair') {
+        if (meterPos >= 155 && meterPos <= 245) {
+          winMiniGame("Leak sealed! Pressure stabilized.");
+        } else {
+          failMiniGame();
+        }
+      } else if (type === 'traffic_timing') {
+        const state = (trafficTimer % 5.0);
+        if (state < 2.2) {
+          winMiniGame("Corridor synchronized! Signals green.");
+        } else {
+          failMiniGame();
+        }
+      } else if (type === 'signals') {
+        if (!wiresConnected.r) triggerSlotAction(0);
+        else if (!wiresConnected.g) triggerSlotAction(1);
+        else triggerSlotAction(2);
+      } else if (type === 'water_filter') {
+        if (!filterStages.s1) triggerSlotAction(0);
+        else if (!filterStages.s2) triggerSlotAction(1);
+        else triggerSlotAction(2);
+      } else if (type === 'pipe_rotation') {
+        triggerSlotAction(0);
+      }
+    }
+
+    function triggerSlotAction(idx) {
+      SFX.switchClick();
+      if (type === 'signals') {
+        if (idx === 0) wiresConnected.r = true;
+        if (idx === 1 && wiresConnected.r) wiresConnected.g = true;
+        if (idx === 2 && wiresConnected.g) {
+          wiresConnected.b = true;
+          winMiniGame("Signal telemetry lines paired!");
+        }
+      } else if (type === 'water_filter') {
+        if (idx === 0) filterStages.s1 = true;
+        else if (idx === 1 && filterStages.s1) filterStages.s2 = true;
+        else if (idx === 2 && filterStages.s2) {
+          filterStages.s3 = true;
+          winMiniGame("3-Stage filtration online!");
+        } else {
+          failMiniGame();
+        }
+      } else if (type === 'pipe_rotation') {
+        pipeAngles[idx] = (pipeAngles[idx] + 90) % 360;
+        if (pipeAngles[0] === 0 && pipeAngles[1] === 0 && pipeAngles[2] === 0) {
+          winMiniGame("Bypass pipes aligned!");
+        }
+      }
+    }
 
     function renderMini() {
       if (!miniGameActive) return;
+      const now = performance.now();
+      const dt = Math.min((now - lastMiniTime) / 1000, 0.05);
+      lastMiniTime = now;
+
       mCtx.clearRect(0, 0, 420, 260);
 
       if (type === 'pipe_repair') {
+        meterPos += meterDir * dt * 260;
+        if (meterPos > 340) { meterPos = 340; meterDir = -1; }
+        else if (meterPos < 50) { meterPos = 50; meterDir = 1; }
+
         document.getElementById('minigame-title').textContent = "PIPE LEAK SEALING";
-        document.getElementById('minigame-desc').textContent = "Tap when oscillating pressure needle aligns inside green zone.";
-        // Timing needle mini-game
+        document.getElementById('minigame-desc').textContent = "Tap or press [Space] when oscillating needle aligns inside the green zone.";
         mCtx.fillStyle = "#1e293b"; mCtx.fillRect(40, 110, 340, 40);
-        mCtx.fillStyle = "#10b981"; mCtx.fillRect(160, 110, 80, 40); // Target zone
-        mCtx.fillStyle = "#38bdf8"; mCtx.fillRect(meterPos, 100, 10, 60); // Needle
+        mCtx.fillStyle = "#10b981"; mCtx.fillRect(160, 110, 80, 40);
+        mCtx.fillStyle = "#38bdf8"; mCtx.fillRect(meterPos, 98, 12, 64);
+        mCtx.fillStyle = "#94a3b8"; mCtx.font = "bold 11px sans-serif";
+        mCtx.fillText("PRESSURE DIAL", 165, 85);
+        mCtx.fillText("[Space / Tap] to Seal Valve", 135, 195);
       } else if (type === 'signals') {
         document.getElementById('minigame-title').textContent = "SIGNAL RELAY WIRING";
-        document.getElementById('minigame-desc').textContent = "Click terminals to pair Red, Green, and Blue telemetry lines.";
-        const colors = [['#ef4444','Red'], ['#10b981','Green'], ['#38bdf8','Blue']];
+        document.getElementById('minigame-desc').textContent = "Click terminals or press [1, 2, 3] to pair telemetry channels in order.";
+        const colors = [['#ef4444','1. RED RELAY'], ['#10b981','2. GREEN RELAY'], ['#38bdf8','3. BLUE RELAY']];
         colors.forEach((c, idx) => {
           mCtx.fillStyle = c[0];
-          mCtx.fillRect(50, 40 + idx * 70, 40, 40);
-          mCtx.fillRect(330, 40 + idx * 70, 40, 40);
-          if (idx === 0 && wiresConnected.r) { mCtx.strokeStyle = c[0]; mCtx.lineWidth = 4; mCtx.beginPath(); mCtx.moveTo(90, 60); mCtx.lineTo(330, 60); mCtx.stroke(); }
-          if (idx === 1 && wiresConnected.g) { mCtx.strokeStyle = c[0]; mCtx.lineWidth = 4; mCtx.beginPath(); mCtx.moveTo(90, 130); mCtx.lineTo(330, 130); mCtx.stroke(); }
-          if (idx === 2 && wiresConnected.b) { mCtx.strokeStyle = c[0]; mCtx.lineWidth = 4; mCtx.beginPath(); mCtx.moveTo(90, 200); mCtx.lineTo(330, 200); mCtx.stroke(); }
+          mCtx.fillRect(45, 35 + idx * 70, 40, 40);
+          mCtx.fillRect(335, 35 + idx * 70, 40, 40);
+          mCtx.fillStyle = "#e2e8f0"; mCtx.font = "bold 11px sans-serif";
+          mCtx.fillText(c[1], 155, 60 + idx * 70);
+          if (idx === 0 && wiresConnected.r) { mCtx.strokeStyle = c[0]; mCtx.lineWidth = 5; mCtx.beginPath(); mCtx.moveTo(85, 55); mCtx.lineTo(335, 55); mCtx.stroke(); }
+          if (idx === 1 && wiresConnected.g) { mCtx.strokeStyle = c[0]; mCtx.lineWidth = 5; mCtx.beginPath(); mCtx.moveTo(85, 125); mCtx.lineTo(335, 125); mCtx.stroke(); }
+          if (idx === 2 && wiresConnected.b) { mCtx.strokeStyle = c[0]; mCtx.lineWidth = 5; mCtx.beginPath(); mCtx.moveTo(85, 195); mCtx.lineTo(335, 195); mCtx.stroke(); }
         });
+      } else if (type === 'pipe_rotation') {
+        document.getElementById('minigame-title').textContent = "PIPE BYPASS ROTATION";
+        document.getElementById('minigame-desc').textContent = "Click valves or press [1, 2, 3] to align horizontal fluid route (0°).";
+        [0, 1, 2].forEach(i => {
+          const cx = 90 + i * 120, cy = 130;
+          mCtx.save();
+          mCtx.translate(cx, cy);
+          mCtx.rotate(pipeAngles[i] * Math.PI / 180);
+          mCtx.fillStyle = pipeAngles[i] === 0 ? "#10b981" : "#0284c7";
+          mCtx.fillRect(-35, -12, 70, 24);
+          mCtx.fillStyle = "#fff"; mCtx.beginPath(); mCtx.arc(0, 0, 8, 0, Math.PI * 2); mCtx.fill();
+          mCtx.restore();
+          mCtx.fillStyle = "#94a3b8"; mCtx.font = "bold 11px sans-serif";
+          mCtx.fillText(`[${i+1}] ${pipeAngles[i]}°`, cx - 20, cy + 50);
+        });
+      } else if (type === 'traffic_timing') {
+        trafficTimer += dt;
+        document.getElementById('minigame-title').textContent = "TRAFFIC SIGNAL SYNCHRONIZATION";
+        document.getElementById('minigame-desc').textContent = "Tap or press [Space] during GREEN phase to route emergency vehicles.";
+        const state = (trafficTimer % 5.0);
+        const isGreen = state < 2.2, isAmber = state >= 2.2 && state < 3.0, isRed = state >= 3.0;
+        mCtx.fillStyle = "#1e293b"; mCtx.fillRect(170, 40, 80, 180);
+        mCtx.fillStyle = isRed ? "#ef4444" : "#450a0a"; mCtx.beginPath(); mCtx.arc(210, 75, 20, 0, Math.PI * 2); mCtx.fill();
+        mCtx.fillStyle = isAmber ? "#fbbf24" : "#451a03"; mCtx.beginPath(); mCtx.arc(210, 130, 20, 0, Math.PI * 2); mCtx.fill();
+        mCtx.fillStyle = isGreen ? "#10b981" : "#052e16"; mCtx.beginPath(); mCtx.arc(210, 185, 20, 0, Math.PI * 2); mCtx.fill();
       } else {
-        // Water Filter sequence
         document.getElementById('minigame-title').textContent = "WATER FILTER ALIGNMENT";
-        document.getElementById('minigame-desc').textContent = "Click to activate multi-stage filtration chambers.";
-        mCtx.fillStyle = "#0284c7"; mCtx.fillRect(60, 80, 80, 100);
-        mCtx.fillStyle = "#059669"; mCtx.fillRect(170, 80, 80, 100);
-        mCtx.fillStyle = "#d97706"; mCtx.fillRect(280, 80, 80, 100);
-        mCtx.fillStyle = "#fff"; mCtx.font = "bold 12px sans-serif";
-        mCtx.fillText("1. SCREEN", 70, 135); mCtx.fillText("2. SAND", 185, 135); mCtx.fillText("3. CARBON", 290, 135);
+        document.getElementById('minigame-desc').textContent = "Activate in order: 1. Screen (Macro) ➔ 2. Sand (Particulate) ➔ 3. Carbon (Chemical).";
+        const stages = [
+          { name: "1. SCREEN", active: filterStages.s1, col: "#0284c7" },
+          { name: "2. SAND", active: filterStages.s2, col: "#059669" },
+          { name: "3. CARBON", active: filterStages.s3, col: "#d97706" }
+        ];
+        stages.forEach((st, idx) => {
+          mCtx.fillStyle = st.active ? st.col : "#1e293b";
+          mCtx.fillRect(50 + idx * 115, 80, 90, 100);
+          mCtx.strokeStyle = st.col; mCtx.lineWidth = 2;
+          mCtx.strokeRect(50 + idx * 115, 80, 90, 100);
+          mCtx.fillStyle = st.active ? "#fff" : "#94a3b8";
+          mCtx.font = "bold 11px sans-serif";
+          mCtx.fillText(st.name, 60 + idx * 115, 135);
+          mCtx.fillText(st.active ? "ONLINE" : "[READY]", 65 + idx * 115, 155);
+        });
       }
+
       requestAnimationFrame(renderMini);
     }
     renderMini();
 
-    // Interaction handler
     mCanvas.onclick = (e) => {
-      SFX.switchClick();
-      if (type === 'pipe_repair') {
-        if (meterPos >= 160 && meterPos <= 240) {
-          // Success
-          miniGameActive = false; SFX.success();
-          showToast("Leak sealed! Pressure stabilized.");
-          setTimeout(() => { mLayer.style.display = 'none'; gameState = 'PLAYING'; if (onSolved) onSolved(); }, 700);
-        } else {
-          miniGameFailures++; SFX.wrong();
-          if (miniGameFailures >= 3) mSkip.style.display = 'block';
-        }
-      } else if (type === 'signals') {
-        if (!wiresConnected.r) wiresConnected.r = true;
-        else if (!wiresConnected.g) wiresConnected.g = true;
-        else if (!wiresConnected.b) {
-          wiresConnected.b = true; miniGameActive = false; SFX.success();
-          showToast("Relay synchronized!");
-          setTimeout(() => { mLayer.style.display = 'none'; gameState = 'PLAYING'; if (onSolved) onSolved(); }, 700);
-        }
+      const rect = mCanvas.getBoundingClientRect();
+      const clickX = (e.clientX - rect.left) * (420 / rect.width);
+      const clickY = (e.clientY - rect.top) * (260 / rect.height);
+      if (type === 'signals') {
+        if (clickY < 100) triggerSlotAction(0);
+        else if (clickY < 170) triggerSlotAction(1);
+        else triggerSlotAction(2);
+      } else if (type === 'pipe_rotation' || type === 'water_filter') {
+        if (clickX < 140) triggerSlotAction(0);
+        else if (clickX < 260) triggerSlotAction(1);
+        else triggerSlotAction(2);
       } else {
-        miniGameActive = false; SFX.success();
-        showToast("Filter stages cleared!");
-        setTimeout(() => { mLayer.style.display = 'none'; gameState = 'PLAYING'; if (onSolved) onSolved(); }, 700);
+        triggerPrimaryAction();
       }
     };
 
-    mSkip.onclick = () => {
+    function skipAction() {
       miniGameActive = false;
-      mLayer.style.display = 'none'; gameState = 'PLAYING';
+      mLayer.style.display = 'none';
+      gameState = 'PLAYING';
+      showToast("Puzzle skipped with municipal engineering assist.");
       if (onSolved) onSolved();
-    };
+    }
+    mSkip.onclick = skipAction;
   }
 
   // 18. LEVEL 20 FINALE SEQUENCE & DUAL ENDINGS
@@ -1947,11 +2212,16 @@
     if (levelTimer < 160) stars++;
     if (badgesFound >= 2) stars++;
 
-    saveState.completedLevels[currentLevelData.id] = true;
+    const wasAlreadyCompleted = !!saveState.completedLevels[currentLevelData.id];
+    let newlyAwarded = 0;
+    if (!wasAlreadyCompleted) {
+      newlyAwarded = 150;
+      saveState.completedLevels[currentLevelData.id] = true;
+      saveState.ecoPoints += 150;
+    }
     saveState.levelStars[currentLevelData.id] = Math.max(saveState.levelStars[currentLevelData.id] || 0, stars);
     saveState.bestTimes[currentLevelData.id] = timeFormatted;
     saveState.cluesFound[currentLevelData.id] = currentLevelData.clueName;
-    saveState.ecoPoints += 150 + badgesFound * 75;
 
     if (currentLevelData.id === saveState.unlockedLevel && saveState.unlockedLevel < LEVELS_DATA.length) {
       saveState.unlockedLevel++;
@@ -1967,13 +2237,19 @@
     document.getElementById('btn-complete-next').textContent = t('nextSector');
     document.getElementById('complete-stars').textContent = '★'.repeat(stars) + '☆'.repeat(3 - stars);
     document.getElementById('complete-time').textContent = timeFormatted;
-    document.getElementById('complete-eco').textContent = `+${150 + badgesFound * 75}`;
+    document.getElementById('complete-eco').textContent = `+${newlyAwarded}`;
     document.getElementById('complete-badges').textContent = `${badgesFound}/3`;
     document.getElementById('fact-card-text').textContent = currentLevelData.fact;
     document.getElementById('complete-layer').style.display = 'flex';
   }
 
   function showCertificateScreen() {
+    const completedCount = Object.keys(saveState.completedLevels).length;
+    if (completedCount < 20 && saveState.unlockedLevel <= 20) {
+      showToast(`Certificate locked! Complete all 20 sectors first (${completedCount}/20).`);
+      showMap();
+      return;
+    }
     gameState = 'FINALE'; hideAllModals();
     const totalBadges = Object.keys(saveState.ecoBadgesFound).length;
     const isTrueEnding = totalBadges >= 45; // True ending threshold
@@ -2196,7 +2472,14 @@
           } else if (currentLevelData.decision && !currentLevelData._decisionDone) {
             triggerDecision(currentLevelData.decision, () => {
               currentLevelData._decisionDone = true;
-              checkLevelCompletion();
+              if (currentLevelData.minigame && !currentLevelData._minigameDone) {
+                startMiniGame(currentLevelData.minigame, () => {
+                  currentLevelData._minigameDone = true;
+                  checkLevelCompletion();
+                });
+              } else {
+                checkLevelCompletion();
+              }
             });
           } else if (currentLevelData.minigame && !currentLevelData._minigameDone) {
             startMiniGame(currentLevelData.minigame, () => {
@@ -2297,21 +2580,22 @@
   }
 
   function updateHUD() {
-    const cluesEl = document.getElementById('hud-clues');
-    if (cluesEl && currentLevelData) {
-      cluesEl.textContent = `${t('evidence')}: ${cluesCollected} / ${currentLevelData.cluesNeeded}`;
+    if (DOM.hudClues && currentLevelData) {
+      DOM.hudClues.textContent = `${t('evidence')}: ${cluesCollected} / ${currentLevelData.cluesNeeded}`;
     }
-    const pointer = document.getElementById('objective-pointer');
-    if (pointer && saveState.settings.compassEnabled && player && currentLevelData) {
-      pointer.style.display = 'flex';
+    if (DOM.objPointer && saveState.settings.compassEnabled && player && currentLevelData) {
+      DOM.objPointer.style.display = 'flex';
       const exitX = currentLevelData.width - 150;
       const targetX = (cluesCollected >= currentLevelData.cluesNeeded) ? exitX : (currentLevelData.collectibles.find(c => !c.collected) || { x: exitX }).x;
-      document.getElementById('objective-arrow').textContent = targetX > player.x ? '➔' : '⬅';
-      document.getElementById('objective-text').textContent = (cluesCollected >= currentLevelData.cluesNeeded) ? "HEAD TO SECTOR EXIT" : "LOCATE EVIDENCE CLUE";
+      if (DOM.objArrow) DOM.objArrow.textContent = targetX > player.x ? '➔' : '⬅';
+      if (DOM.objText) DOM.objText.textContent = (cluesCollected >= currentLevelData.cluesNeeded) ? "HEAD TO SECTOR EXIT" : "LOCATE EVIDENCE CLUE";
+    } else if (DOM.objPointer) {
+      DOM.objPointer.style.display = 'none';
     }
   }
 
-  // 22. ANIMATION LOOP
+  // 22. ANIMATION LOOP (Strictly 1 Active Loop Guarded by animFrameId)
+  let animFrameId = null;
   function gameLoop(timestamp) {
     if (!lastTimestamp) lastTimestamp = timestamp;
     const rawDt = Math.min((timestamp - lastTimestamp) / 1000, 0.05);
@@ -2342,7 +2626,7 @@
         }
       }
       player.inSafeZone = sheltered; player.isHidden = sheltered || player.isCrouching;
-      document.getElementById('status-pill').style.display = sheltered ? 'block' : 'none';
+      if (DOM.statusPill) DOM.statusPill.style.display = sheltered ? 'block' : 'none';
 
       player.update(dt, currentLevelData);
       shadow.update(dt, player, currentLevelData);
@@ -2373,7 +2657,7 @@
     if (gameState === 'PLAYING' || gameState === 'PAUSED' || gameState === 'NPC') {
       renderWorld(ctx);
     }
-    requestAnimationFrame(gameLoop);
+    animFrameId = requestAnimationFrame(gameLoop);
   }
 
   // 23. UI SCREEN MANAGEMENT & STACK NAVIGATION
@@ -2643,6 +2927,7 @@
   }
 
   function handleAutoPause() {
+    Input.reset();
     if (gameState === 'PLAYING' && !isPaused) {
       isPaused = true; gameState = 'PAUSED';
       document.getElementById('auto-pause-overlay').style.display = 'flex';
@@ -2650,6 +2935,7 @@
   }
   document.addEventListener('visibilitychange', () => { if (document.hidden) handleAutoPause(); });
   window.addEventListener('blur', handleAutoPause);
+  window.addEventListener('focus', () => { Input.reset(); });
 
   document.getElementById('btn-auto-resume').onclick = () => {
     document.getElementById('auto-pause-overlay').style.display = 'none';
@@ -2669,6 +2955,14 @@
     document.getElementById('btn-map-back').onclick = showTitleScreen;
     document.getElementById('btn-map-daily').onclick = showDailyScreen;
     document.getElementById('btn-map-casefile').onclick = () => { previousScreen = 'map'; showCaseFile(); };
+    document.getElementById('btn-map-cert').onclick = () => {
+      const completedCount = Object.keys(saveState.completedLevels).length;
+      if (completedCount >= 20 || saveState.unlockedLevel > 20) {
+        showCertificateScreen();
+      } else {
+        showToast(`Certificate locked! Complete all 20 sectors first (${completedCount}/20 completed).`);
+      }
+    };
     document.getElementById('btn-map-reset').onclick = resetGameProgress;
 
     document.getElementById('btn-daily-back').onclick = showTitleScreen;
@@ -2779,19 +3073,28 @@
     document.getElementById('btn-save-apply').onclick = () => {
       const val = document.getElementById('txt-save-io').value.trim();
       if (!val) return;
+      if (val.length > 100000) {
+        alert("Save string exceeds safety threshold (>100KB). Import rejected.");
+        return;
+      }
       try {
         const decoded = decodeUnicodeSave(val);
-        if (decoded && (decoded.version || decoded.unlockedLevel)) {
-          Object.assign(saveState, decoded);
+        const clean = validateAndSanitizeSave(decoded);
+        if (clean) {
+          saveState = clean;
+          checkDailyStreakValidity();
           saveGameData();
-          showToast("Save restored cleanly!");
+          showToast("Save restored and verified cleanly!");
           document.getElementById('save-io-modal').style.display = 'none';
           showSettings();
+          applyLanguageToUI();
+          applyTouchVisibility();
+          document.body.classList.toggle('left-handed', !!saveState.settings.leftHanded);
         } else {
-          alert("Invalid save data structure.");
+          alert("Invalid save data structure. Required game fields could not be verified.");
         }
       } catch (err) {
-        alert("Failed to decode save string. Verify that the full string was pasted.");
+        alert("Failed to decode save string. Verify that the full string was copied correctly.");
       }
     };
     document.getElementById('btn-save-io-close').onclick = () => {
@@ -2846,16 +3149,26 @@
       if (!el) return;
       el.addEventListener('touchstart', (e) => {
         initAudio();
-        if (prop === 'hide') Input.hide = !Input.hide;
-        else if (prop === 'flashlightToggle') Input.flashlightToggle = true;
-        else Input[prop] = true;
+        el.classList.add('active');
+        if (prop === 'hide') {
+          Input.hide = !Input.hide;
+          updateTouchHideState();
+        } else if (prop === 'flashlightToggle') {
+          Input.flashlightToggle = true;
+        } else {
+          Input[prop] = true;
+        }
         e.preventDefault();
       }, { passive: false });
       el.addEventListener('touchend', (e) => {
+        if (prop !== 'hide') el.classList.remove('active');
+        else updateTouchHideState();
         if (prop !== 'hide' && prop !== 'flashlightToggle') Input[prop] = false;
         e.preventDefault();
       });
       el.addEventListener('touchcancel', (e) => {
+        if (prop !== 'hide') el.classList.remove('active');
+        else updateTouchHideState();
         if (prop !== 'hide' && prop !== 'flashlightToggle') Input[prop] = false;
       });
     };
@@ -2885,6 +3198,7 @@
   window.addEventListener('orientationchange', () => setTimeout(resizeCanvas, 200));
 
   window.addEventListener('DOMContentLoaded', () => {
+    DOM.init();
     canvas = document.getElementById('gameCanvas');
     ctx = canvas.getContext('2d');
     resizeCanvas();
@@ -2893,7 +3207,7 @@
     applyLanguageToUI();
     applyTouchVisibility();
     document.body.classList.toggle('left-handed', !!saveState.settings.leftHanded);
-    requestAnimationFrame(gameLoop);
+    if (!animFrameId) animFrameId = requestAnimationFrame(gameLoop);
   });
   </script>
 </body>
