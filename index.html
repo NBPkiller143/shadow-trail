@@ -947,9 +947,11 @@
         <button class="btn btn-secondary" id="btn-title-casefile">CASE FILE</button>
         <button class="btn btn-secondary" id="btn-title-settings">SETTINGS</button>
       </div>
-      <div style="margin-top: 14px; display: flex; gap: 10px;">
+      <div style="margin-top: 14px; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;">
         <button class="btn btn-secondary" id="btn-title-wardrobe" style="font-size: 12px;">WARDROBE</button>
         <button class="btn btn-secondary" id="btn-title-achieve" style="font-size: 12px;">ACHIEVEMENTS</button>
+        <button class="btn btn-secondary" id="btn-title-codex" style="font-size: 12px;">📚 CODEX</button>
+        <button class="btn btn-success" id="btn-title-pledge" style="font-size: 12px;">🌱 CITIZEN PLEDGE</button>
       </div>
       <div
         style="margin-top: 20px; font-size: 12px; color: #64748b; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;">
@@ -1128,6 +1130,14 @@
         <div class="settings-row"><span>Reduced Effects (No Flashes/Shake)</span><input type="checkbox"
             id="chk-reducedfx"></div>
         <div class="settings-row">
+          <span>Educator Mode (Classroom Safe)</span>
+          <input type="checkbox" id="chk-educatormode">
+        </div>
+        <div class="settings-row" id="row-debug-date">
+          <span>Debug Date Override (YYYY-MM-DD)</span>
+          <input type="text" id="txt-debug-date" placeholder="YYYY-MM-DD" style="width:130px;">
+        </div>
+        <div class="settings-row">
           <span>Language (भाषा)</span>
           <select id="sel-lang">
             <option value="en" selected>English</option>
@@ -1283,6 +1293,8 @@
           <button class="btn btn-primary" id="btn-pause-resume">RESUME</button>
           <button class="btn btn-secondary" id="btn-pause-casefile">CASE FILE</button>
           <button class="btn btn-secondary" id="btn-pause-restart">RESTART LEVEL</button>
+          <button class="btn btn-secondary" id="btn-pause-photo">📷 PHOTO MODE</button>
+          <button class="btn btn-secondary" id="btn-pause-codex">📚 CODEX</button>
           <button class="btn btn-secondary" id="btn-pause-settings">SETTINGS</button>
           <button class="btn btn-secondary" id="btn-pause-map">LEVEL MAP</button>
         </div>
@@ -1380,6 +1392,65 @@
       <div class="countdown-num" id="countdown-text">3</div>
     </div>
 
+    <!-- ENVIRONMENTAL CODEX SCREEN -->
+    <div id="codex-screen" class="fullscreen-screen">
+      <div style="text-align: center; margin-bottom: 16px;">
+        <h1 class="modal-title" style="font-size: 28px;">SWACHH BHARAT ENVIRONMENTAL CODEX</h1>
+        <p class="modal-subtitle">Unlocked regional knowledge dossiers covering water systems, wildlife corridors, and civic sanitation.</p>
+        <button class="btn btn-secondary" id="btn-codex-back">RETURN</button>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; max-width: 900px; width: 100%; padding-bottom: 30px;" id="codex-grid"></div>
+    </div>
+
+    <!-- CITIZEN PLEDGE SCREEN -->
+    <div id="pledge-screen" class="fullscreen-screen">
+      <div style="text-align: center; margin-bottom: 16px;">
+        <h1 class="modal-title" style="font-size: 28px; background: linear-gradient(135deg, #10b981, #34d399); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">🌱 CITIZEN SWACHHATA PLEDGE</h1>
+        <p class="modal-subtitle">Commit to daily individual actions that keep our nation's waterways, colonies, and communities clean.</p>
+        <button class="btn btn-secondary" id="btn-pledge-back">MAIN MENU</button>
+      </div>
+      <div class="modal-box" style="max-width: 620px; text-align: left; margin: 10px auto;">
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 18px;">
+          <label style="display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: #e2e8f0; cursor: pointer;">
+            <input type="checkbox" id="chk-pledge-1" checked style="margin-top: 2px; width: 18px; height: 18px; accent-color: #10b981;">
+            <span><b>1. Carry Reusable Bags:</b> Stop using single-use polythene bags that clog city stormwater drains and choke wildlife.</span>
+          </label>
+          <label style="display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: #e2e8f0; cursor: pointer;">
+            <input type="checkbox" id="chk-pledge-2" checked style="margin-top: 2px; width: 18px; height: 18px; accent-color: #10b981;">
+            <span><b>2. Daily Waste Segregation:</b> Strictly separate wet organic kitchen peelings into green bins and dry recyclables into blue bins at home.</span>
+          </label>
+          <label style="display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: #e2e8f0; cursor: pointer;">
+            <input type="checkbox" id="chk-pledge-3" checked style="margin-top: 2px; width: 18px; height: 18px; accent-color: #10b981;">
+            <span><b>3. Safeguard Water Resources:</b> Turn off running taps during chores and immediately report open illegal industrial effluents.</span>
+          </label>
+          <label style="display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: #e2e8f0; cursor: pointer;">
+            <input type="checkbox" id="chk-pledge-4" checked style="margin-top: 2px; width: 18px; height: 18px; accent-color: #10b981;">
+            <span><b>4. Zero Open Littering:</b> Dispose of wrappers, bottles, and e-waste only in designated public civic bins.</span>
+          </label>
+          <label style="display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: #e2e8f0; cursor: pointer;">
+            <input type="checkbox" id="chk-pledge-5" checked style="margin-top: 2px; width: 18px; height: 18px; accent-color: #10b981;">
+            <span><b>5. Community Shramdaan:</b> Dedicate 2 hours every month to community cleanup drives and neighborhood tree stewardship.</span>
+          </label>
+        </div>
+        <div style="text-align: center;">
+          <button class="btn btn-success" id="btn-pledge-submit" style="font-size: 15px; padding: 12px 28px;">✓ SIGN CITIZEN PLEDGE (+200 ECO-POINTS)</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHOTO MODE OVERLAY -->
+    <div id="photo-mode-layer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 85; display: none;">
+      <div style="position: absolute; top: 16px; left: 16px; background: rgba(15, 23, 42, 0.9); border: 1px solid #38bdf8; border-radius: 8px; padding: 10px 18px; pointer-events: auto; display: flex; gap: 12px; align-items: center;">
+        <span style="font-size: 12px; font-weight: 800; color: #38bdf8;">📷 PHOTO MODE</span>
+        <button class="btn btn-primary" id="btn-photo-capture" style="font-size: 11px; padding: 6px 12px;">SNAPSHOT (PNG)</button>
+        <button class="btn btn-success" id="btn-photo-share" style="font-size: 11px; padding: 6px 12px;">SHARE CARD</button>
+        <button class="btn btn-secondary" id="btn-photo-exit" style="font-size: 11px; padding: 6px 12px;">EXIT</button>
+      </div>
+      <div style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); font-size: 11px; color: #94a3b8; background: rgba(3, 7, 18, 0.85); padding: 6px 16px; border-radius: 20px;">
+        Use WASD / Arrow keys or drag canvas to frame your shot.
+      </div>
+    </div>
+
     <!-- TRANSITION CURTAIN & ROTATING SWACHH BHARAT TIPS -->
     <div id="transition-curtain">
       <div style="font-size: 42px; margin-bottom: 10px;">🌿</div>
@@ -1416,12 +1487,14 @@
       masterVol: 0.8, musicVol: 0.7, sfxVol: 0.85, soundMuted: false,
       hintsEnabled: true, compassEnabled: true, nearMiss: true, showPerf: false,
       autoQuality: true, difficulty: 'normal', quality: 'high', leftHanded: false,
-      reducedFx: false, language: 'en', touchEnabled: null
+      reducedFx: false, language: 'en', touchEnabled: null,
+      educatorMode: false, debugDate: ""
     };
 
     const DEFAULT_SAVE_STATE = {
       version: "3.0", unlockedLevel: 1, completedLevels: {}, bestTimes: {},
       levelStars: {}, cluesFound: {}, ecoBadgesFound: {}, decisionsCompleted: {}, ecoPoints: 0,
+      codexUnlocked: {}, pledgeTaken: false,
       outfitsUnlocked: { default: true }, currentOutfit: 'default', achievements: {},
       playerName: "Inspector Kabir Rao",
       daily: { lastPlayedDate: "", streak: 0, bestScoreToday: 0, history: [] },
@@ -1476,6 +1549,15 @@
     }
 
     function getLocalDateKey() {
+      if (saveState.settings && saveState.settings.debugDate) {
+        return saveState.settings.debugDate.replace(/\D/g, '').slice(0, 8);
+      }
+      try {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('debug') === '1' && params.get('date')) {
+          return params.get('date').replace(/\D/g, '').slice(0, 8);
+        }
+      } catch (e) {}
       const now = new Date();
       return `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}`;
     }
@@ -1510,7 +1592,9 @@
         leftHanded: typeof rawSet.leftHanded === 'boolean' ? rawSet.leftHanded : DEFAULT_SETTINGS.leftHanded,
         reducedFx: typeof rawSet.reducedFx === 'boolean' ? rawSet.reducedFx : DEFAULT_SETTINGS.reducedFx,
         language: ['en', 'hi'].includes(rawSet.language) ? rawSet.language : DEFAULT_SETTINGS.language,
-        touchEnabled: typeof rawSet.touchEnabled === 'boolean' ? rawSet.touchEnabled : null
+        touchEnabled: typeof rawSet.touchEnabled === 'boolean' ? rawSet.touchEnabled : null,
+        educatorMode: typeof rawSet.educatorMode === 'boolean' ? rawSet.educatorMode : false,
+        debugDate: typeof rawSet.debugDate === 'string' ? rawSet.debugDate.slice(0, 10) : ""
       };
 
       const rawDaily = (data.daily && typeof data.daily === 'object' && !Array.isArray(data.daily)) ? data.daily : {};
@@ -1544,6 +1628,8 @@
         outfitsUnlocked: Object.assign({ default: true }, sanitizeMap(data.outfitsUnlocked, 'boolean')),
         currentOutfit: ['default', 'ranger', 'hivis', 'stealth'].includes(data.currentOutfit) ? data.currentOutfit : 'default',
         achievements: sanitizeMap(data.achievements, 'boolean'),
+        codexUnlocked: sanitizeMap(data.codexUnlocked, 'boolean'),
+        pledgeTaken: typeof data.pledgeTaken === 'boolean' ? data.pledgeTaken : false,
         playerName: pName || "Inspector Kabir Rao",
         daily,
         settings
@@ -1685,7 +1771,10 @@
         filterDesc: "TUTORIAL: Tap two stages to swap them into the correct order: 1. Coarse Screen ➔ 2. Sand Bed ➔ 3. Activated Carbon ➔ 4. UV Clarifier!",
         trafficTitle: "TRAFFIC SIGNAL SYNCHRONIZATION",
         trafficDesc: "TUTORIAL: Tap or press [Space] to toggle the signal to GREEN during gaps in cross-traffic so 3 Eco-Tankers can cross safely!",
-        titleDesc: "Follow Inspector Kabir Rao and companion Sheru across 20 regional sectors. Master the Flashlight, Clue Lens, and stealth maneuvers to dissolve the Shadow of environmental decay into morning light!"
+        titleDesc: "Follow Inspector Kabir Rao and companion Sheru across 20 regional sectors. Master the Flashlight, Clue Lens, and stealth maneuvers to dissolve the Shadow of environmental decay into morning light!",
+        codex: "📚 CODEX",
+        pledge: "🌱 CITIZEN PLEDGE",
+        photoMode: "📷 PHOTO MODE"
       },
       hi: {
         titleSub: "स्वच्छ पथ संस्करण 3.0 (अंतिम)",
@@ -1730,7 +1819,10 @@
         filterDesc: "ट्यूटोरियल: सही क्रम में रखें: 1. स्क्रीन ➔ 2. रेत ➔ 3. कार्बन ➔ 4. यूवी।",
         trafficTitle: "यातायात सिग्नल समन्वय",
         trafficDesc: "ट्यूटोरियल: रास्ता साफ होने पर 3 पर्यावरण टैंकरों हेतु बत्ती हरी करें।",
-        titleDesc: "इंस्पेक्टर कबीर राव और साथी शेरू के साथ 20 क्षेत्रों की जाँच करें। टॉर्च, सुराग लेंस और सतर्कता से पर्यावरण प्रदूषण की छाया को समाप्त करें!"
+        titleDesc: "इंस्पेक्टर कबीर राव और साथी शेरू के साथ 20 क्षेत्रों की जाँच करें। टॉर्च, सुराग लेंस और सतर्कता से पर्यावरण प्रदूषण की छाया को समाप्त करें!",
+        codex: "📚 कॉडेक्स",
+        pledge: "🌱 नागरिक प्रतिज्ञा",
+        photoMode: "📷 फोटो मोड"
       }
     };
 
@@ -1749,6 +1841,12 @@
       setTxt('btn-title-settings', 'settings');
       setTxt('btn-title-wardrobe', 'wardrobe');
       setTxt('btn-title-achieve', 'achieve');
+      setTxt('btn-title-codex', 'codex');
+      setTxt('btn-title-pledge', 'pledge');
+      setTxt('btn-pause-photo', 'photoMode');
+      setTxt('btn-pause-codex', 'codex');
+      setTxt('btn-codex-back', 'back');
+      setTxt('btn-pledge-back', 'mainMenu');
       setTxt('status-pill', 'safeZone');
       setTxt('lbl-sector-restored', 'sectorRestored');
       setTxt('btn-complete-next', 'nextSector');
@@ -2441,9 +2539,16 @@
           spawnParticle(this.x + (Math.random() - 0.5) * 30, this.y - Math.random() * this.height, (Math.random() - 0.5) * 35, -20 - Math.random() * 40, 0.8, 12, 'rgba(15,10,25,0.7)');
         }
 
-        // Catch check
+        // Catch check (Educator Mode turns off scary game overs)
         if (!player.isHidden && !player.inSafeZone && Math.abs(player.x - this.x) < 44 && Math.abs((player.y - 60) - (this.y - 70)) < 70) {
-          this.caughtCount++; triggerGameOver();
+          if (saveState.settings.educatorMode) {
+            if (this.speechTimer <= 0) {
+              this.say("Segregating household waste keeps municipal groundwater clean!");
+              SFX.pickup();
+            }
+          } else {
+            this.caughtCount++; triggerGameOver();
+          }
         }
       }
 
@@ -2457,8 +2562,9 @@
         ctx.fillStyle = aura;
         ctx.beginPath(); ctx.arc(0, -70, 105, 0, Math.PI * 2); ctx.fill();
 
-        // Wispy silhouette
-        ctx.fillStyle = this.rage ? "#1a0505" : "#09060f";
+        const isEdu = !!saveState.settings.educatorMode;
+        // Wispy silhouette (Emerald-teal Prana guide in Educator Mode, dark smoke otherwise)
+        ctx.fillStyle = isEdu ? "#064e3b" : (this.rage ? "#1a0505" : "#09060f");
         ctx.beginPath(); ctx.moveTo(-20, 0);
         const t = this.animTime * 4;
         for (let y = 0; y >= -this.height; y -= 12) ctx.lineTo(-18 + Math.sin(t + y * 0.08) * 8, y);
@@ -2466,10 +2572,27 @@
         for (let y = -this.height; y <= 0; y += 12) ctx.lineTo(18 + Math.cos(t + y * 0.08) * 8, y);
         ctx.closePath(); ctx.fill();
 
-        // Glowing crimson eyes
-        ctx.fillStyle = "#ef4444";
-        ctx.beginPath(); ctx.ellipse(-6, -this.height - 10, 4, 2.5, 0.15, 0, Math.PI * 2); ctx.fill();
-        ctx.beginPath(); ctx.ellipse(6, -this.height - 10, 4, 2.5, -0.15, 0, Math.PI * 2); ctx.fill();
+        // Eyes & Alert icons
+        if (isEdu) {
+          ctx.fillStyle = "#38bdf8";
+          ctx.beginPath(); ctx.arc(-6, -this.height - 10, 3, 0, Math.PI * 2); ctx.fill();
+          ctx.beginPath(); ctx.arc(6, -this.height - 10, 3, 0, Math.PI * 2); ctx.fill();
+          ctx.font = "bold 16px system-ui"; ctx.fillStyle = "#34d399"; ctx.textAlign = "center";
+          ctx.fillText("🍃", 0, -this.height - 30);
+        } else {
+          ctx.fillStyle = "#ef4444";
+          ctx.beginPath(); ctx.ellipse(-6, -this.height - 10, 4, 2.5, 0.15, 0, Math.PI * 2); ctx.fill();
+          ctx.beginPath(); ctx.ellipse(6, -this.height - 10, 4, 2.5, -0.15, 0, Math.PI * 2); ctx.fill();
+
+          // Alert icon (! for Chase, ? for Investigate)
+          if (this.state === 'CHASE') {
+            ctx.font = "bold 20px system-ui"; ctx.fillStyle = "#ef4444"; ctx.textAlign = "center";
+            ctx.fillText("!", 0, -this.height - 28);
+          } else if (this.state === 'INVESTIGATE') {
+            ctx.font = "bold 18px system-ui"; ctx.fillStyle = "#fbbf24"; ctx.textAlign = "center";
+            ctx.fillText("?", 0, -this.height - 28);
+          }
+        }
 
         if (this.speechTimer > 0 && this.speechBubble) {
           ctx.font = "bold 13px system-ui";
@@ -3147,560 +3270,590 @@
       document.getElementById('decision-layer').style.display = 'flex';
     }
 
-    // 17. 5 INTERACTIVE MINI-GAMES (Leak Repair, Pipe Rotation, Signal Wiring, Water Filter, Traffic Timing)
-    let miniGameActive = false, miniGameFailures = 0, miniGameType = null;
-    let handleMiniGameKey = null;
+    // 17. 5 INTERACTIVE MINI-GAMES (Leak Repair, 3x3 Pipe Flood Fill, Signal Wiring, Water Filter, Traffic Timing)
+  let miniGameActive = false, miniGameFailures = 0, miniGameType = null;
+  let handleMiniGameKey = null;
 
-    function startMiniGame(type, onSolved) {
-      gameState = 'MINIGAME';
-      miniGameType = type; miniGameActive = true; miniGameFailures = 0;
-      const mLayer = document.getElementById('minigame-layer');
-      const mCanvas = document.getElementById('minigame-canvas');
-      const mCtx = mCanvas.getContext('2d');
-      const mSkip = document.getElementById('btn-minigame-skip');
-      mSkip.style.display = 'none';
-      mLayer.style.display = 'flex';
+  function startMiniGame(type, onSolved) {
+    gameState = 'MINIGAME';
+    miniGameType = type; miniGameActive = true; miniGameFailures = 0;
+    const mLayer = document.getElementById('minigame-layer');
+    const mCanvas = document.getElementById('minigame-canvas');
+    const mCtx = mCanvas.getContext('2d');
+    const mSkip = document.getElementById('btn-minigame-skip');
+    mSkip.style.display = 'none';
+    mLayer.style.display = 'flex';
 
-      let lastMiniTime = performance.now();
-      let animTimer = 0;
+    let lastMiniTime = performance.now();
+    let animTimer = 0;
 
-      // --- MINI-GAME 1: LEAK REPAIR (Oscillating timing dial with dt) ---
-      let meterPos = 60, meterDir = 1;
+    // --- MINI-GAME 1: LEAK REPAIR (Dynamic narrowing green zone) ---
+    let meterPos = 60, meterDir = 1;
 
-      // --- MINI-GAME 2: PIPE ROTATION (2x2 Pipe Grid connecting Source to Outlet) ---
-      const isApartment = (currentLevelData && currentLevelData.id === 14);
-      // Grid: Tile 0=(0,0), Tile 1=(0,1), Tile 2=(1,0), Tile 3=(1,1)
-      // Factory: In -> Tile 0 (Straight) -> Tile 1 (Elbow W->S) -> Tile 3 (Elbow N->E) -> Out
-      // Apartment: In -> Tile 0 (Elbow W->S) -> Tile 2 (Elbow N->E) -> Tile 3 (Straight) -> Out
-      let pipeGrid = isApartment ? [
-        { type: 'elbow', angle: 0, target: 90 },    // Tile 0: needs 90° (West to South)
-        { type: 'straight', angle: 90, target: 0 }, // Tile 1: dummy
-        { type: 'elbow', angle: 180, target: 0 },   // Tile 2: needs 0° (North to East)
-        { type: 'straight', angle: 90, target: 0 }  // Tile 3: needs 0° or 180° (West to East)
-      ] : [
-        { type: 'straight', angle: 90, target: 0 }, // Tile 0: needs 0° or 180° (West to East)
-        { type: 'elbow', angle: 90, target: 180 },  // Tile 1: needs 180° (West to South)
-        { type: 'straight', angle: 0, target: 90 }, // Tile 2: dummy
-        { type: 'elbow', angle: 270, target: 0 }    // Tile 3: needs 0° (North to East)
-      ];
-      let pipeRotationsCount = 0;
-
-      // --- MINI-GAME 3: SIGNAL WIRING (Pairing matching color terminals) ---
-      const isIndZone = (currentLevelData && currentLevelData.id === 15);
-      const leftTerminals = [
-        { id: 0, color: '#ef4444', name: 'RED', y: 45 },
-        { id: 1, color: '#10b981', name: 'GREEN', y: 100 },
-        { id: 2, color: '#38bdf8', name: 'BLUE', y: 155 },
-        { id: 3, color: '#fbbf24', name: 'AMBER', y: 210 }
-      ];
-      // Shuffled right terminals per level
-      const rightTerminals = isIndZone ? [
-        { id: 3, color: '#fbbf24', name: 'AMBER', y: 45 },
-        { id: 2, color: '#38bdf8', name: 'BLUE', y: 100 },
-        { id: 1, color: '#10b981', name: 'GREEN', y: 155 },
-        { id: 0, color: '#ef4444', name: 'RED', y: 210 }
-      ] : [
-        { id: 2, color: '#38bdf8', name: 'BLUE', y: 45 },
-        { id: 0, color: '#ef4444', name: 'RED', y: 100 },
-        { id: 3, color: '#fbbf24', name: 'AMBER', y: 155 },
-        { id: 1, color: '#10b981', name: 'GREEN', y: 210 }
-      ];
-      let selectedLeftTerm = null;
-      let wiredConnections = []; // array of { leftId, rightId, color }
-      let wireFeedbackMsg = "";
-      let wireFeedbackTimer = 0;
-
-      // --- MINI-GAME 4: WATER FILTER (Order 4 sequential filtration stages) ---
-      const filterAllStages = [
-        { id: 0, name: "1. COARSE SCREEN", desc: "Traps large debris & macro-waste", color: "#0284c7" },
-        { id: 1, name: "2. SAND BED", desc: "Filters fine particulates & silt", color: "#d97706" },
-        { id: 2, name: "3. ACTIVATED CARBON", desc: "Absorbs toxins, VOCs & odor", color: "#475569" },
-        { id: 3, name: "4. UV CLARIFIER", desc: "Sterilizes bacteria & pathogens", color: "#9333ea" }
-      ];
-      let currentFilterOrder = [2, 0, 3, 1]; // Scrambled initial state
-      let selectedFilterSlot = null;
-      let filterHintMsg = "";
-
-      // --- MINI-GAME 5: TRAFFIC TIMING (Mega City intersection synchronization) ---
-      let trafficSignalState = 'GREEN'; // 'RED' (halts cross traffic, eco-tanker crosses) or 'GREEN'
-      let crossCars = [
-        { x: -50, speed: 180, w: 55, h: 22, color: '#ef4444' },
-        { x: -280, speed: 210, w: 50, h: 22, color: '#f97316' },
-        { x: -480, speed: 170, w: 60, h: 24, color: '#3b82f6' }
-      ];
-      let ecoTankerY = 210;
-      let tankersCrossed = 0;
-      let trafficCollisionFlash = 0;
-
-      function winMiniGame(msg) {
-        if (!miniGameActive) return;
-        miniGameActive = false;
-        SFX.success();
-        showToast(msg || "Mechanism resolved!");
-        setTimeout(() => {
-          mLayer.style.display = 'none';
-          gameState = 'PLAYING';
-          if (onSolved) onSolved();
-        }, 700);
-      }
-
-      function failMiniGame(feedbackText) {
-        miniGameFailures++;
-        SFX.wrong();
-        if (feedbackText) showToast(feedbackText);
-        if (miniGameFailures >= 3) {
-          mSkip.style.display = 'block';
-        }
-      }
-
-      mSkip.onclick = () => {
-        winMiniGame("Mechanism resolved via emergency bypass.");
-      };
-
-      // Helper to get relative canvas coordinates for mouse and touch events
-      function getCanvasPos(e) {
-        const rect = mCanvas.getBoundingClientRect();
-        const cx = (e.touches && e.touches.length > 0) ? e.touches[0].clientX : (e.changedTouches && e.changedTouches.length > 0) ? e.changedTouches[0].clientX : e.clientX;
-        const cy = (e.touches && e.touches.length > 0) ? e.touches[0].clientY : (e.changedTouches && e.changedTouches.length > 0) ? e.changedTouches[0].clientY : e.clientY;
-        return {
-          x: (cx - rect.left) * (mCanvas.width / rect.width),
-          y: (cy - rect.top) * (mCanvas.height / rect.height)
-        };
-      }
-
-      // Touch & Mouse Handler
-      function handleCanvasInteraction(pos) {
-        SFX.switchClick();
-        if (type === 'pipe_repair') {
-          const lvlId = currentLevelData ? currentLevelData.id : 3;
-          const greenWidth = Math.max(32, 85 - lvlId * 2.5);
-          const greenStart = 210 - greenWidth / 2;
-          const greenEnd = 210 + greenWidth / 2;
-          if (meterPos >= greenStart && meterPos <= greenEnd) {
-            winMiniGame("Leak sealed! Pressure stabilized.");
-          } else {
-            failMiniGame("Miss! Needle outside pressure threshold.");
-          }
-        } else if (type === 'pipe_rotation') {
-          // Tiles: Tile 0=(150,75), Tile 1=(270,75), Tile 2=(150,185), Tile 3=(270,185)
-          let clickedIdx = -1;
-          if (pos.x >= 105 && pos.x <= 195 && pos.y >= 35 && pos.y <= 115) clickedIdx = 0;
-          else if (pos.x >= 225 && pos.x <= 315 && pos.y >= 35 && pos.y <= 115) clickedIdx = 1;
-          else if (pos.x >= 105 && pos.x <= 195 && pos.y >= 145 && pos.y <= 225) clickedIdx = 2;
-          else if (pos.x >= 225 && pos.x <= 315 && pos.y >= 145 && pos.y <= 225) clickedIdx = 3;
-
-          if (clickedIdx !== -1) {
-            rotateTile(clickedIdx);
-          }
-        } else if (type === 'signals') {
-          // Check Left Terminals (x=60, y=45..210)
-          let hitLeft = -1;
-          leftTerminals.forEach((lt, idx) => {
-            if (pos.x >= 35 && pos.x <= 100 && Math.abs(pos.y - lt.y) <= 24) hitLeft = idx;
-          });
-          if (hitLeft !== -1) {
-            selectedLeftTerm = hitLeft;
-            return;
-          }
-          // Check Right Terminals (x=360, y=45..210)
-          let hitRight = -1;
-          rightTerminals.forEach((rt, idx) => {
-            if (pos.x >= 320 && pos.x <= 385 && Math.abs(pos.y - rt.y) <= 24) hitRight = idx;
-          });
-          if (hitRight !== -1 && selectedLeftTerm !== null) {
-            const lObj = leftTerminals[selectedLeftTerm];
-            const rObj = rightTerminals[hitRight];
-            if (lObj.color === rObj.color) {
-              // Correct Pair
-              if (!wiredConnections.some(w => w.leftId === lObj.id)) {
-                wiredConnections.push({ leftId: lObj.id, rightId: rObj.id, color: lObj.color });
-                selectedLeftTerm = null;
-                wireFeedbackMsg = "✓ Channel synchronized!";
-                wireFeedbackTimer = 1.2;
-                if (wiredConnections.length === 4) {
-                  winMiniGame("All 4 telemetry signal lines paired!");
-                }
-              }
-            } else {
-              // Mismatch
-              wireFeedbackMsg = "⚠️ Polarity Mismatch! Colors must match.";
-              wireFeedbackTimer = 1.6;
-              selectedLeftTerm = null;
-              failMiniGame("Signal mismatch! Check wire colors.");
-            }
-          }
-        } else if (type === 'water_filter') {
-          // Test Button at y = 225
-          if (pos.y >= 215 && pos.y <= 255 && pos.x >= 110 && pos.x <= 310) {
-            testFilterSequence();
-            return;
-          }
-          // Check which slot was clicked: y=35, 80, 125, 170
-          let slotIdx = -1;
-          [0, 1, 2, 3].forEach(i => {
-            const sy = 35 + i * 44;
-            if (pos.y >= sy && pos.y <= sy + 40 && pos.x >= 50 && pos.x <= 370) slotIdx = i;
-          });
-          if (slotIdx !== -1) {
-            if (selectedFilterSlot === null) {
-              selectedFilterSlot = slotIdx;
-            } else {
-              // Swap
-              const tmp = currentFilterOrder[selectedFilterSlot];
-              currentFilterOrder[selectedFilterSlot] = currentFilterOrder[slotIdx];
-              currentFilterOrder[slotIdx] = tmp;
-              selectedFilterSlot = null;
-              SFX.switchClick();
-            }
-          }
-        } else if (type === 'traffic_timing') {
-          // Toggle Signal
-          trafficSignalState = (trafficSignalState === 'RED') ? 'GREEN' : 'RED';
-          SFX.flashlightToggle();
-        }
-      }
-
-      function rotateTile(idx) {
-        pipeGrid[idx].angle = (pipeGrid[idx].angle + 90) % 360;
-        pipeRotationsCount++;
-        SFX.switchClick();
-
-        // Check win condition
-        let solved = false;
-        if (isApartment) {
-          // Apartment requires Tile 0 at 90°, Tile 2 at 0°, Tile 3 at 0° or 180°
-          const t0Ok = (pipeGrid[0].angle === 90);
-          const t2Ok = (pipeGrid[2].angle === 0);
-          const t3Ok = (pipeGrid[3].angle === 0 || pipeGrid[3].angle === 180);
-          if (t0Ok && t2Ok && t3Ok) solved = true;
-        } else {
-          // Factory requires Tile 0 at 0°/180°, Tile 1 at 180°, Tile 3 at 0°
-          const t0Ok = (pipeGrid[0].angle === 0 || pipeGrid[0].angle === 180);
-          const t1Ok = (pipeGrid[1].angle === 180);
-          const t3Ok = (pipeGrid[3].angle === 0);
-          if (t0Ok && t1Ok && t3Ok) solved = true;
-        }
-
-        if (solved) {
-          winMiniGame("Bypass pipeline connected! Flow restored.");
-        } else if (pipeRotationsCount >= 8 && pipeRotationsCount % 4 === 0) {
-          failMiniGame();
-        }
-      }
-
-      function testFilterSequence() {
-        // Correct is [0, 1, 2, 3]
-        if (currentFilterOrder[0] === 0 && currentFilterOrder[1] === 1 && currentFilterOrder[2] === 2 && currentFilterOrder[3] === 3) {
-          winMiniGame("4-Stage filtration calibrated! Water purified.");
-        } else {
-          filterHintMsg = "Hint: 1. Coarse Screen (macro) ➔ 2. Sand Bed (silt) ➔ 3. Carbon (chemicals) ➔ 4. UV Clarifier (sterilization)!";
-          failMiniGame("Sequence incorrect. Review physical filtration stages.");
-        }
-      }
-
-      mCanvas.onmousedown = (e) => { handleCanvasInteraction(getCanvasPos(e)); };
-      mCanvas.ontouchstart = (e) => { e.preventDefault(); handleCanvasInteraction(getCanvasPos(e)); };
-
-      handleMiniGameKey = (code) => {
-        if (!miniGameActive) return false;
-        if (code === 'Space' || code === 'Enter') {
-          if (type === 'pipe_repair') {
-            handleCanvasInteraction({ x: 210, y: 130 });
-          } else if (type === 'traffic_timing') {
-            trafficSignalState = (trafficSignalState === 'RED') ? 'GREEN' : 'RED';
-          } else if (type === 'water_filter') {
-            testFilterSequence();
-          } else if (type === 'pipe_rotation') {
-            rotateTile(0);
-          }
-          return true;
-        }
-        if (code === 'Digit1' || code === 'Numpad1') {
-          if (type === 'pipe_rotation') rotateTile(0);
-          else if (type === 'signals') selectedLeftTerm = 0;
-          else if (type === 'water_filter') {
-            if (selectedFilterSlot === null) selectedFilterSlot = 0;
-            else { const t = currentFilterOrder[selectedFilterSlot]; currentFilterOrder[selectedFilterSlot] = currentFilterOrder[0]; currentFilterOrder[0] = t; selectedFilterSlot = null; }
-          }
-          return true;
-        }
-        if (code === 'Digit2' || code === 'Numpad2') {
-          if (type === 'pipe_rotation') rotateTile(1);
-          else if (type === 'signals') selectedLeftTerm = 1;
-          else if (type === 'water_filter') {
-            if (selectedFilterSlot === null) selectedFilterSlot = 1;
-            else { const t = currentFilterOrder[selectedFilterSlot]; currentFilterOrder[selectedFilterSlot] = currentFilterOrder[1]; currentFilterOrder[1] = t; selectedFilterSlot = null; }
-          }
-          return true;
-        }
-        if (code === 'Digit3' || code === 'Numpad3') {
-          if (type === 'pipe_rotation') rotateTile(2);
-          else if (type === 'signals') selectedLeftTerm = 2;
-          else if (type === 'water_filter') {
-            if (selectedFilterSlot === null) selectedFilterSlot = 2;
-            else { const t = currentFilterOrder[selectedFilterSlot]; currentFilterOrder[selectedFilterSlot] = currentFilterOrder[2]; currentFilterOrder[2] = t; selectedFilterSlot = null; }
-          }
-          return true;
-        }
-        if (code === 'Digit4' || code === 'Numpad4') {
-          if (type === 'pipe_rotation') rotateTile(3);
-          else if (type === 'signals') selectedLeftTerm = 3;
-          else if (type === 'water_filter') {
-            if (selectedFilterSlot === null) selectedFilterSlot = 3;
-            else { const t = currentFilterOrder[selectedFilterSlot]; currentFilterOrder[selectedFilterSlot] = currentFilterOrder[3]; currentFilterOrder[3] = t; selectedFilterSlot = null; }
-          }
-          return true;
-        }
-        if (code === 'KeyQ') { if (type === 'signals' && selectedLeftTerm !== null) handleCanvasInteraction({ x: 350, y: 45 }); return true; }
-        if (code === 'KeyW') { if (type === 'signals' && selectedLeftTerm !== null) handleCanvasInteraction({ x: 350, y: 100 }); return true; }
-        if (code === 'KeyE') { if (type === 'signals' && selectedLeftTerm !== null) handleCanvasInteraction({ x: 350, y: 155 }); return true; }
-        if (code === 'KeyR') { if (type === 'signals' && selectedLeftTerm !== null) handleCanvasInteraction({ x: 350, y: 210 }); return true; }
-        if (code === 'Escape' && miniGameFailures >= 3) {
-          winMiniGame("Mechanism resolved via emergency bypass.");
-          return true;
-        }
-        return false;
-      };
-
-      function renderMini() {
-        if (!miniGameActive) return;
-        const now = performance.now();
-        const dt = Math.min((now - lastMiniTime) / 1000, 0.05);
-        lastMiniTime = now;
-        animTimer += dt;
-        if (wireFeedbackTimer > 0) wireFeedbackTimer -= dt;
-        if (trafficCollisionFlash > 0) trafficCollisionFlash -= dt;
-
-        mCtx.clearRect(0, 0, 420, 260);
-
-        // --- RENDER 1: LEAK REPAIR ---
-        if (type === 'pipe_repair') {
-          meterPos += meterDir * dt * 250;
-          if (meterPos > 360) { meterPos = 360; meterDir = -1; }
-          else if (meterPos < 60) { meterPos = 60; meterDir = 1; }
-
-          const lvlId = currentLevelData ? currentLevelData.id : 3;
-          const greenWidth = Math.max(32, 85 - lvlId * 2.5);
-          const greenStart = 210 - greenWidth / 2;
-
-          document.getElementById('minigame-title').textContent = t('leakRepairTitle');
-          document.getElementById('minigame-desc').textContent = t('leakRepairDesc');
-
-          // Dial casing
-          mCtx.fillStyle = "#1e293b"; mCtx.fillRect(40, 105, 340, 50);
-          mCtx.strokeStyle = "#38bdf8"; mCtx.lineWidth = 2; mCtx.strokeRect(40, 105, 340, 50);
-
-          // Green Zone
-          mCtx.fillStyle = "#10b981"; mCtx.fillRect(greenStart, 106, greenWidth, 48);
-
-          // Oscillating Needle
-          mCtx.fillStyle = "#38bdf8"; mCtx.fillRect(meterPos - 6, 90, 12, 80);
-          mCtx.fillStyle = "#fff"; mCtx.beginPath(); mCtx.arc(meterPos, 130, 4, 0, Math.PI * 2); mCtx.fill();
-
-          mCtx.fillStyle = "#94a3b8"; mCtx.font = "bold 12px sans-serif"; mCtx.textAlign = "center";
-          mCtx.fillText("PRESSURE EQUALIZATION DIAL", 210, 80);
-          mCtx.fillText("[Space / Tap Canvas] to Seal Leak", 210, 195);
-          mCtx.font = "10px sans-serif"; mCtx.fillStyle = "#64748b";
-          mCtx.fillText(`Target Tolerance: ${Math.round(greenWidth)}px`, 210, 220);
-
-          // --- RENDER 2: PIPE ROTATION ---
-        } else if (type === 'pipe_rotation') {
-          document.getElementById('minigame-title').textContent = t('pipeRotateTitle');
-          document.getElementById('minigame-desc').textContent = t('pipeRotateDesc');
-
-          // Inlet (Left) and Outlet (Right)
-          mCtx.fillStyle = "#10b981"; mCtx.font = "bold 11px sans-serif"; mCtx.textAlign = "left";
-          mCtx.fillText("INLET ➔", 50, 80);
-          mCtx.textAlign = "right";
-          mCtx.fillText("➔ OUTLET", 370, 190);
-
-          // 4 Tiles: (150,75), (270,75), (150,185), (270,185)
-          const centers = [{ x: 150, y: 75 }, { x: 270, y: 75 }, { x: 150, y: 185 }, { x: 270, y: 185 }];
-          pipeGrid.forEach((tile, i) => {
-            const cx = centers[i].x, cy = centers[i].y;
-            // Tile background
-            mCtx.fillStyle = "#1e293b"; mCtx.fillRect(cx - 40, cy - 40, 80, 80);
-            mCtx.strokeStyle = "#38bdf8"; mCtx.lineWidth = 1.5; mCtx.strokeRect(cx - 40, cy - 40, 80, 80);
-
-            mCtx.save();
-            mCtx.translate(cx, cy);
-            mCtx.rotate(tile.angle * Math.PI / 180);
-
-            mCtx.fillStyle = "#0284c7";
-            if (tile.type === 'straight') {
-              mCtx.fillRect(-40, -12, 80, 24);
-            } else {
-              // Elbow: opens East & South
-              mCtx.fillRect(0, -12, 40, 24);
-              mCtx.fillRect(-12, 0, 24, 40);
-              mCtx.beginPath(); mCtx.arc(0, 0, 12, 0, Math.PI * 2); mCtx.fill();
-            }
-            mCtx.restore();
-
-            mCtx.fillStyle = "#94a3b8"; mCtx.font = "bold 10px monospace"; mCtx.textAlign = "center";
-            mCtx.fillText(`[${i + 1}] ${tile.angle}°`, cx, cy + 32);
-          });
-
-          // --- RENDER 3: SIGNAL WIRING ---
-        } else if (type === 'signals') {
-          document.getElementById('minigame-title').textContent = t('signalTitle');
-          document.getElementById('minigame-desc').textContent = t('signalDesc');
-
-          // Draw Left Terminals
-          leftTerminals.forEach((lt, idx) => {
-            const isSelected = (selectedLeftTerm === idx);
-            mCtx.fillStyle = lt.color;
-            mCtx.fillRect(45, lt.y - 18, 45, 36);
-            if (isSelected) {
-              mCtx.strokeStyle = "#ffffff"; mCtx.lineWidth = 3;
-              mCtx.strokeRect(43, lt.y - 20, 49, 40);
-            }
-            mCtx.fillStyle = "#ffffff"; mCtx.font = "bold 10px sans-serif"; mCtx.textAlign = "center";
-            mCtx.fillText(`[${idx + 1}]`, 67, lt.y + 4);
-          });
-
-          // Draw Right Terminals
-          const keyLabels = ['[Q]', '[W]', '[E]', '[R]'];
-          rightTerminals.forEach((rt, idx) => {
-            mCtx.fillStyle = rt.color;
-            mCtx.fillRect(330, rt.y - 18, 45, 36);
-            mCtx.fillStyle = "#ffffff"; mCtx.font = "bold 10px sans-serif"; mCtx.textAlign = "center";
-            mCtx.fillText(keyLabels[idx], 352, rt.y + 4);
-          });
-
-          // Draw Completed Wires
-          wiredConnections.forEach(w => {
-            const lObj = leftTerminals.find(l => l.id === w.leftId);
-            const rObj = rightTerminals.find(r => r.id === w.rightId);
-            if (lObj && rObj) {
-              mCtx.strokeStyle = w.color; mCtx.lineWidth = 5;
-              mCtx.beginPath();
-              mCtx.moveTo(90, lObj.y);
-              mCtx.bezierCurveTo(180, lObj.y, 240, rObj.y, 330, rObj.y);
-              mCtx.stroke();
-            }
-          });
-
-          if (wireFeedbackTimer > 0) {
-            mCtx.fillStyle = wireFeedbackMsg.includes('✓') ? "#34d399" : "#f87171";
-            mCtx.font = "bold 12px sans-serif"; mCtx.textAlign = "center";
-            mCtx.fillText(wireFeedbackMsg, 210, 245);
-          }
-
-          // --- RENDER 4: WATER FILTER ---
-        } else if (type === 'water_filter') {
-          document.getElementById('minigame-title').textContent = t('filterTitle');
-          document.getElementById('minigame-desc').textContent = t('filterDesc');
-
-          currentFilterOrder.forEach((stageId, slotIdx) => {
-            const stage = filterAllStages[stageId];
-            const sy = 32 + slotIdx * 45;
-            const isSelected = (selectedFilterSlot === slotIdx);
-
-            mCtx.fillStyle = isSelected ? "rgba(56, 189, 248, 0.35)" : "#1e293b";
-            mCtx.fillRect(45, sy, 330, 38);
-            mCtx.strokeStyle = isSelected ? "#38bdf8" : stage.color;
-            mCtx.lineWidth = isSelected ? 2.5 : 1.5;
-            mCtx.strokeRect(45, sy, 330, 38);
-
-            // Color pip
-            mCtx.fillStyle = stage.color; mCtx.fillRect(50, sy + 6, 10, 26);
-
-            mCtx.fillStyle = "#ffffff"; mCtx.font = "bold 11px sans-serif"; mCtx.textAlign = "left";
-            mCtx.fillText(`Slot [${slotIdx + 1}]: ${stage.name}`, 68, sy + 16);
-            mCtx.fillStyle = "#94a3b8"; mCtx.font = "9px sans-serif";
-            mCtx.fillText(stage.desc, 68, sy + 30);
-          });
-
-          // Test Button at bottom
-          mCtx.fillStyle = "#0284c7"; mCtx.fillRect(110, 215, 200, 32);
-          mCtx.fillStyle = "#ffffff"; mCtx.font = "bold 11px sans-serif"; mCtx.textAlign = "center";
-          mCtx.fillText("TEST FILTRATION [Space]", 210, 235);
-
-          if (filterHintMsg) {
-            mCtx.fillStyle = "#fbbf24"; mCtx.font = "9px sans-serif";
-            mCtx.fillText(filterHintMsg, 210, 255);
-          }
-
-          // --- RENDER 5: TRAFFIC TIMING ---
-        } else if (type === 'traffic_timing') {
-          document.getElementById('minigame-title').textContent = t('trafficTitle');
-          document.getElementById('minigame-desc').textContent = t('trafficDesc');
-
-          // Draw Highway (horizontal)
-          mCtx.fillStyle = "#1e293b"; mCtx.fillRect(0, 90, 420, 60);
-          mCtx.strokeStyle = "#475569"; mCtx.lineWidth = 1;
-          mCtx.beginPath(); mCtx.moveTo(0, 120); mCtx.lineTo(420, 120); mCtx.stroke();
-
-          // Stop line
-          mCtx.fillStyle = "#ffffff"; mCtx.fillRect(100, 90, 6, 60);
-
-          // Eco-Corridor (vertical)
-          mCtx.fillStyle = "rgba(16, 185, 129, 0.15)"; mCtx.fillRect(180, 0, 60, 260);
-
-          // Update & draw cross cars
-          crossCars.forEach(car => {
-            if (trafficSignalState === 'GREEN' || car.x > 105) {
-              car.x += car.speed * dt;
-              if (car.x > 450) car.x = -60 - Math.random() * 80;
-            } else if (car.x < 90) {
-              car.x += car.speed * dt * 0.5;
-              if (car.x > 90) car.x = 90;
-            }
-            mCtx.fillStyle = car.color;
-            mCtx.fillRect(car.x, 102, car.w, car.h);
-          });
-
-          // Eco-Tanker simulation
-          const isBoxClear = !crossCars.some(c => c.x > 110 && c.x < 270);
-          if (trafficSignalState === 'RED' && isBoxClear) {
-            ecoTankerY -= 95 * dt;
-            if (ecoTankerY < 40) {
-              ecoTankerY = 210;
-              tankersCrossed++;
-              SFX.success();
-              if (tankersCrossed >= 3) {
-                winMiniGame("All 3 Eco-Tankers crossed safely! Mega City fleet operational.");
-              }
-            }
-          } else if (trafficSignalState === 'GREEN' && ecoTankerY < 180 && ecoTankerY > 70) {
-            // Collision warning
-            trafficCollisionFlash = 0.5;
-            ecoTankerY = 210;
-            failMiniGame("Cross-traffic collision warning! Halt traffic at RED.");
-          }
-
-          // Draw Eco-Tanker
-          mCtx.fillStyle = "#10b981";
-          mCtx.fillRect(195, ecoTankerY, 30, 45);
-          mCtx.fillStyle = "#ffffff"; mCtx.font = "bold 9px sans-serif"; mCtx.textAlign = "center";
-          mCtx.fillText("ECO", 210, ecoTankerY + 26);
-
-          // Traffic Signal Light Box (Top-right)
-          mCtx.fillStyle = "#0f172a"; mCtx.fillRect(340, 15, 60, 65);
-          mCtx.strokeStyle = "#38bdf8"; mCtx.lineWidth = 1.5; mCtx.strokeRect(340, 15, 60, 65);
-
-          mCtx.fillStyle = trafficSignalState === 'RED' ? "#ef4444" : "#450a0a";
-          mCtx.beginPath(); mCtx.arc(370, 32, 12, 0, Math.PI * 2); mCtx.fill();
-          mCtx.fillStyle = trafficSignalState === 'GREEN' ? "#10b981" : "#052e16";
-          mCtx.beginPath(); mCtx.arc(370, 60, 12, 0, Math.PI * 2); mCtx.fill();
-
-          mCtx.fillStyle = "#e2e8f0"; mCtx.font = "bold 11px sans-serif"; mCtx.textAlign = "center";
-          mCtx.fillText(`CROSS: [${trafficSignalState}] [Space/Tap]`, 210, 40);
-          mCtx.fillText(`Convoys Passed: ${tankersCrossed}/3`, 210, 245);
-
-          if (trafficCollisionFlash > 0) {
-            mCtx.fillStyle = "rgba(239, 68, 68, 0.35)";
-            mCtx.fillRect(0, 0, 420, 260);
-          }
-        }
-
-        requestAnimationFrame(renderMini);
-      }
-      requestAnimationFrame(renderMini);
+    // --- MINI-GAME 2: 3x3 PIPE GRID ROTATION (Flood-fill path solver) ---
+    // 3x3 Grid: 9 tiles (r:0..2, c:0..2). Source enters Tile 0 from West (3), Outlet exits Tile 8 to East (1).
+    function getTilePorts(tile) {
+      const rot = Math.floor(tile.angle / 90) % 4;
+      let base;
+      if (tile.type === 'straight') base = [1, 3]; // East, West
+      else if (tile.type === 'corner') base = [1, 2]; // East, South
+      else if (tile.type === 'tee') base = [0, 1, 2]; // North, East, South
+      else if (tile.type === 'cross') base = [0, 1, 2, 3];
+      else base = [];
+      return base.map(d => (d + rot) % 4);
     }
 
-    // 18. LEVEL 20 FINALE SEQUENCE & 3-PHASE SHADOW BOSS FIGHT
+    function checkPipeFloodFill(grid) {
+      const startPorts = getTilePorts(grid[0]);
+      if (!startPorts.includes(3)) return false; // Source enters from West
+      const queue = [[0, 0]];
+      const visited = new Set(['0,0']);
+      while (queue.length > 0) {
+        const [r, c] = queue.shift();
+        const currPorts = getTilePorts(grid[r * 3 + c]);
+        if (r === 2 && c === 2 && currPorts.includes(1)) {
+          return true; // Reached Outlet to East!
+        }
+        const neighbors = [
+          { d: 0, nr: r - 1, nc: c, opp: 2 },
+          { d: 1, nr: r, nc: c + 1, opp: 3 },
+          { d: 2, nr: r + 1, nc: c, opp: 0 },
+          { d: 3, nr: r, nc: c - 1, opp: 1 }
+        ];
+        for (const nb of neighbors) {
+          if (currPorts.includes(nb.d)) {
+            if (nb.nr >= 0 && nb.nr < 3 && nb.nc >= 0 && nb.nc < 3) {
+              const key = `${nb.nr},${nb.nc}`;
+              if (!visited.has(key)) {
+                const nbPorts = getTilePorts(grid[nb.nr * 3 + nb.nc]);
+                if (nbPorts.includes(nb.opp)) {
+                  visited.add(key);
+                  queue.push([nb.nr, nb.nc]);
+                }
+              }
+            }
+          }
+        }
+      }
+      return false;
+    }
+
+    const lvlNum = currentLevelData ? currentLevelData.id : 12;
+    let pipeGrid;
+    if (lvlNum === 14) {
+      // Layout 2 (Apartment): Path 0(S-W)->3(N-E)->4(S-W)->7(N-E)->8(W-E)
+      pipeGrid = [
+        { type: 'corner', angle: 0 },    // target 90
+        { type: 'straight', angle: 90 }, // dummy
+        { type: 'straight', angle: 0 },  // dummy
+        { type: 'corner', angle: 180 },  // target 270
+        { type: 'corner', angle: 0 },    // target 90
+        { type: 'straight', angle: 90 }, // dummy
+        { type: 'straight', angle: 0 },  // dummy
+        { type: 'corner', angle: 90 },   // target 270
+        { type: 'straight', angle: 90 }  // target 0
+      ];
+    } else if (lvlNum === 20 || gameState === 'BOSS_FIGHT') {
+      // Layout 3 (Boss Phase 2): Path 0(W-E)->1(W-E)->2(S-W)->5(N-S)->8(N-E)
+      pipeGrid = [
+        { type: 'straight', angle: 90 }, // target 0
+        { type: 'straight', angle: 90 }, // target 0
+        { type: 'corner', angle: 180 },  // target 90
+        { type: 'straight', angle: 0 },  // dummy
+        { type: 'straight', angle: 90 }, // dummy
+        { type: 'straight', angle: 0 },  // target 90
+        { type: 'straight', angle: 0 },  // dummy
+        { type: 'straight', angle: 90 }, // dummy
+        { type: 'corner', angle: 0 }     // target 270
+      ];
+    } else {
+      // Layout 1 (Factory): Path 0(W-E)->1(S-W)->4(N-E)->5(S-W)->8(N-E)
+      pipeGrid = [
+        { type: 'straight', angle: 90 }, // target 0
+        { type: 'corner', angle: 0 },    // target 90
+        { type: 'straight', angle: 0 },  // dummy
+        { type: 'corner', angle: 90 },   // dummy
+        { type: 'corner', angle: 180 },  // target 270
+        { type: 'corner', angle: 0 },    // target 90
+        { type: 'straight', angle: 90 }, // dummy
+        { type: 'straight', angle: 0 },  // dummy
+        { type: 'corner', angle: 90 }    // target 270
+      ];
+    }
+    let pipeStatusMsg = "";
+
+    // --- MINI-GAME 3: SIGNAL WIRING (Pairing matching color terminals) ---
+    const isIndZone = (currentLevelData && currentLevelData.id === 15);
+    const leftTerminals = [
+      { id: 0, color: '#ef4444', name: 'RED', y: 45 },
+      { id: 1, color: '#10b981', name: 'GREEN', y: 100 },
+      { id: 2, color: '#38bdf8', name: 'BLUE', y: 155 },
+      { id: 3, color: '#fbbf24', name: 'AMBER', y: 210 }
+    ];
+    const rightTerminals = isIndZone ? [
+      { id: 3, color: '#fbbf24', name: 'AMBER', y: 45 },
+      { id: 2, color: '#38bdf8', name: 'BLUE', y: 100 },
+      { id: 1, color: '#10b981', name: 'GREEN', y: 155 },
+      { id: 0, color: '#ef4444', name: 'RED', y: 210 }
+    ] : [
+      { id: 2, color: '#38bdf8', name: 'BLUE', y: 45 },
+      { id: 0, color: '#ef4444', name: 'RED', y: 100 },
+      { id: 3, color: '#fbbf24', name: 'AMBER', y: 155 },
+      { id: 1, color: '#10b981', name: 'GREEN', y: 210 }
+    ];
+    let selectedLeftTerm = null;
+    let wiredConnections = [];
+    let wireFeedbackMsg = "";
+    let wireFeedbackTimer = 0;
+
+    // --- MINI-GAME 4: WATER FILTER (Order 4 sequential filtration stages) ---
+    const filterAllStages = [
+      { id: 0, name: "1. COARSE SCREEN", desc: "Traps large debris & macro-waste", color: "#0284c7" },
+      { id: 1, name: "2. SAND BED", desc: "Filters fine particulates & silt", color: "#d97706" },
+      { id: 2, name: "3. ACTIVATED CARBON", desc: "Absorbs toxins, VOCs & odor", color: "#475569" },
+      { id: 3, name: "4. UV CLARIFIER", desc: "Sterilizes bacteria & pathogens", color: "#9333ea" }
+    ];
+    let currentFilterOrder = [2, 0, 3, 1];
+    let selectedFilterSlot = null;
+    let filterHintMsg = "";
+
+    // --- MINI-GAME 5: TRAFFIC TIMING (Mega City intersection timing) ---
+    let trafficSignalState = 'GREEN';
+    let crossCars = [
+      { x: -50, speed: 180, w: 55, h: 22, color: '#ef4444' },
+      { x: -260, speed: 210, w: 50, h: 22, color: '#f97316' },
+      { x: -470, speed: 175, w: 60, h: 24, color: '#3b82f6' }
+    ];
+    let ecoTankerY = 210;
+    let tankersCrossed = 0;
+    let trafficCollisionFlash = 0;
+
+    function winMiniGame(msg) {
+      if (!miniGameActive) return;
+      miniGameActive = false;
+      SFX.success();
+      showToast(msg || "Mechanism resolved!");
+      setTimeout(() => {
+        mLayer.style.display = 'none';
+        gameState = (currentLevelData && currentLevelData.id === 20 && bossPhase > 0) ? 'BOSS_FIGHT' : 'PLAYING';
+        if (onSolved) onSolved();
+      }, 700);
+    }
+
+    function failMiniGame(feedbackText) {
+      miniGameFailures++;
+      SFX.wrong();
+      if (feedbackText) showToast(feedbackText);
+      if (miniGameFailures >= 3) {
+        mSkip.style.display = 'block';
+      }
+    }
+
+    mSkip.onclick = () => {
+      winMiniGame("Mechanism resolved via emergency assist.");
+    };
+
+    function getCanvasPos(e) {
+      const rect = mCanvas.getBoundingClientRect();
+      const cx = (e.touches && e.touches.length > 0) ? e.touches[0].clientX : (e.changedTouches && e.changedTouches.length > 0) ? e.changedTouches[0].clientX : e.clientX;
+      const cy = (e.touches && e.touches.length > 0) ? e.touches[0].clientY : (e.changedTouches && e.changedTouches.length > 0) ? e.changedTouches[0].clientY : e.clientY;
+      return {
+        x: (cx - rect.left) * (mCanvas.width / rect.width),
+        y: (cy - rect.top) * (mCanvas.height / rect.height)
+      };
+    }
+
+    function handleCanvasInteraction(pos) {
+      SFX.switchClick();
+      if (type === 'pipe_repair') {
+        const lvlId = currentLevelData ? currentLevelData.id : 3;
+        const greenWidth = Math.max(28, 78 - lvlId * 2.3);
+        const greenStart = 210 - greenWidth / 2;
+        const greenEnd = 210 + greenWidth / 2;
+        if (meterPos >= greenStart && meterPos <= greenEnd) {
+          winMiniGame("Leak sealed! Pressure stabilized.");
+        } else {
+          failMiniGame("Miss! Needle outside pressure threshold.");
+        }
+      } else if (type === 'pipe_rotation') {
+        // Check 3x3 Tile clicks
+        // Grid starts at gx=105, gy=25. Each tile is 66x66 with 4px gap (stride 70px)
+        let clickedTile = -1;
+        for (let r = 0; r < 3; r++) {
+          for (let c = 0; c < 3; c++) {
+            const tx = 105 + c * 70;
+            const ty = 25 + r * 70;
+            if (pos.x >= tx && pos.x <= tx + 66 && pos.y >= ty && pos.y <= ty + 66) {
+              clickedTile = r * 3 + c;
+              break;
+            }
+          }
+          if (clickedTile !== -1) break;
+        }
+
+        if (clickedTile !== -1) {
+          pipeGrid[clickedTile].angle = (pipeGrid[clickedTile].angle + 90) % 360;
+          pipeStatusMsg = "";
+          SFX.switchClick();
+          return;
+        }
+
+        // Check "CHECK FLOW" button at (110, 242, w:200, h:28)
+        if (pos.x >= 110 && pos.x <= 310 && pos.y >= 238 && pos.y <= 270) {
+          testPipeFlow();
+        }
+      } else if (type === 'signals') {
+        let hitLeft = -1;
+        leftTerminals.forEach((lt, idx) => {
+          if (pos.x >= 35 && pos.x <= 100 && Math.abs(pos.y - lt.y) <= 24) hitLeft = idx;
+        });
+        if (hitLeft !== -1) { selectedLeftTerm = hitLeft; return; }
+
+        let hitRight = -1;
+        rightTerminals.forEach((rt, idx) => {
+          if (pos.x >= 320 && pos.x <= 385 && Math.abs(pos.y - rt.y) <= 24) hitRight = idx;
+        });
+        if (hitRight !== -1 && selectedLeftTerm !== null) {
+          const lObj = leftTerminals[selectedLeftTerm];
+          const rObj = rightTerminals[hitRight];
+          if (lObj.color === rObj.color) {
+            if (!wiredConnections.some(w => w.leftId === lObj.id)) {
+              wiredConnections.push({ leftId: lObj.id, rightId: rObj.id, color: lObj.color });
+              selectedLeftTerm = null;
+              wireFeedbackMsg = "✓ Channel synchronized!";
+              wireFeedbackTimer = 1.2;
+              if (wiredConnections.length === 4) {
+                winMiniGame("All 4 telemetry signal lines paired!");
+              }
+            }
+          } else {
+            wireFeedbackMsg = "⚠️ Polarity Mismatch! Colors must match.";
+            wireFeedbackTimer = 1.6;
+            selectedLeftTerm = null;
+            failMiniGame("Signal mismatch! Check wire colors.");
+          }
+        }
+      } else if (type === 'water_filter') {
+        if (pos.y >= 215 && pos.y <= 255 && pos.x >= 110 && pos.x <= 310) {
+          testFilterSequence();
+          return;
+        }
+        let slotIdx = -1;
+        [0, 1, 2, 3].forEach(i => {
+          const sy = 35 + i * 44;
+          if (pos.y >= sy && pos.y <= sy + 40 && pos.x >= 50 && pos.x <= 370) slotIdx = i;
+        });
+        if (slotIdx !== -1) {
+          if (selectedFilterSlot === null) {
+            selectedFilterSlot = slotIdx;
+          } else {
+            const tmp = currentFilterOrder[selectedFilterSlot];
+            currentFilterOrder[selectedFilterSlot] = currentFilterOrder[slotIdx];
+            currentFilterOrder[slotIdx] = tmp;
+            selectedFilterSlot = null;
+            SFX.switchClick();
+          }
+        }
+      } else if (type === 'traffic_timing') {
+        // Toggle Signal
+        trafficSignalState = (trafficSignalState === 'RED') ? 'GREEN' : 'RED';
+        SFX.flashlightToggle();
+      }
+    }
+
+    function testPipeFlow() {
+      const ok = checkPipeFloodFill(pipeGrid);
+      if (ok) {
+        winMiniGame("Pipes aligned! Pure water flowing!");
+      } else {
+        pipeStatusMsg = "Flow blocked at pipe junctions! Realign valves.";
+        failMiniGame("Flow blocked! Junctions misaligned.");
+      }
+    }
+
+    function testFilterSequence() {
+      if (currentFilterOrder[0] === 0 && currentFilterOrder[1] === 1 && currentFilterOrder[2] === 2 && currentFilterOrder[3] === 3) {
+        winMiniGame("4-Stage filtration calibrated! Water purified.");
+      } else {
+        filterHintMsg = "Hint: 1. Coarse Screen ➔ 2. Sand Bed ➔ 3. Carbon ➔ 4. UV Clarifier!";
+        failMiniGame("Sequence incorrect. Review physical filtration stages.");
+      }
+    }
+
+    mCanvas.onmousedown = (e) => { handleCanvasInteraction(getCanvasPos(e)); };
+    mCanvas.ontouchstart = (e) => { e.preventDefault(); handleCanvasInteraction(getCanvasPos(e)); };
+
+    handleMiniGameKey = (code) => {
+      if (!miniGameActive) return false;
+      if (code === 'Space' || code === 'Enter') {
+        if (type === 'pipe_repair') handleCanvasInteraction({ x: 210, y: 130 });
+        else if (type === 'traffic_timing') trafficSignalState = (trafficSignalState === 'RED') ? 'GREEN' : 'RED';
+        else if (type === 'water_filter') testFilterSequence();
+        else if (type === 'pipe_rotation') testPipeFlow();
+        return true;
+      }
+      if (code.startsWith('Digit') || code.startsWith('Numpad')) {
+        const num = parseInt(code.replace(/\D/g, ''), 10);
+        if (type === 'pipe_rotation' && num >= 1 && num <= 9) {
+          pipeGrid[num - 1].angle = (pipeGrid[num - 1].angle + 90) % 360;
+          pipeStatusMsg = "";
+          SFX.switchClick();
+        }
+        return true;
+      }
+      return false;
+    };
+
+    function renderMini(now) {
+      if (!miniGameActive) return;
+      const dt = Math.min((now - lastMiniTime) / 1000, 0.05);
+      lastMiniTime = now;
+      animTimer += dt;
+      if (wireFeedbackTimer > 0) wireFeedbackTimer -= dt;
+      if (trafficCollisionFlash > 0) trafficCollisionFlash -= dt;
+
+      mCtx.clearRect(0, 0, 420, 280);
+
+      // --- RENDER 1: LEAK REPAIR ---
+      if (type === 'pipe_repair') {
+        document.getElementById('minigame-title').textContent = t('leakRepairTitle');
+        document.getElementById('minigame-desc').textContent = t('leakRepairDesc');
+
+        const lvlId = currentLevelData ? currentLevelData.id : 3;
+        const greenWidth = Math.max(28, 78 - lvlId * 2.3);
+        const greenStart = 210 - greenWidth / 2;
+        const greenEnd = 210 + greenWidth / 2;
+
+        meterPos += meterDir * 230 * dt;
+        if (meterPos > 360) { meterPos = 360; meterDir = -1; }
+        if (meterPos < 60) { meterPos = 60; meterDir = 1; }
+
+        mCtx.fillStyle = "#1e293b"; mCtx.fillRect(50, 110, 320, 40);
+        mCtx.strokeStyle = "#475569"; mCtx.lineWidth = 2; mCtx.strokeRect(50, 110, 320, 40);
+
+        mCtx.fillStyle = "#10b981"; mCtx.fillRect(greenStart, 110, greenWidth, 40);
+
+        mCtx.fillStyle = "#ef4444";
+        mCtx.beginPath();
+        mCtx.moveTo(meterPos, 90); mCtx.lineTo(meterPos - 8, 110); mCtx.lineTo(meterPos + 8, 110);
+        mCtx.fill();
+        mCtx.fillRect(meterPos - 2, 110, 4, 40);
+
+        mCtx.fillStyle = "#94a3b8"; mCtx.font = "11px sans-serif"; mCtx.textAlign = "center";
+        mCtx.fillText("TARGET PRESSURE THRESHOLD", 210, 80);
+        mCtx.fillText("Tap or press [Space / Enter] inside Green Zone", 210, 185);
+
+      // --- RENDER 2: 3x3 PIPE GRID ROTATION ---
+      } else if (type === 'pipe_rotation') {
+        document.getElementById('minigame-title').textContent = "3x3 BYPASS VALVE ALIGNMENT";
+        document.getElementById('minigame-desc').textContent = "Click tiles (or keys 1-9) to rotate. Press [CHECK FLOW] to test pure water flow from Source to Outlet.";
+
+        // Draw Source & Outlet indicators
+        mCtx.fillStyle = "#10b981"; mCtx.font = "bold 11px system-ui"; mCtx.textAlign = "right";
+        mCtx.fillText("SOURCE ➔", 98, 62);
+        mCtx.fillStyle = "#fbbf24"; mCtx.font = "bold 11px system-ui"; mCtx.textAlign = "left";
+        mCtx.fillText("➔ OUTLET", 325, 202);
+
+        // Draw 3x3 Tiles
+        for (let r = 0; r < 3; r++) {
+          for (let c = 0; c < 3; c++) {
+            const idx = r * 3 + c;
+            const tile = pipeGrid[idx];
+            const tx = 105 + c * 70;
+            const ty = 25 + r * 70;
+            const cx = tx + 33, cy = ty + 33;
+
+            // Box
+            mCtx.fillStyle = "#1e293b"; mCtx.fillRect(tx, ty, 66, 66);
+            mCtx.strokeStyle = "#475569"; mCtx.lineWidth = 1.5; mCtx.strokeRect(tx, ty, 66, 66);
+
+            // Number tag
+            mCtx.fillStyle = "rgba(148, 163, 184, 0.45)"; mCtx.font = "9px monospace"; mCtx.textAlign = "left";
+            mCtx.fillText(String(idx + 1), tx + 4, ty + 12);
+
+            // Pipe ports
+            const ports = getTilePorts(tile);
+            mCtx.strokeStyle = "#38bdf8"; mCtx.lineWidth = 14; mCtx.lineCap = "round";
+            mCtx.beginPath();
+            if (ports.includes(0)) { mCtx.moveTo(cx, cy); mCtx.lineTo(cx, ty); }
+            if (ports.includes(1)) { mCtx.moveTo(cx, cy); mCtx.lineTo(tx + 66, cy); }
+            if (ports.includes(2)) { mCtx.moveTo(cx, cy); mCtx.lineTo(cx, ty + 66); }
+            if (ports.includes(3)) { mCtx.moveTo(cx, cy); mCtx.lineTo(tx, cy); }
+            mCtx.stroke();
+
+            // Inner flow line
+            mCtx.strokeStyle = "#0284c7"; mCtx.lineWidth = 6;
+            mCtx.beginPath();
+            if (ports.includes(0)) { mCtx.moveTo(cx, cy); mCtx.lineTo(cx, ty); }
+            if (ports.includes(1)) { mCtx.moveTo(cx, cy); mCtx.lineTo(tx + 66, cy); }
+            if (ports.includes(2)) { mCtx.moveTo(cx, cy); mCtx.lineTo(cx, ty + 66); }
+            if (ports.includes(3)) { mCtx.moveTo(cx, cy); mCtx.lineTo(tx, cy); }
+            mCtx.stroke();
+
+            // Center junction
+            mCtx.fillStyle = "#38bdf8"; mCtx.beginPath(); mCtx.arc(cx, cy, 7, 0, Math.PI * 2); mCtx.fill();
+          }
+        }
+
+        // "CHECK FLOW" button at bottom
+        mCtx.fillStyle = "#0284c7"; mCtx.fillRect(110, 240, 200, 28);
+        mCtx.strokeStyle = "#38bdf8"; mCtx.lineWidth = 2; mCtx.strokeRect(110, 240, 200, 28);
+        mCtx.fillStyle = "#ffffff"; mCtx.font = "bold 11px system-ui"; mCtx.textAlign = "center";
+        mCtx.fillText("✓ CHECK FLOW [Space / Enter]", 210, 258);
+
+        if (pipeStatusMsg) {
+          mCtx.fillStyle = "#f87171"; mCtx.font = "10px system-ui";
+          mCtx.fillText(pipeStatusMsg, 210, 276);
+        }
+
+      // --- RENDER 3: SIGNAL WIRING ---
+      } else if (type === 'signals') {
+        document.getElementById('minigame-title').textContent = t('signalTitle');
+        document.getElementById('minigame-desc').textContent = t('signalDesc');
+
+        leftTerminals.forEach((lt, idx) => {
+          mCtx.fillStyle = lt.color;
+          mCtx.fillRect(40, lt.y - 12, 60, 24);
+          mCtx.strokeStyle = (selectedLeftTerm === idx) ? "#ffffff" : "#0f172a";
+          mCtx.lineWidth = (selectedLeftTerm === idx) ? 3 : 1;
+          mCtx.strokeRect(40, lt.y - 12, 60, 24);
+          mCtx.fillStyle = "#ffffff"; mCtx.font = "bold 9px monospace"; mCtx.textAlign = "center";
+          mCtx.fillText(lt.name, 70, lt.y + 4);
+        });
+
+        rightTerminals.forEach(rt => {
+          mCtx.fillStyle = rt.color;
+          mCtx.fillRect(320, rt.y - 12, 60, 24);
+          mCtx.strokeStyle = "#0f172a"; mCtx.lineWidth = 1;
+          mCtx.strokeRect(320, rt.y - 12, 60, 24);
+          mCtx.fillStyle = "#ffffff"; mCtx.font = "bold 9px monospace"; mCtx.textAlign = "center";
+          mCtx.fillText(rt.name, 350, rt.y + 4);
+        });
+
+        wiredConnections.forEach(w => {
+          const lObj = leftTerminals.find(l => l.id === w.leftId);
+          const rObj = rightTerminals.find(r => r.id === w.rightId);
+          if (lObj && rObj) {
+            mCtx.strokeStyle = w.color; mCtx.lineWidth = 4;
+            mCtx.beginPath(); mCtx.moveTo(100, lObj.y); mCtx.bezierCurveTo(180, lObj.y, 240, rObj.y, 320, rObj.y); mCtx.stroke();
+          }
+        });
+
+        if (wireFeedbackTimer > 0) {
+          mCtx.fillStyle = "#fbbf24"; mCtx.font = "11px sans-serif"; mCtx.textAlign = "center";
+          mCtx.fillText(wireFeedbackMsg, 210, 255);
+        }
+
+      // --- RENDER 4: WATER FILTER ---
+      } else if (type === 'water_filter') {
+        document.getElementById('minigame-title').textContent = t('filterTitle');
+        document.getElementById('minigame-desc').textContent = t('filterDesc');
+
+        currentFilterOrder.forEach((stgId, slotIdx) => {
+          const stage = filterAllStages[stgId];
+          const sy = 35 + slotIdx * 44;
+          const isSel = (selectedFilterSlot === slotIdx);
+
+          mCtx.fillStyle = stage.color; mCtx.fillRect(55, sy, 310, 36);
+          mCtx.strokeStyle = isSel ? "#ffffff" : "#0f172a";
+          mCtx.lineWidth = isSel ? 3 : 1;
+          mCtx.strokeRect(55, sy, 310, 36);
+
+          mCtx.fillStyle = "#ffffff"; mCtx.font = "bold 11px sans-serif"; mCtx.textAlign = "left";
+          mCtx.fillText(stage.name, 70, sy + 16);
+          mCtx.font = "9px sans-serif"; mCtx.fillStyle = "#e2e8f0";
+          mCtx.fillText(stage.desc, 70, sy + 30);
+        });
+
+        mCtx.fillStyle = "#10b981"; mCtx.fillRect(110, 215, 200, 32);
+        mCtx.strokeStyle = "#34d399"; mCtx.lineWidth = 2; mCtx.strokeRect(110, 215, 200, 32);
+        mCtx.fillStyle = "#ffffff"; mCtx.font = "bold 11px sans-serif"; mCtx.textAlign = "center";
+        mCtx.fillText("TEST FILTRATION [Space]", 210, 235);
+
+        if (filterHintMsg) {
+          mCtx.fillStyle = "#fbbf24"; mCtx.font = "9px sans-serif";
+          mCtx.fillText(filterHintMsg, 210, 260);
+        }
+
+      // --- RENDER 5: TRAFFIC TIMING ---
+      } else if (type === 'traffic_timing') {
+        document.getElementById('minigame-title').textContent = t('trafficTitle');
+        document.getElementById('minigame-desc').textContent = t('trafficDesc');
+
+        // Highway
+        mCtx.fillStyle = "#1e293b"; mCtx.fillRect(0, 90, 420, 60);
+        mCtx.strokeStyle = "#475569"; mCtx.lineWidth = 1;
+        mCtx.beginPath(); mCtx.moveTo(0, 120); mCtx.lineTo(420, 120); mCtx.stroke();
+
+        // Real Stop Line at x = 110
+        mCtx.fillStyle = "#ffffff"; mCtx.fillRect(110, 90, 6, 60);
+
+        // Eco-Corridor (vertical)
+        mCtx.fillStyle = "rgba(16, 185, 129, 0.15)"; mCtx.fillRect(180, 0, 60, 260);
+
+        // Update cross cars with real stop line physics
+        crossCars.forEach(car => {
+          if (trafficSignalState === 'GREEN' || car.x >= 110) {
+            car.x += car.speed * dt;
+            if (car.x > 450) car.x = -60 - Math.random() * 80;
+          } else if (car.x < 100) {
+            car.x += car.speed * dt * 0.5;
+            if (car.x > 100) car.x = 100;
+          }
+          mCtx.fillStyle = car.color;
+          mCtx.fillRect(car.x, 102, car.w, car.h);
+        });
+
+        // Eco-Tanker simulation: crosses safely only when signal is RED and gap is clear
+        const isIntersectionClear = !crossCars.some(c => c.x > 115 && c.x < 265);
+        if (trafficSignalState === 'RED' && isIntersectionClear) {
+          ecoTankerY -= 95 * dt;
+          if (ecoTankerY < 40) {
+            ecoTankerY = 210;
+            tankersCrossed++;
+            SFX.success();
+            if (tankersCrossed >= 3) {
+              winMiniGame("All 3 Eco-Tankers crossed safely! Mega City fleet operational.");
+            }
+          }
+        } else if (trafficSignalState === 'GREEN' && ecoTankerY < 180 && ecoTankerY > 60) {
+          // Collision failure!
+          trafficCollisionFlash = 0.5;
+          ecoTankerY = 210;
+          failMiniGame("Collision! Switched to GREEN while eco-tanker was crossing!");
+        }
+
+        // Draw Eco-Tanker
+        mCtx.fillStyle = "#10b981";
+        mCtx.fillRect(195, ecoTankerY, 30, 45);
+        mCtx.fillStyle = "#ffffff"; mCtx.font = "bold 9px sans-serif"; mCtx.textAlign = "center";
+        mCtx.fillText("ECO", 210, ecoTankerY + 26);
+
+        // Traffic Signal Light Box (Top-right)
+        mCtx.fillStyle = "#0f172a"; mCtx.fillRect(340, 15, 60, 65);
+        mCtx.strokeStyle = "#38bdf8"; mCtx.lineWidth = 1.5; mCtx.strokeRect(340, 15, 60, 65);
+
+        mCtx.fillStyle = trafficSignalState === 'RED' ? "#ef4444" : "#450a0a";
+        mCtx.beginPath(); mCtx.arc(370, 32, 12, 0, Math.PI * 2); mCtx.fill();
+        mCtx.fillStyle = trafficSignalState === 'GREEN' ? "#10b981" : "#052e16";
+        mCtx.beginPath(); mCtx.arc(370, 60, 12, 0, Math.PI * 2); mCtx.fill();
+
+        mCtx.fillStyle = "#e2e8f0"; mCtx.font = "bold 11px sans-serif"; mCtx.textAlign = "center";
+        mCtx.fillText(`SIGNAL: [${trafficSignalState}] [Space/Tap]`, 210, 40);
+        mCtx.fillText(`Convoys Passed: ${tankersCrossed}/3`, 210, 245);
+
+        if (trafficCollisionFlash > 0) {
+          mCtx.fillStyle = "rgba(239, 68, 68, 0.35)";
+          mCtx.fillRect(0, 0, 420, 260);
+        }
+      }
+
+      requestAnimationFrame(renderMini);
+    }
+    requestAnimationFrame(renderMini);
+  }
+
+  // 18. LEVEL 20 FINALE SEQUENCE & 3-PHASE SHADOW BOSS FIGHT
     let finaleFailuresCount = 0;
     let bossPhase = 0;
     let bossShieldHp = 100;
@@ -4433,7 +4586,7 @@
       ['title-screen', 'map-screen', 'casefile-screen', 'settings-screen', 'wardrobe-screen', 'achievements-screen',
         'daily-screen', 'daily-history-screen', 'daily-complete-layer', 'save-io-modal', 'briefing-layer', 'npc-layer',
         'minigame-layer', 'decision-layer', 'complete-layer', 'pause-layer', 'gameover-layer', 'finale-layer',
-        'certificate-screen', 'credits-screen', 'warning-banner', 'status-pill', 'auto-pause-overlay']
+        'certificate-screen', 'credits-screen', 'codex-screen', 'pledge-screen', 'photo-mode-layer', 'warning-banner', 'status-pill', 'auto-pause-overlay']
         .forEach(id => { const el = document.getElementById(id); if (el) el.style.display = 'none'; });
     }
 
@@ -4533,6 +4686,111 @@
       });
     }
 
+    // --- CODEX, CITIZEN PLEDGE & PHOTO MODE (V3.0 New Modes) ---
+    function showCodex() {
+      hideAllModals();
+      renderCodexGrid();
+      document.getElementById('codex-screen').style.display = 'flex';
+    }
+
+    function renderCodexGrid() {
+      const grid = document.getElementById('codex-grid');
+      if (!grid) return;
+      grid.innerHTML = "";
+      const chapters = [
+        { id: 'c1', title: "CHAPTER 1: GROUNDWATER LEACHATE", sec: 1, text: "When mixed unsegregated waste rots in open unlined landfills, rainwater percolates through heavy metals and battery acids, creating dark toxic leachate that poisons drinking aquifers." },
+        { id: 'c2', title: "CHAPTER 2: WATER CYCLE & DRAINAGE", sec: 8, text: "Urban storm drains are engineered for rainwater runoff. Discharging untreated industrial sludge or raw sewage deoxygenates rivers, suffocating aquatic life and turning holy rivers into dead channels." },
+        { id: 'c3', title: "CHAPTER 3: SOURCE SEGREGATION SCIENCE", sec: 5, text: "Separating green wet organic kitchen scraps allows aerobic composting into rich bio-fertilizer, while clean dry plastic and paper can be recycled instead of suffocating ocean marine life." },
+        { id: 'c4', title: "CHAPTER 4: HISTORIC MONUMENTS & ACID RAIN", sec: 18, text: "Industrial sulfur dioxide emissions react with atmospheric moisture to produce acid rain, which dissolves historical limestone and sandstone structures, turning pristine white marble yellow and black." },
+        { id: 'c5', title: "CHAPTER 5: CLEAN FLUE GAS EMISSIONS", sec: 12, text: "Electrostatic precipitators and wet limestone scrubbers installed on industrial stacks trap over 98% of particulate fly ash and toxic sulfur compounds, restoring fresh breathable air to nearby communities." }
+      ];
+      chapters.forEach(ch => {
+        const isUnlocked = (saveState.codexUnlocked && saveState.codexUnlocked[ch.id]) || (saveState.completedLevels && saveState.completedLevels[ch.sec]) || (saveState.unlockedLevel > ch.sec);
+        const card = document.createElement('div');
+        card.className = "clue-pinned-card";
+        if (isUnlocked) {
+          card.innerHTML = `<strong style="color: #38bdf8;">${ch.title}</strong><div style="margin-top: 6px; font-size: 12px; color: #cbd5e1; line-height: 1.5;">${ch.text}</div>`;
+        } else {
+          card.innerHTML = `<strong style="color: #64748b;">🔒 CHAPTER LOCKED</strong><div style="margin-top: 6px; font-size: 12px; color: #64748b; line-height: 1.5;">Investigate Sector ${ch.sec} to decipher this environmental dossier.</div>`;
+        }
+        grid.appendChild(card);
+      });
+    }
+
+    function showPledge() {
+      hideAllModals();
+      const btnSub = document.getElementById('btn-pledge-submit');
+      if (btnSub) {
+        btnSub.textContent = saveState.pledgeTaken ? "✓ CITIZEN PLEDGE HONOURED (+200 ECO-POINTS CLAIMED)" : "✓ SIGN CITIZEN PLEDGE (+200 ECO-POINTS)";
+        btnSub.disabled = !!saveState.pledgeTaken;
+      }
+      document.getElementById('pledge-screen').style.display = 'flex';
+    }
+
+    let isPhotoMode = false;
+    function enterPhotoMode() {
+      isPhotoMode = true;
+      document.getElementById('pause-layer').style.display = 'none';
+      document.getElementById('photo-mode-layer').style.display = 'block';
+      showToast("Photo Mode active! Pan camera with Arrow keys / WASD.");
+    }
+
+    function exitPhotoMode() {
+      isPhotoMode = false;
+      document.getElementById('photo-mode-layer').style.display = 'none';
+      document.getElementById('pause-layer').style.display = 'flex';
+    }
+
+    function capturePhoto() {
+      try {
+        ctx.save();
+        ctx.fillStyle = "rgba(15, 23, 42, 0.85)";
+        ctx.fillRect(V_WIDTH - 320, V_HEIGHT - 45, 305, 36);
+        ctx.fillStyle = "#38bdf8";
+        ctx.font = "bold 13px system-ui";
+        ctx.textAlign = "right";
+        ctx.fillText("🌿 SHADOW TRAIL: THE CLEAN PATH 3.0", V_WIDTH - 25, V_HEIGHT - 22);
+        ctx.restore();
+
+        const a = document.createElement('a');
+        a.href = canvas.toDataURL('image/png');
+        a.download = `shadow_trail_${currentLevelData ? currentLevelData.id : 'photo'}.png`;
+        a.click();
+        showToast("Snapshot saved as PNG!");
+      } catch (e) { showToast("Snapshot exported."); }
+    }
+
+    function generateShareCard() {
+      try {
+        const cardCanvas = document.createElement('canvas');
+        cardCanvas.width = 800; cardCanvas.height = 450;
+        const cCtx = cardCanvas.getContext('2d');
+        const bg = cCtx.createLinearGradient(0, 0, 800, 450);
+        bg.addColorStop(0, '#0f172a'); bg.addColorStop(1, '#020617');
+        cCtx.fillStyle = bg; cCtx.fillRect(0, 0, 800, 450);
+        cCtx.strokeStyle = '#38bdf8'; cCtx.lineWidth = 4;
+        cCtx.strokeRect(20, 20, 760, 410);
+        cCtx.fillStyle = '#38bdf8'; cCtx.font = 'bold 26px system-ui';
+        cCtx.fillText('🌿 SHADOW TRAIL: GUARDIAN DISPATCH', 50, 70);
+        cCtx.fillStyle = '#ffffff'; cCtx.font = '18px system-ui';
+        cCtx.fillText(`Guardian: ${saveState.playerName}`, 50, 130);
+        cCtx.fillText(`Sector: ${currentLevelData ? currentLevelData.name : 'Swachh Bharat Sector'}`, 50, 170);
+        cCtx.fillText(`Eco-Points: ${saveState.ecoPoints}`, 50, 210);
+        let stars = 0; Object.values(saveState.levelStars).forEach(s => stars += s);
+        cCtx.fillText(`Regional Stars: ${stars}/60`, 50, 250);
+        cCtx.fillStyle = '#10b981';
+        cCtx.fillText('"Cleanliness is civic strength. Vigilance is our shield."', 50, 320);
+        cCtx.fillStyle = '#94a3b8'; cCtx.font = '14px system-ui';
+        cCtx.fillText('https://nbpkiller143.github.io/shadow-trail/', 50, 390);
+
+        const a = document.createElement('a');
+        a.href = cardCanvas.toDataURL('image/png');
+        a.download = 'shadow_trail_guardian_card.png';
+        a.click();
+        showToast("Guardian Share Card downloaded!");
+      } catch (e) { showToast("Share Card generated."); }
+    }
+
     function showCaseFile() {
       hideAllModals();
       renderCaseFileGrid();
@@ -4605,6 +4863,11 @@
       document.getElementById('chk-reducedfx').checked = !!saveState.settings.reducedFx;
       document.getElementById('sel-lang').value = saveState.settings.language || 'en';
       document.getElementById('txt-playername').value = saveState.playerName || "Inspector Kabir Rao";
+
+      const chkEd = document.getElementById('chk-educatormode');
+      if (chkEd) chkEd.checked = !!saveState.settings.educatorMode;
+      const txtDeb = document.getElementById('txt-debug-date');
+      if (txtDeb) txtDeb.value = saveState.settings.debugDate || "";
 
       document.getElementById('settings-screen').style.display = 'flex';
     }
@@ -4749,6 +5012,83 @@
       document.getElementById('btn-title-settings').onclick = () => { previousScreen = 'title'; showSettings(); };
       document.getElementById('btn-title-wardrobe').onclick = showWardrobe;
       document.getElementById('btn-title-achieve').onclick = showAchievements;
+      const btnTitleCodex = document.getElementById('btn-title-codex');
+      if (btnTitleCodex) btnTitleCodex.onclick = () => { previousScreen = 'title'; showCodex(); };
+      const btnTitlePledge = document.getElementById('btn-title-pledge');
+      if (btnTitlePledge) btnTitlePledge.onclick = () => { previousScreen = 'title'; showPledge(); };
+      const btnCodexBack = document.getElementById('btn-codex-back');
+      if (btnCodexBack) btnCodexBack.onclick = returnFromSubScreen;
+      const btnPledgeBack = document.getElementById('btn-pledge-back');
+      if (btnPledgeBack) btnPledgeBack.onclick = returnFromSubScreen;
+
+      const btnPausePhoto = document.getElementById('btn-pause-photo');
+      if (btnPausePhoto) btnPausePhoto.onclick = enterPhotoMode;
+      const btnPauseCodex = document.getElementById('btn-pause-codex');
+      if (btnPauseCodex) btnPauseCodex.onclick = () => { previousScreen = 'pause'; showCodex(); };
+      const btnPhotoCap = document.getElementById('btn-photo-capture');
+      if (btnPhotoCap) btnPhotoCap.onclick = capturePhoto;
+      const btnPhotoShare = document.getElementById('btn-photo-share');
+      if (btnPhotoShare) btnPhotoShare.onclick = generateShareCard;
+      const btnPhotoExit = document.getElementById('btn-photo-exit');
+      if (btnPhotoExit) btnPhotoExit.onclick = exitPhotoMode;
+
+      const btnPledgeSub = document.getElementById('btn-pledge-submit');
+      if (btnPledgeSub) {
+        btnPledgeSub.onclick = () => {
+          if (!saveState.pledgeTaken) {
+            saveState.pledgeTaken = true;
+            saveState.ecoPoints = (saveState.ecoPoints || 0) + 200;
+            saveGameData();
+            SFX.success();
+            showToast("Citizen Pledge signed! +200 Eco-Points awarded!");
+            showPledge();
+          }
+        };
+      }
+
+      const copyBtn = document.getElementById('btn-daily-copy');
+      if (copyBtn) {
+        copyBtn.onclick = () => {
+          const todayKey = getLocalDateKey();
+          const existing = saveState.daily.history.find(h => h.date === todayKey);
+          const scr = existing ? existing.score : saveState.daily.bestScoreToday;
+          const grd = existing ? existing.grade : 'A';
+          const tm = existing ? existing.time : '02:00';
+          const shareText = `🌿 SHADOW TRAIL: DAILY INVESTIGATION (${getFormattedDate(todayKey)})\n` +
+            `Sector: ${currentLevelData ? currentLevelData.name : 'Regional Sector'}\n` +
+            `Score: ${scr} | Grade: ${grd} | Time: ${tm}\n` +
+            `Streak: 🔥 ${saveState.daily.streak} Days\n` +
+            `https://nbpkiller143.github.io/shadow-trail/`;
+
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(shareText).then(() => {
+              showToast("Daily result copied to clipboard!");
+            }).catch(() => {
+              prompt("Copy your daily result:", shareText);
+            });
+          } else {
+            prompt("Copy your daily result:", shareText);
+          }
+        };
+      }
+
+      const chkEd = document.getElementById('chk-educatormode');
+      if (chkEd) {
+        chkEd.onchange = (e) => {
+          saveState.settings.educatorMode = e.target.checked;
+          saveGameData();
+          showToast(e.target.checked ? "Educator Mode active: Non-scary classroom environment." : "Standard mode active.");
+        };
+      }
+
+      const txtDeb = document.getElementById('txt-debug-date');
+      if (txtDeb) {
+        txtDeb.onchange = (e) => {
+          saveState.settings.debugDate = e.target.value.trim();
+          saveGameData();
+          showToast(`Debug date set to ${e.target.value.trim()}`);
+        };
+      }
 
       document.getElementById('btn-map-back').onclick = showTitleScreen;
       document.getElementById('btn-map-daily').onclick = showDailyScreen;
