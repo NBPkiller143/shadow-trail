@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport"
     content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>SHADOW TRAIL: The Clean Path 2.3</title>
+  <title>SHADOW TRAIL: The Clean Path 3.0 (Final)</title>
   <style>
     /* ════ 1. BASE DESIGN SYSTEM & TOKENS ════ */
     *,
@@ -931,7 +931,7 @@
         style="font-size: clamp(34px, 6vw, 68px); font-weight: 900; letter-spacing: 3px; background: linear-gradient(180deg, #fff 0%, #94a3b8 60%, #38bdf8 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;"
         id="lbl-title-main">SHADOW TRAIL</div>
       <div style="font-size: 18px; color: #38bdf8; letter-spacing: 5px; font-weight: 700; margin-bottom: 16px;"
-        id="lbl-title-sub">THE CLEAN PATH 2.3</div>
+        id="lbl-title-sub">THE CLEAN PATH 3.0 (FINAL)</div>
       <div
         style="max-width: 620px; font-size: 14px; line-height: 1.6; color: #94a3b8; background: rgba(15, 23, 42, 0.7); padding: 14px 22px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08); margin-bottom: 18px;"
         id="lbl-title-desc">
@@ -1407,7 +1407,7 @@
 
     const V_WIDTH = 1280, V_HEIGHT = 720, GRAVITY = 1400;
 
-    // 1. SAVE SYSTEM V2.3: DEEP-MERGE DEFAULTS, CHECKSUM VERIFICATION & SCHEMA SANITIZATION
+    // 1. SAVE SYSTEM V3.0: DEEP-MERGE DEFAULTS, CHECKSUM VERIFICATION & SCHEMA SANITIZATION
     const SAVE_KEY_V2 = 'SHADOW_TRAIL_V2_SAVE';
     const SAVE_KEY_V1 = 'SHADOW_TRAIL_V1_SAVE';
     const SAVE_KEY_BACKUP = 'SHADOW_TRAIL_BACKUP_SAVE';
@@ -1617,7 +1617,7 @@
 
     function saveGameData() {
       try {
-        saveState.version = "2.3";
+        saveState.version = "3.0";
         const existing = localStorage.getItem(SAVE_KEY_V2);
         if (existing) localStorage.setItem(SAVE_KEY_BACKUP, existing);
 
@@ -1643,7 +1643,7 @@
     // 2. MULTILINGUAL DICTIONARY (English & Hindi Translations)
     const I18N = {
       en: {
-        titleSub: "THE CLEAN PATH 2.3",
+        titleSub: "THE CLEAN PATH 3.0 (FINAL)",
         startInv: "START INVESTIGATION",
         dailyChall: "⭐ DAILY CHALLENGE",
         levelMap: "LEVEL MAP",
@@ -1688,7 +1688,7 @@
         titleDesc: "Follow Inspector Kabir Rao and companion Sheru across 20 regional sectors. Master the Flashlight, Clue Lens, and stealth maneuvers to dissolve the Shadow of environmental decay into morning light!"
       },
       hi: {
-        titleSub: "स्वच्छ पथ संस्करण 2.3",
+        titleSub: "स्वच्छ पथ संस्करण 3.0 (अंतिम)",
         startInv: "जाँच शुरू करें",
         dailyChall: "⭐ दैनिक चुनौती",
         levelMap: "क्षेत्रीय मानचित्र",
