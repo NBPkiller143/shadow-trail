@@ -968,9 +968,8 @@
     <!-- LEVEL MAP SCREEN -->
     <div id="map-screen" class="fullscreen-screen">
       <div style="text-align: center; margin-bottom: 16px;">
-        <h1 class="modal-title" style="font-size: 28px;">REGIONAL SECTOR MAP</h1>
-        <p class="modal-subtitle">Track pollution reports, collect Eco-Badges, and restore communities across 20
-          sectors.</p>
+        <h1 class="modal-title" id="lbl-map-title" style="font-size: 28px;">REGIONAL SECTOR MAP</h1>
+        <p class="modal-subtitle" id="lbl-map-sub">Track pollution reports, collect Eco-Badges, and restore communities across 20 sectors.</p>
         <div>
           <button class="btn btn-secondary" id="btn-map-back">MAIN MENU</button>
           <button class="btn btn-warning" id="btn-map-daily">⭐ DAILY CHALLENGE</button>
@@ -1069,13 +1068,11 @@
     <!-- CASE FILE SCREEN -->
     <div id="casefile-screen" class="fullscreen-screen">
       <div style="text-align: center; margin-bottom: 16px;">
-        <h1 class="modal-title" style="font-size: 28px;">INVESTIGATION CASE FILE</h1>
-        <p class="modal-subtitle">Pinned evidence, chemical assays, and witness testimonies connecting Noxis Industries
-          to the Shadow.</p>
+        <h1 class="modal-title" id="lbl-casefile-title" style="font-size: 28px;">INVESTIGATION CASE FILE</h1>
+        <p class="modal-subtitle" id="lbl-casefile-sub">Pinned evidence, chemical assays, and witness testimonies connecting Noxis Industries to the Shadow.</p>
         <div id="casefile-cipher-banner"
           style="background: rgba(15, 23, 42, 0.9); border: 2px solid #38bdf8; border-radius: 8px; padding: 12px 18px; margin: 10px auto; max-width: 620px;">
-          <div style="font-size: 11px; font-weight: 800; color: #38bdf8; letter-spacing: 1px;">SWACHH BHARAT REMEDIATION
-            CIPHER CODEWORD:</div>
+          <div id="lbl-casefile-cipher-title" style="font-size: 11px; font-weight: 800; color: #38bdf8; letter-spacing: 1px;">SWACHH BHARAT REMEDIATION CIPHER CODEWORD:</div>
           <div id="cipher-codeword"
             style="font-size: 24px; font-weight: 900; letter-spacing: 8px; color: #fbbf24; margin-top: 6px;">_ _ _ _ _ _
           </div>
@@ -1095,23 +1092,25 @@
         <button class="btn btn-secondary" id="btn-settings-back">BACK</button>
       </div>
       <div class="settings-table">
-        <div class="settings-row"><span>Master Volume</span><input type="range" id="vol-master" min="0" max="1"
+        <div class="settings-row"><span id="lbl-vol-master">Master Volume</span><input type="range" id="vol-master" min="0" max="1"
             step="0.05" value="0.8"></div>
-        <div class="settings-row"><span>Music Volume</span><input type="range" id="vol-music" min="0" max="1"
+        <div class="settings-row"><span id="lbl-vol-music">Music Volume</span><input type="range" id="vol-music" min="0" max="1"
             step="0.05" value="0.7"></div>
-        <div class="settings-row"><span>SFX Volume</span><input type="range" id="vol-sfx" min="0" max="1" step="0.05"
+        <div class="settings-row"><span id="lbl-vol-sfx">SFX Volume</span><input type="range" id="vol-sfx" min="0" max="1" step="0.05"
             value="0.85"></div>
-        <div class="settings-row"><span>Companion Hints (Sheru)</span><input type="checkbox" id="chk-hints" checked>
+        <div class="settings-row"><span id="lbl-vol-voice">Voice Volume</span><input type="range" id="vol-voice" min="0" max="1" step="0.05"
+            value="0.9"></div>
+        <div class="settings-row"><span id="lbl-chk-hints">Companion Hints (Sheru)</span><input type="checkbox" id="chk-hints" checked>
         </div>
-        <div class="settings-row"><span>Objective Compass / Minimap</span><input type="checkbox" id="chk-compass"
+        <div class="settings-row"><span id="lbl-chk-compass">Objective Compass / Minimap</span><input type="checkbox" id="chk-compass"
             checked></div>
-        <div class="settings-row"><span>Near-Miss Slow-Mo</span><input type="checkbox" id="chk-nearmiss" checked></div>
-        <div class="settings-row"><span>Performance & FPS Overlay</span><input type="checkbox" id="chk-perf-overlay">
+        <div class="settings-row"><span id="lbl-chk-nearmiss">Near-Miss Slow-Mo</span><input type="checkbox" id="chk-nearmiss" checked></div>
+        <div class="settings-row"><span id="lbl-chk-perf">Performance & FPS Overlay</span><input type="checkbox" id="chk-perf-overlay">
         </div>
-        <div class="settings-row"><span>Auto Quality Adjustment</span><input type="checkbox" id="chk-auto-quality"
+        <div class="settings-row"><span id="lbl-chk-autoqual">Auto Quality Adjustment</span><input type="checkbox" id="chk-auto-quality"
             checked></div>
         <div class="settings-row">
-          <span>Visual Quality</span>
+          <span id="lbl-sel-quality">Visual Quality</span>
           <select id="sel-quality">
             <option value="low">Low (Battery Saver)</option>
             <option value="med">Medium</option>
@@ -1119,35 +1118,35 @@
           </select>
         </div>
         <div class="settings-row">
-          <span>Difficulty</span>
+          <span id="lbl-sel-diff">Difficulty</span>
           <select id="sel-diff">
             <option value="relaxed">Relaxed (Gentle Shadow)</option>
             <option value="normal" selected>Normal</option>
             <option value="challenge">Challenge (Fast Shadow)</option>
           </select>
         </div>
-        <div class="settings-row"><span>Left-Handed Touch Layout</span><input type="checkbox" id="chk-lefthanded"></div>
-        <div class="settings-row"><span>Reduced Effects (No Flashes/Shake)</span><input type="checkbox"
+        <div class="settings-row"><span id="lbl-chk-lefthanded">Left-Handed Touch Layout</span><input type="checkbox" id="chk-lefthanded"></div>
+        <div class="settings-row"><span id="lbl-chk-reducedfx">Reduced Effects (No Flashes/Shake)</span><input type="checkbox"
             id="chk-reducedfx"></div>
         <div class="settings-row">
-          <span>Educator Mode (Classroom Safe)</span>
+          <span id="lbl-chk-educator">Educator Mode (Classroom Safe)</span>
           <input type="checkbox" id="chk-educatormode">
         </div>
         <div class="settings-row" id="row-debug-date">
-          <span>Debug Date Override (YYYY-MM-DD)</span>
+          <span id="lbl-txt-debug">Debug Date Override (YYYY-MM-DD)</span>
           <input type="text" id="txt-debug-date" placeholder="YYYY-MM-DD" style="width:130px;">
         </div>
         <div class="settings-row">
-          <span>Language (भाषा)</span>
+          <span id="lbl-sel-lang">Language (भाषा)</span>
           <select id="sel-lang">
             <option value="en" selected>English</option>
             <option value="hi">हिन्दी (Hindi)</option>
           </select>
         </div>
-        <div class="settings-row"><span>Investigator Name</span><input type="text" id="txt-playername"
+        <div class="settings-row"><span id="lbl-txt-playername">Investigator Name</span><input type="text" id="txt-playername"
             value="Inspector Kabir Rao" style="width:170px;"></div>
         <div class="settings-row">
-          <span>Export / Import Save Data</span>
+          <span id="lbl-save-io-title">Export / Import Save Data</span>
           <button class="btn btn-secondary" id="btn-open-save-io" style="font-size:11px; padding:4px 10px;">MANAGE SAVE
             STRING</button>
         </div>
@@ -1163,6 +1162,7 @@
         <div style="display: flex; justify-content: center; gap: 8px; margin-top: 12px; flex-wrap: wrap;">
           <button class="btn btn-primary" id="btn-save-copy">📋 COPY SAVE</button>
           <button class="btn btn-warning" id="btn-save-apply">📥 RESTORE SAVE</button>
+          <button class="btn btn-danger" id="btn-save-undo" style="display:none; font-size:11px;">↩️ UNDO IMPORT</button>
           <button class="btn btn-secondary" id="btn-save-io-close">CLOSE</button>
         </div>
       </div>
@@ -1337,8 +1337,7 @@
         <div style="font-size: 38px; margin-bottom: 4px;" id="cert-emblem">🇮🇳 🌿</div>
         <h2 style="font-size: 22px; color: #0284c7; text-transform: uppercase; letter-spacing: 2px;" id="cert-heading">
           SWACHH BHARAT CITIZEN CERTIFICATE</h2>
-        <p style="font-size: 12px; color: #64748b; margin-top: 4px;">COMMEMORATIVE CIVIC RECOGNITION | SWACHH BHARAT
-          CITIZEN INITIATIVE</p>
+        <p id="cert-sub" style="font-size: 12px; color: #64748b; margin-top: 4px;">COMMEMORATIVE CIVIC RECOGNITION | SWACHH BHARAT CITIZEN INITIATIVE</p>
         <div style="font-size: 20px; font-weight: bold; color: #0284c7; margin: 10px 0;" id="cert-name">Inspector Kabir Rao</div>
         <div style="margin: 18px 0; font-size: 14px; line-height: 1.6;" id="cert-body"></div>
         <div style="display: flex; justify-content: space-around; margin: 15px 0; font-weight: bold; font-size: 14px;">
@@ -1395,8 +1394,8 @@
     <!-- ENVIRONMENTAL CODEX SCREEN -->
     <div id="codex-screen" class="fullscreen-screen">
       <div style="text-align: center; margin-bottom: 16px;">
-        <h1 class="modal-title" style="font-size: 28px;">SWACHH BHARAT ENVIRONMENTAL CODEX</h1>
-        <p class="modal-subtitle">Unlocked regional knowledge dossiers covering water systems, wildlife corridors, and civic sanitation.</p>
+        <h1 class="modal-title" id="lbl-codex-title" style="font-size: 28px;">SWACHH BHARAT ENVIRONMENTAL CODEX</h1>
+        <p class="modal-subtitle" id="lbl-codex-sub">Unlocked regional knowledge dossiers covering water systems, wildlife corridors, and civic sanitation.</p>
         <button class="btn btn-secondary" id="btn-codex-back">RETURN</button>
       </div>
       <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; max-width: 900px; width: 100%; padding-bottom: 30px;" id="codex-grid"></div>
@@ -1405,8 +1404,8 @@
     <!-- CITIZEN PLEDGE SCREEN -->
     <div id="pledge-screen" class="fullscreen-screen">
       <div style="text-align: center; margin-bottom: 16px;">
-        <h1 class="modal-title" style="font-size: 28px; background: linear-gradient(135deg, #10b981, #34d399); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">🌱 CITIZEN SWACHHATA PLEDGE</h1>
-        <p class="modal-subtitle">Commit to daily individual actions that keep our nation's waterways, colonies, and communities clean.</p>
+        <h1 class="modal-title" id="lbl-pledge-title" style="font-size: 28px; background: linear-gradient(135deg, #10b981, #34d399); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">🌱 CITIZEN SWACHHATA PLEDGE</h1>
+        <p class="modal-subtitle" id="lbl-pledge-sub">Commit to daily individual actions that keep our nation's waterways, colonies, and communities clean.</p>
         <button class="btn btn-secondary" id="btn-pledge-back">MAIN MENU</button>
       </div>
       <div class="modal-box" style="max-width: 620px; text-align: left; margin: 10px auto;">
@@ -1484,7 +1483,7 @@
     const SAVE_KEY_BACKUP = 'SHADOW_TRAIL_BACKUP_SAVE';
 
     const DEFAULT_SETTINGS = {
-      masterVol: 0.8, musicVol: 0.7, sfxVol: 0.85, soundMuted: false,
+      masterVol: 0.8, musicVol: 0.7, sfxVol: 0.85, voiceVol: 0.9, soundMuted: false,
       hintsEnabled: true, compassEnabled: true, nearMiss: true, showPerf: false,
       autoQuality: true, difficulty: 'normal', quality: 'high', leftHanded: false,
       reducedFx: false, language: 'en', touchEnabled: null,
@@ -1517,8 +1516,23 @@
     }
 
     function decodeUnicodeSave(str) {
+      if (!str || typeof str !== 'string') return null;
+      const trimmed = str.trim();
+      // Support direct raw JSON paste (e.g. {} or {"version":"3.0", ...})
+      if (trimmed.startsWith('{') || trimmed.startsWith('[')) {
+        try {
+          const direct = JSON.parse(trimmed);
+          if (direct && typeof direct === 'object') {
+            if (direct._cs && direct._data) {
+              if (computeChecksum(JSON.stringify(direct._data)) === direct._cs) return direct._data;
+              return null;
+            }
+            return direct;
+          }
+        } catch (e) { }
+      }
       try {
-        const parsed = JSON.parse(decodeURIComponent(escape(atob(str))));
+        const parsed = JSON.parse(decodeURIComponent(escape(atob(trimmed))));
         if (parsed && typeof parsed === 'object') {
           if (parsed._cs && parsed._data) {
             if (computeChecksum(JSON.stringify(parsed._data)) === parsed._cs) return parsed._data;
@@ -1567,7 +1581,7 @@
       return `${str.substring(0, 4)}-${str.substring(4, 6)}-${str.substring(6, 8)}`;
     }
 
-    function validateAndSanitizeSave(raw) {
+    function validateAndSanitizeSave(raw, isImport = false) {
       if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return null;
       let data = raw;
       if (raw._cs && raw._data) {
@@ -1576,11 +1590,38 @@
       }
       if (!data || typeof data !== 'object' || Array.isArray(data)) return null;
 
+      // STRICT IMPORT VALIDATION: Reject empty, tampered, or non-save objects
+      if (isImport) {
+        const recognizedVersions = ['1.0', '2.0', '2.1', '2.2', '2.3', '3.0'];
+        if (!data.version || !recognizedVersions.includes(String(data.version).trim())) {
+          return null;
+        }
+        if (data.unlockedLevel === undefined || data.unlockedLevel === null) return null;
+        const parsedUnlocked = Number(data.unlockedLevel);
+        if (!Number.isInteger(parsedUnlocked) || parsedUnlocked < 1 || parsedUnlocked > 20) return null;
+
+        if (!data.completedLevels || typeof data.completedLevels !== 'object' || Array.isArray(data.completedLevels)) return null;
+        if (!data.levelStars || typeof data.levelStars !== 'object' || Array.isArray(data.levelStars)) return null;
+        if (!data.settings || typeof data.settings !== 'object' || Array.isArray(data.settings)) return null;
+        if (data.playerName !== undefined && typeof data.playerName !== 'string') return null;
+        if (typeof data.playerName === 'string' && data.playerName.length > 50) return null;
+
+        if (raw._cs && computeChecksum(JSON.stringify(raw._data || data)) !== raw._cs) return null;
+        if (data.checksum !== undefined && data.checksum !== null) {
+          const checkCopy = Object.assign({}, data);
+          delete checkCopy.checksum;
+          const c1 = computeChecksum(JSON.stringify(checkCopy));
+          const c2 = computeChecksum(JSON.stringify(data));
+          if (String(data.checksum) !== c1 && String(data.checksum) !== c2) return null;
+        }
+      }
+
       const rawSet = (data.settings && typeof data.settings === 'object' && !Array.isArray(data.settings)) ? data.settings : {};
       const settings = {
         masterVol: clampNum(rawSet.masterVol, 0, 1, DEFAULT_SETTINGS.masterVol),
         musicVol: clampNum(rawSet.musicVol, 0, 1, DEFAULT_SETTINGS.musicVol),
         sfxVol: clampNum(rawSet.sfxVol, 0, 1, DEFAULT_SETTINGS.sfxVol),
+        voiceVol: clampNum(rawSet.voiceVol, 0, 1, DEFAULT_SETTINGS.voiceVol),
         soundMuted: typeof rawSet.soundMuted === 'boolean' ? rawSet.soundMuted : DEFAULT_SETTINGS.soundMuted,
         hintsEnabled: typeof rawSet.hintsEnabled === 'boolean' ? rawSet.hintsEnabled : DEFAULT_SETTINGS.hintsEnabled,
         compassEnabled: typeof rawSet.compassEnabled === 'boolean' ? rawSet.compassEnabled : DEFAULT_SETTINGS.compassEnabled,
@@ -1741,6 +1782,7 @@
         safeZone: "SHELTERED (SAFE ZONE)",
         sectorRestored: "SECTOR RESTORED!",
         nextSector: "NEXT SECTOR",
+        continueGame: "CONTINUE ➔",
         actSecure: "[E] / ACTION TO SECURE",
         shadowWhisper: "You cannot stop what negligence created!",
         allCluesFound: "All 3 evidence clues secured! Head to the Sector Exit!",
@@ -1774,9 +1816,49 @@
         titleDesc: "Follow Inspector Kabir Rao and companion Sheru across 20 regional sectors. Master the Flashlight, Clue Lens, and stealth maneuvers to dissolve the Shadow of environmental decay into morning light!",
         codex: "📚 CODEX",
         pledge: "🌱 CITIZEN PLEDGE",
-        photoMode: "📷 PHOTO MODE"
+        photoMode: "📷 PHOTO MODE",
+        mapTitle: "REGIONAL SECTOR MAP",
+        mapSub: "Track pollution reports, collect Eco-Badges, and restore communities across 20 sectors.",
+        certButton: "🏆 CERTIFICATE",
+        resetProgress: "RESET PROGRESS",
+        casefileTitle: "INVESTIGATION CASE FILE",
+        casefileSub: "Pinned evidence, chemical assays, and witness testimonies connecting Noxis Industries to the Shadow.",
+        cipherTitle: "SWACHH BHARAT REMEDIATION CIPHER CODEWORD:",
+        volMaster: "Master Volume",
+        volMusic: "Music Volume",
+        volSfx: "SFX Volume",
+        volVoice: "Voice Volume",
+        chkHints: "Companion Hints (Sheru)",
+        chkCompass: "Objective Compass / Minimap",
+        chkNearmiss: "Near-Miss Slow-Mo",
+        chkPerf: "Performance & FPS Overlay",
+        chkAutoqual: "Auto Quality Adjustment",
+        selQuality: "Visual Quality",
+        selDiff: "Difficulty",
+        chkLefthanded: "Left-Handed Touch Layout",
+        chkReducedfx: "Reduced Effects (No Flashes/Shake)",
+        chkEducator: "Educator Mode (Classroom Safe)",
+        txtDebug: "Debug Date Override (YYYY-MM-DD)",
+        selLang: "Language (भाषा)",
+        txtPlayername: "Investigator Name",
+        saveIoTitle: "Export / Import Save Data",
+        btnManageSave: "MANAGE SAVE STRING",
+        codexTitle: "SWACHH BHARAT ENVIRONMENTAL CODEX",
+        codexSub: "Unlocked regional knowledge dossiers covering water systems, wildlife corridors, and civic sanitation.",
+        pledgeTitle: "🌱 CITIZEN SWACHHATA PLEDGE",
+        pledgeSub: "Commit to daily individual actions that keep our nation's waterways, colonies, and communities clean.",
+        btnSignPledge: "✓ SIGN CITIZEN PLEDGE (+200 ECO-POINTS)",
+        certHeading: "SWACHH BHARAT CITIZEN CERTIFICATE",
+        certSub: "COMMEMORATIVE CIVIC RECOGNITION | SWACHH BHARAT CITIZEN INITIATIVE"
       },
       hi: {
+        sectors: {
+          1: "परित्यक्त मोहल्ला", 2: "अंधेरा जंगल", 3: "पुराना विद्यालय", 4: "भूमिगत सुरंग",
+          5: "रात्रि बाजार", 6: "सूनसान बस अड्डा", 7: "रेलवे यार्ड", 8: "नदी तट",
+          9: "गुप्त झील", 10: "तूफानी समुद्र तट", 11: "ग्राम खेत", 12: "कारखाना क्षेत्र",
+          13: "भूमिगत नाला भूलभुलैया", 14: "आवासीय परिसर", 15: "औद्योगिक क्षेत्र", 16: "वन्य अभयारण्य",
+          17: "रिक्त स्टेडियम", 18: "धरोहर क्षेत्र", 19: "महा नगर", 20: "केंद्रीय उपचार संयंत्र"
+        },
         titleSub: "स्वच्छ पथ संस्करण 3.0 (अंतिम)",
         startInv: "जाँच शुरू करें",
         dailyChall: "⭐ दैनिक चुनौती",
@@ -1789,6 +1871,7 @@
         safeZone: "सुरक्षित आश्रय",
         sectorRestored: "क्षेत्र स्वच्छ व पुनर्स्थापित!",
         nextSector: "अगला क्षेत्र",
+        continueGame: "जारी रखें ➔",
         actSecure: "[E] / सुरक्षित करने हेतु दबाएँ",
         shadowWhisper: "लापरवाही से बनी इस गंदगी को तुम रोक नहीं सकते!",
         allCluesFound: "तीनों सबूत मिल गए! सेक्टर निकास द्वार की ओर बढ़ें!",
@@ -1822,7 +1905,40 @@
         titleDesc: "इंस्पेक्टर कबीर राव और साथी शेरू के साथ 20 क्षेत्रों की जाँच करें। टॉर्च, सुराग लेंस और सतर्कता से पर्यावरण प्रदूषण की छाया को समाप्त करें!",
         codex: "📚 कॉडेक्स",
         pledge: "🌱 नागरिक प्रतिज्ञा",
-        photoMode: "📷 फोटो मोड"
+        photoMode: "📷 फोटो मोड",
+        mapTitle: "क्षेत्रीय सेक्टर मानचित्र",
+        mapSub: "प्रदूषण रिपोर्ट ट्रैक करें, इको-बैज एकत्र करें और 20 क्षेत्रों को स्वच्छ बनाएं।",
+        certButton: "🏆 प्रमाणपत्र",
+        resetProgress: "प्रगति रीसेट करें",
+        casefileTitle: "जाँच केस फ़ाइल",
+        casefileSub: "नोक्सिस इंडस्ट्रीज और प्रदूषण छाया को जोड़ने वाले साक्ष्य और रिपोर्ट।",
+        cipherTitle: "स्वच्छ भारत उपचार साइफर पासवर्ड:",
+        volMaster: "मास्टर वॉल्यूम",
+        volMusic: "संगीत वॉल्यूम",
+        volSfx: "ध्वनि प्रभाव",
+        volVoice: "आवाज वॉल्यूम",
+        chkHints: "साथी संकेत (शेरू)",
+        chkCompass: "कम्पास / मिनीमैप",
+        chkNearmiss: "बाल-बाल बचाव स्लो-मो",
+        chkPerf: "प्रदर्शन एवं FPS डिस्प्ले",
+        chkAutoqual: "स्वचालित गुणवत्ता समायोजन",
+        selQuality: "दृश्य गुणवत्ता",
+        selDiff: "कठिनाई स्तर",
+        chkLefthanded: "बाएं हाथ का टच लेआउट",
+        chkReducedfx: "कम दृश्य प्रभाव",
+        chkEducator: "शिक्षक मोड (कक्षा हेतु सुरक्षित)",
+        txtDebug: "डिबग तिथि ओवरराइड (YYYY-MM-DD)",
+        selLang: "भाषा (Language)",
+        txtPlayername: "अन्वेषक का नाम",
+        saveIoTitle: "डेटा सहेजें / आयात करें",
+        btnManageSave: "सहेजें स्ट्रिंग प्रबंधित करें",
+        codexTitle: "स्वच्छ भारत पर्यावरण कॉडेक्स",
+        codexSub: "जल प्रणालियों, वन्यजीव गलियारों और नागरिक स्वच्छता पर अनलॉक किए गए क्षेत्रीय ज्ञान डॉसियर।",
+        pledgeTitle: "🌱 नागरिक स्वच्छता प्रतिज्ञा",
+        pledgeSub: "दैनिक व्यक्तिगत कार्यों की प्रतिबद्धता जो हमारे जलस्रोतों, कॉलोनियों और समाज को स्वच्छ रखें।",
+        btnSignPledge: "✓ नागरिक प्रतिज्ञा पर हस्ताक्षर करें (+200 इको-पॉइंट्स)",
+        certHeading: "स्वच्छ भारत नागरिक प्रमाणपत्र",
+        certSub: "स्मारक नागरिक सम्मान | स्वच्छ भारत नागरिक पहल"
       }
     };
 
@@ -1856,10 +1972,17 @@
       setTxt('btn-map-back', 'mainMenu');
       setTxt('btn-map-daily', 'dailyChall');
       setTxt('btn-map-casefile', 'caseFile');
+      setTxt('btn-map-cert', 'certButton');
+      setTxt('btn-map-reset', 'resetProgress');
+      setTxt('lbl-map-title', 'mapTitle');
+      setTxt('lbl-map-sub', 'mapSub');
       setTxt('btn-daily-back', 'mainMenu');
       setTxt('btn-daily-history-view', 'log14');
       setTxt('btn-daily-history-back', 'dailyHub');
       setTxt('btn-casefile-back', 'back');
+      setTxt('lbl-casefile-title', 'casefileTitle');
+      setTxt('lbl-casefile-sub', 'casefileSub');
+      setTxt('lbl-casefile-cipher-title', 'cipherTitle');
       setTxt('btn-settings-back', 'back');
       setTxt('btn-wardrobe-back', 'mainMenu');
       setTxt('btn-achievements-back', 'mainMenu');
@@ -1868,6 +1991,31 @@
       setTxt('btn-cert-credits', 'credits');
       setTxt('btn-cert-map', 'levelMap');
       setTxt('btn-credits-map', 'levelMap');
+      setTxt('lbl-vol-master', 'volMaster');
+      setTxt('lbl-vol-music', 'volMusic');
+      setTxt('lbl-vol-sfx', 'volSfx');
+      setTxt('lbl-vol-voice', 'volVoice');
+      setTxt('lbl-chk-hints', 'chkHints');
+      setTxt('lbl-chk-compass', 'chkCompass');
+      setTxt('lbl-chk-nearmiss', 'chkNearmiss');
+      setTxt('lbl-chk-perf', 'chkPerf');
+      setTxt('lbl-chk-autoqual', 'chkAutoqual');
+      setTxt('lbl-sel-quality', 'selQuality');
+      setTxt('lbl-sel-diff', 'selDiff');
+      setTxt('lbl-chk-lefthanded', 'chkLefthanded');
+      setTxt('lbl-chk-reducedfx', 'chkReducedfx');
+      setTxt('lbl-chk-educator', 'chkEducator');
+      setTxt('lbl-txt-debug', 'txtDebug');
+      setTxt('lbl-sel-lang', 'selLang');
+      setTxt('lbl-txt-playername', 'txtPlayername');
+      setTxt('lbl-save-io-title', 'saveIoTitle');
+      setTxt('btn-open-save-io', 'btnManageSave');
+      setTxt('lbl-codex-title', 'codexTitle');
+      setTxt('lbl-codex-sub', 'codexSub');
+      setTxt('lbl-pledge-title', 'pledgeTitle');
+      setTxt('lbl-pledge-sub', 'pledgeSub');
+      setTxt('cert-heading', 'certHeading');
+      setTxt('cert-sub', 'certSub');
       const desc = document.getElementById('lbl-title-desc');
       if (desc) desc.textContent = t('titleDesc');
     }
@@ -1994,7 +2142,8 @@
           const u = new SpeechSynthesisUtterance(text);
           u.pitch = isShadow ? 0.45 : 1.05;
           u.rate = isShadow ? 0.85 : 1.0;
-          u.volume = saveState.settings.masterVol;
+          const vVol = (saveState.settings && saveState.settings.voiceVol !== undefined) ? saveState.settings.voiceVol : 0.9;
+          u.volume = Math.max(0, Math.min(1, vVol * saveState.settings.masterVol));
           window.speechSynthesis.speak(u);
         }
       } catch (e) { }
@@ -2356,7 +2505,7 @@
         ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
         ctx.beginPath(); ctx.ellipse(0, 0, 28, 8, 0, 0, Math.PI * 2); ctx.fill();
 
-        ctx.scale(this.facing, 1);
+        ctx.scale(this.facing * 1.3, 1.3);
         if (this.isHidden) ctx.globalAlpha = 0.5;
 
         const isRunning = Math.abs(this.vx) > 280;
@@ -2987,7 +3136,7 @@
           }
         }),
 
-      makeLevel(19, "Mega City", "traffic", "suburb", ["#020617", "#0f172a", "#000000"],
+      makeLevel(19, "Mega City", "traffic", "city", ["#020617", "#0f172a", "#000000"],
         "Electric transit fleets and green corridors lower urban particulate smog inversions.",
         "High-density traffic gridlocked by smog. Switch the automated traffic signals to route eco-tankers and flee the raging Shadow.",
         {
@@ -3022,6 +3171,7 @@
     let ambientParticles = [];
     let currentFps = 60, currentFrameTime = 16.6, frameCount = 0, fpsTimer = 0, lowFpsCounter = 0;
     let isDailyChallengeMode = false, activeDailyConfig = null;
+    let tutorialDone = { move: false, jump: false, light: false, crouch: false, clue: false };
 
     // 13. WEATHER & VISUAL PARALLAX BACKDROP (3 Distinct Parallax Layers + Unique Landmarks)
     let bgCacheCanvas = null, bgCacheCtx = null;
@@ -3048,7 +3198,39 @@
 
       // Parallax Layer 2: Mid-distance Landmark Prop Silhouettes
       bgCacheCtx.fillStyle = "rgba(15, 23, 42, 0.75)";
-      if (lvl.theme === 'factory') {
+      if (lvl.theme === 'city') {
+        const bldgCols = ["#090d16", "#0f172a", "#1e1b4b", "#0f2027"];
+        for (let x = 0; x < V_WIDTH * 2; x += 110) {
+          const bH = 220 + Math.sin(x * 0.05 + 1) * 120 + ((x * 37) % 90);
+          bgCacheCtx.fillStyle = bldgCols[(Math.floor(x / 110)) % bldgCols.length];
+          bgCacheCtx.fillRect(x, gy - bH, 100, bH);
+
+          for (let wy = gy - bH + 20; wy < gy - 30; wy += 22) {
+            for (let wx = x + 10; wx < x + 90; wx += 18) {
+              if ((wx * wy) % 5 === 0) {
+                bgCacheCtx.fillStyle = ((wx + wy) % 2 === 0) ? "rgba(56, 189, 248, 0.45)" : "rgba(251, 191, 36, 0.45)";
+                bgCacheCtx.fillRect(wx, wy, 8, 12);
+              }
+            }
+          }
+
+          if (x % 330 === 0) {
+            bgCacheCtx.fillStyle = "#ef4444";
+            bgCacheCtx.fillRect(x + 48, gy - bH - 35, 4, 35);
+            bgCacheCtx.beginPath(); bgCacheCtx.arc(x + 50, gy - bH - 35, 5, 0, Math.PI * 2); bgCacheCtx.fill();
+            bgCacheCtx.fillStyle = "#38bdf8"; bgCacheCtx.font = "bold 11px system-ui"; bgCacheCtx.textAlign = "center";
+            bgCacheCtx.fillText("🌿 SWACHH TECH", x + 50, gy - bH - 8);
+          } else if (x % 220 === 0) {
+            bgCacheCtx.fillStyle = "#34d399"; bgCacheCtx.font = "bold 10px system-ui"; bgCacheCtx.textAlign = "center";
+            bgCacheCtx.fillText("⚡ ECO METRO", x + 50, gy - bH - 8);
+          }
+        }
+
+        bgCacheCtx.fillStyle = "#1e293b";
+        bgCacheCtx.fillRect(0, gy - 80, V_WIDTH * 2, 25);
+        bgCacheCtx.strokeStyle = "#475569"; bgCacheCtx.lineWidth = 2;
+        bgCacheCtx.strokeRect(0, gy - 80, V_WIDTH * 2, 25);
+      } else if (lvl.theme === 'factory') {
         // Industrial Cooling Stacks & chemical pipes
         for (let x = 120; x < V_WIDTH * 2; x += 380) {
           bgCacheCtx.fillRect(x, gy - 270, 65, 270);
@@ -3189,12 +3371,9 @@
       gameState = 'PLAYING';
       SFX.pickup();
 
-      // Level 1 tutorial popups
-      if (currentLevelData.id === 1 && !isDailyChallengeMode) {
-        showToast("Tutorial [1/4]: WASD or Left Joystick to move. Space to jump!");
-        setTimeout(() => showToast("Tutorial [2/4]: Press [F] or [LIGHT] for your Flashlight!"), 3500);
-        setTimeout(() => showToast("Tutorial [3/4]: Press [C] or [HIDE] to crouch safely in Shelters!"), 7000);
-        setTimeout(() => showToast("Tutorial [4/4]: Hold [E] or [ACT] near glowing items to secure clues!"), 10500);
+      // Level 1 tutorial: Prompt only uncompleted actions
+      if (currentLevelData.id === 1 && !isDailyChallengeMode && !tutorialDone.move) {
+        showToast("Tutorial: Use WASD or Joystick to move!");
       }
 
       if (currentLevelData.npc && !isDailyChallengeMode) {
@@ -3555,7 +3734,13 @@
           }
         }
       } else if (type === 'traffic_timing') {
-        // Toggle Signal
+        if (trafficSignalState === 'GREEN') {
+          const carAtStopLine = crossCars.some(c => c.x > 90 && c.x < 125);
+          if (carAtStopLine) {
+            failMiniGame("Hazardous stop! Halted traffic too abruptly on the stop line.");
+            return;
+          }
+        }
         trafficSignalState = (trafficSignalState === 'RED') ? 'GREEN' : 'RED';
         SFX.flashlightToggle();
       }
@@ -3587,7 +3772,17 @@
       if (!miniGameActive) return false;
       if (code === 'Space' || code === 'Enter') {
         if (type === 'pipe_repair') handleCanvasInteraction({ x: 210, y: 130 });
-        else if (type === 'traffic_timing') trafficSignalState = (trafficSignalState === 'RED') ? 'GREEN' : 'RED';
+        else if (type === 'traffic_timing') {
+        if (trafficSignalState === 'GREEN') {
+          const carAtStopLine = crossCars.some(c => c.x > 90 && c.x < 125);
+          if (carAtStopLine) {
+            failMiniGame("Hazardous stop! Halted traffic too abruptly on the stop line.");
+            return true;
+          }
+        }
+        trafficSignalState = (trafficSignalState === 'RED') ? 'GREEN' : 'RED';
+        SFX.flashlightToggle();
+      }
         else if (type === 'water_filter') testFilterSequence();
         else if (type === 'pipe_rotation') testPipeFlow();
         return true;
@@ -3791,21 +3986,20 @@
         // Eco-Corridor (vertical)
         mCtx.fillStyle = "rgba(16, 185, 129, 0.15)"; mCtx.fillRect(180, 0, 60, 260);
 
-        // Update cross cars with real stop line physics
+        // Update cross cars: stop strictly before stop line (x = 110) when RED
         crossCars.forEach(car => {
           if (trafficSignalState === 'GREEN' || car.x >= 110) {
             car.x += car.speed * dt;
-            if (car.x > 450) car.x = -60 - Math.random() * 80;
-          } else if (car.x < 100) {
-            car.x += car.speed * dt * 0.5;
-            if (car.x > 100) car.x = 100;
+            if (car.x > 450) car.x = -70 - Math.random() * 80;
+          } else if (car.x < 105) {
+            car.x += Math.min(car.speed * dt * 0.4, 105 - car.x);
           }
           mCtx.fillStyle = car.color;
           mCtx.fillRect(car.x, 102, car.w, car.h);
         });
 
-        // Eco-Tanker simulation: crosses safely only when signal is RED and gap is clear
-        const isIntersectionClear = !crossCars.some(c => c.x > 115 && c.x < 265);
+        // Eco-Tanker simulation: Tanker crosses only when RED and gap is genuine
+        const isIntersectionClear = !crossCars.some(c => c.x > 95 && c.x < 265);
         if (trafficSignalState === 'RED' && isIntersectionClear) {
           ecoTankerY -= 95 * dt;
           if (ecoTankerY < 40) {
@@ -3816,8 +4010,7 @@
               winMiniGame("All 3 Eco-Tankers crossed safely! Mega City fleet operational.");
             }
           }
-        } else if (trafficSignalState === 'GREEN' && ecoTankerY < 180 && ecoTankerY > 60) {
-          // Collision failure!
+        } else if (trafficSignalState === 'GREEN' && ecoTankerY < 195 && ecoTankerY > 65) {
           trafficCollisionFlash = 0.5;
           ecoTankerY = 210;
           failMiniGame("Collision! Switched to GREEN while eco-tanker was crossing!");
@@ -3858,8 +4051,16 @@
     let bossPhase = 0;
     let bossShieldHp = 100;
     let bossSurgeTimer = 0;
+    let bossFightStarted = false;
+    let bossDone = false;
+    let bossLungeTimer = 0;
+    let bossLungeState = 'IDLE';
+    let bossLungeSubTimer = 0;
 
     function startFinaleTerminal() {
+      if (gameState === 'BOSS_FIGHT' || gameState === 'COMPLETE' || gameState === 'FINALE_BLAST' || bossDone || bossFightStarted) {
+        return;
+      }
       gameState = 'FINALE_TERMINAL';
       const fLayer = document.getElementById('finale-layer');
       const fErr = document.getElementById('finale-error');
@@ -3871,12 +4072,11 @@
 
       document.getElementById('btn-finale-submit').onclick = () => {
         const code = document.getElementById('txt-finale-code').value.trim().toUpperCase();
-        if (code === 'SWACHH' || code === 'CLEAN' || code === 'SWACHHTA' || code === 'GUARDIAN' || code === 'REMEDIATE') {
+        if (code === 'SWACHH') {
           fLayer.style.display = 'none';
           initiateBossFightSequence();
         } else {
           finaleFailuresCount++;
-          // Requirement: Do NOT reveal the passcode in error message!
           fErr.textContent = "Access Denied: Terminal locked. Consult Case File sector evidence cipher fragments.";
           SFX.wrong();
           if (finaleFailuresCount >= 2 && fHintBtn) {
@@ -3897,8 +4097,12 @@
     }
 
     function initiateBossFightSequence() {
+      bossFightStarted = true;
+      bossDone = false;
       gameState = 'BOSS_FIGHT';
       bossPhase = 1;
+      bossLungeTimer = 0;
+      bossLungeState = 'IDLE';
       bossShieldHp = 100;
       bossSurgeTimer = 0;
       SFX.shadowGrowl();
@@ -3924,24 +4128,28 @@
     function advanceBossPhase3() {
       bossPhase = 3;
       SFX.shadowGrowl();
+      // Reposition player at terminal (width - 850) and shadow behind
+      player.x = currentLevelData.width - 850; player.y = currentLevelData.groundY;
       if (shadow) {
+        shadow.active = true;
         shadow.rage = true;
-        shadow.speed = 330;
-        shadow.x = player.x + 400;
+        shadow.speed = 310;
+        shadow.x = player.x - 300;
+        shadow.y = currentLevelData.groundY;
       }
       speak("Core destabilized! Shadow in RAGE mode! Sprint to the UV Cannon at the exit!");
-      showToast("PHASE 3: SPRINT TO UV CLARIFIER CANNON AT EXIT!");
+      showToast("⚠️ PHASE 3: SPRINT 730PX TO UV CANNON! SHADOW PURSUING!");
     }
 
     function triggerFinaleCannonBlast() {
-      gameState = 'PLAYING';
+      bossDone = true;
+      gameState = 'FINALE_BLAST';
       SFX.success();
       speak("UV Clarifier Cannons online! Dissolving Shadow of pollution forever!");
       showToast("ULTRAVIOLET PURIFICATION BLAST FIRED!");
 
       if (shadow) {
-        // Sparkling dissolve effect
-        for (let i = 0; i < 60; i++) {
+        for (let i = 0; i < 75; i++) {
           spawnParticle(shadow.x + (Math.random() - 0.5) * 80, shadow.y - Math.random() * 160, (Math.random() - 0.5) * 160, -60 - Math.random() * 100, 2.5, 4, '#38bdf8');
         }
         shadow.active = false;
@@ -4041,8 +4249,18 @@
 
       document.getElementById('complete-layer').style.display = 'flex';
 
-      if (currentLevelData.id === 20) {
-        setTimeout(() => showCertificateScreen(), 2200);
+      const nextBtn = document.getElementById('btn-complete-next');
+      if (nextBtn) {
+        if (currentLevelData.id === 20) {
+          nextBtn.textContent = (saveState.settings.language === 'hi') ? "जारी रखें ➔" : "CONTINUE ➔";
+          nextBtn.onclick = () => showCertificateScreen();
+        } else {
+          nextBtn.textContent = (saveState.settings.language === 'hi') ? "अगला क्षेत्र" : "NEXT SECTOR";
+          nextBtn.onclick = () => {
+            if (currentLevelIndex + 1 < LEVELS_DATA.length) startLevel(currentLevelIndex + 1);
+            else showCertificateScreen();
+          };
+        }
       }
     }
 
@@ -4104,6 +4322,25 @@
     }
 
     function triggerGameOver() {
+      if (gameState === 'BOSS_FIGHT') {
+        SFX.warning();
+        if (bossPhase === 3) {
+          player.x = currentLevelData.width - 850; player.y = currentLevelData.groundY;
+          if (shadow) {
+            shadow.x = player.x - 300; shadow.y = currentLevelData.groundY;
+            shadow.rage = true; shadow.speed = 310;
+          }
+          showToast("Caught! Retrying Phase 3 sprint...");
+          return;
+        } else if (bossPhase === 1) {
+          player.x = 220; player.y = currentLevelData.groundY;
+          bossShieldHp = 100;
+          bossLungeState = 'IDLE';
+          if (shadow) { shadow.x = player.x + 360; shadow.y = currentLevelData.groundY; }
+          showToast("Caught! Retrying Phase 1...");
+          return;
+        }
+      }
       gameState = 'GAMEOVER'; SFX.wrong();
       speak("The toxic contamination forced a retreat.");
       document.getElementById('gameover-layer').style.display = 'flex';
@@ -4196,6 +4433,23 @@
       ctx.save();
       ctx.translate(-cameraX, 0);
 
+      // Moving highway traffic for Mega City (Sector 19)
+      if (currentLevelData && currentLevelData.theme === 'city') {
+        const highwayY = currentLevelData.groundY - 80;
+        const time = (typeof performance !== 'undefined' && performance.now ? performance.now() : Date.now()) * 0.001;
+        const carColors = ['#38bdf8', '#f59e0b', '#10b981', '#ec4899'];
+        for (let i = 0; i < 5; i++) {
+          const carX = ((time * 110 + i * 420) % (currentLevelData.width + 200)) - 100;
+          if (carX + 40 < cameraX || carX > cameraX + V_WIDTH) continue;
+          ctx.fillStyle = carColors[i % carColors.length];
+          ctx.fillRect(carX, highwayY - 14, 34, 12);
+          ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
+          ctx.fillRect(carX + 26, highwayY - 12, 6, 8); // Headlights
+          ctx.fillStyle = "#ef4444";
+          ctx.fillRect(carX, highwayY - 12, 4, 8); // Taillights
+        }
+      }
+
       // Platforms
       if (currentLevelData.platforms) {
         for (const p of currentLevelData.platforms) {
@@ -4249,8 +4503,10 @@
         }
       }
 
-      // Sector Exit Gate
-      const exitX = currentLevelData.width - 150;
+      // Sector Exit Gate / Central Passcode Terminal
+      const isLvl20Finale = currentLevelData.id === 20 && !isDailyChallengeMode;
+      // In Level 20, Terminal is positioned at width - 850; UV Cannon is at width - 120 (Separated by 730px >= 500px)
+      const exitX = isLvl20Finale ? (currentLevelData.width - 850) : (currentLevelData.width - 150);
       const isExitUnlocked = cluesCollected >= currentLevelData.cluesNeeded;
       const exitDist = player ? Math.abs(player.x - exitX) : 999;
       const nearExit = exitDist < 85;
@@ -4261,8 +4517,41 @@
       ctx.fillRect(exitX - 40, currentLevelData.groundY - 170, 80, 170);
       ctx.strokeRect(exitX - 40, currentLevelData.groundY - 170, 80, 170);
       ctx.font = "bold 13px system-ui"; ctx.textAlign = "center"; ctx.fillStyle = isExitUnlocked ? "#34d399" : "#fbbf24";
-      ctx.fillText(isExitUnlocked ? "SECTOR EXIT [READY]" : `EXIT LOCKED (${cluesCollected}/${currentLevelData.cluesNeeded})`, exitX, currentLevelData.groundY - 180);
+      if (isLvl20Finale) {
+        ctx.fillText(isExitUnlocked ? "TERMINAL CONSOLE [READY]" : `TERMINAL LOCKED (${cluesCollected}/${currentLevelData.cluesNeeded})`, exitX, currentLevelData.groundY - 180);
+      } else {
+        ctx.fillText(isExitUnlocked ? "SECTOR EXIT [READY]" : `EXIT LOCKED (${cluesCollected}/${currentLevelData.cluesNeeded})`, exitX, currentLevelData.groundY - 180);
+      }
       ctx.restore();
+
+      // In Level 20: Render the UV Clarifier Cannon at width - 120 (730px away from the terminal)
+      if (isLvl20Finale) {
+        const cX = currentLevelData.width - 120;
+        const cY = currentLevelData.groundY - 100;
+        ctx.save();
+        ctx.fillStyle = "#1e293b";
+        ctx.fillRect(cX - 35, cY, 70, 100);
+        ctx.strokeStyle = (bossPhase === 3) ? "#38bdf8" : "#64748b";
+        ctx.lineWidth = 3;
+        ctx.strokeRect(cX - 35, cY, 70, 100);
+        ctx.fillStyle = (bossPhase === 3) ? "#38bdf8" : "#475569";
+        ctx.fillRect(cX - 25, cY + 20, 50, 15);
+        ctx.fillRect(cX - 25, cY + 45, 50, 15);
+        ctx.beginPath();
+        ctx.arc(cX, cY - 15, 25, Math.PI, 0);
+        ctx.fillStyle = (bossPhase === 3) ? "#0284c7" : "#334155";
+        ctx.fill();
+        ctx.stroke();
+        ctx.font = "bold 12px system-ui"; ctx.textAlign = "center";
+        ctx.fillStyle = (bossPhase === 3) ? "#38bdf8" : "#94a3b8";
+        ctx.fillText("UV CANNON", cX, cY - 25);
+        if (bossPhase === 3) {
+          ctx.font = "bold 10px system-ui";
+          ctx.fillStyle = "#fbbf24";
+          ctx.fillText("➔ ACTIVATE HERE", cX, cY + 75);
+        }
+        ctx.restore();
+      }
 
       // Interaction prompts
       const prompt = document.getElementById('interact-prompt');
@@ -4288,7 +4577,9 @@
           if (Input.action || exitDist < 45) {
             Input.action = false;
             if (currentLevelData.id === 20 && !isDailyChallengeMode) {
-              startFinaleTerminal();
+              if (gameState === 'PLAYING' && !bossFightStarted && !bossDone) {
+                startFinaleTerminal();
+              }
             } else if (currentLevelData.decision && !currentLevelData._decisionDone) {
               triggerDecision(currentLevelData.decision, () => {
                 currentLevelData._decisionDone = true;
@@ -4500,6 +4791,20 @@
           if (DOM.statusPill) DOM.statusPill.style.display = sheltered ? 'block' : 'none';
 
           if (player) player.update(dt, currentLevelData);
+          if (currentLevelData.id === 1 && !isDailyChallengeMode) {
+            if (!tutorialDone.move && (Input.left || Input.right)) {
+              tutorialDone.move = true;
+              if (!tutorialDone.jump) showToast("Tutorial: Press [Space] or [JUMP] to leap!");
+            } else if (tutorialDone.move && !tutorialDone.jump && Input.jump) {
+              tutorialDone.jump = true;
+              if (!tutorialDone.light) showToast("Tutorial: Press [F] or [LIGHT] for your Flashlight!");
+            } else if (tutorialDone.jump && !tutorialDone.light && player.flashlightOn) {
+              tutorialDone.light = true;
+              if (!tutorialDone.crouch) showToast("Tutorial: Press [C] or [HIDE] to crouch safely in Shelters!");
+            } else if (tutorialDone.light && !tutorialDone.crouch && player.isCrouching) {
+              tutorialDone.crouch = true;
+            }
+          }
           if (shadow) shadow.update(dt, player, currentLevelData);
           if (companion) companion.update(dt, player, currentLevelData);
 
@@ -4508,18 +4813,59 @@
             if (bossPhase === 1) {
               const distToShadow = Math.hypot((player ? player.x : 0) - (shadow ? shadow.x : 0), (player ? player.y : 0) - (shadow ? shadow.y : 0));
               const facingShadow = player && shadow && ((player.facing === 1 && shadow.x > player.x) || (player.facing === -1 && shadow.x < player.x));
-              if (player && player.flashlightOn && player.flashlightBattery > 0 && facingShadow && distToShadow < 390) {
-                bossShieldHp = Math.max(0, bossShieldHp - dt * 38);
+
+              // Active Lunge Cycle: Shadow telegraphs, then dashes!
+              bossLungeTimer += dt;
+              if (bossLungeTimer > 4.2) {
+                bossLungeTimer = 0;
+                bossLungeState = 'TELEGRAPH';
+                bossLungeSubTimer = 1.0;
+                SFX.shadowGrowl();
+                showToast("⚠️ SHADOW LUNGE TELEGRAPH! JUMP OR HIDE!");
+              }
+
+              if (bossLungeState === 'TELEGRAPH') {
+                bossLungeSubTimer -= dt;
+                if (shadow) {
+                  spawnParticle(shadow.x + (Math.random()-0.5)*50, shadow.y - 70, (Math.random()-0.5)*60, -50, 0.5, 4, '#ef4444');
+                }
+                if (bossLungeSubTimer <= 0) {
+                  bossLungeState = 'LUNGE';
+                  bossLungeSubTimer = 0.45;
+                }
+              } else if (bossLungeState === 'LUNGE') {
+                bossLungeSubTimer -= dt;
+                if (shadow && player) {
+                  const dir = Math.sign(player.x - shadow.x) || 1;
+                  shadow.x += dir * 550 * dt;
+                  if (!player.isHidden && !player.isCrouching && Math.abs(player.x - shadow.x) < 55 && Math.abs((player.y - 60) - (shadow.y - 70)) < 70) {
+                    player.vx = dir * 350;
+                    bossShieldHp = Math.min(100, bossShieldHp + 18);
+                    SFX.caught();
+                    screenShake = 0.35;
+                    showToast("Lunge Hit! Toxic barrier regenerated!");
+                    bossLungeState = 'IDLE';
+                  }
+                }
+                if (bossLungeSubTimer <= 0) {
+                  bossLungeState = 'IDLE';
+                }
+              }
+
+              if (player && player.flashlightOn && player.flashlightBattery > 0 && facingShadow && distToShadow < 390 && bossLungeState !== 'LUNGE') {
+                bossShieldHp = Math.max(0, bossShieldHp - dt * 34);
                 if (Math.random() < 0.4 && shadow) {
                   spawnParticle(shadow.x + (Math.random()-0.5)*60, shadow.y - Math.random()*120, (Math.random()-0.5)*80, -40, 0.4, 3, '#38bdf8');
                 }
                 if (bossShieldHp <= 0) {
                   advanceBossPhase2();
                 }
+              } else {
+                bossShieldHp = Math.min(100, bossShieldHp + dt * 8);
               }
             } else if (bossPhase === 3) {
-              const cannonX = currentLevelData.width - 140;
-              if (player && Math.abs(player.x - cannonX) < 80) {
+              const cannonX = currentLevelData.width - 120;
+              if (player && Math.abs(player.x - cannonX) < 85) {
                 triggerFinaleCannonBlast();
               }
             }
@@ -4625,8 +4971,8 @@
 
         card.innerHTML = `
         <div style="font-size: 18px; font-weight: 800; color: ${isDone ? '#34d399' : '#38bdf8'}">${lvl.id}</div>
-        <div style="font-size: 11px; margin: 4px 0; color: #94a3b8;">${lvl.name}</div>
-        <div style="color: #fbbf24; font-size: 11px;">${isDone ? '★'.repeat(stars) + '☆'.repeat(3 - stars) : isUnlocked ? 'PLAY' : '🔒'}</div>
+        <div style="font-size: 11px; margin: 4px 0; color: #94a3b8;">${(saveState.settings && saveState.settings.language === 'hi' && I18N.hi.sectors && I18N.hi.sectors[lvl.id]) ? I18N.hi.sectors[lvl.id] : lvl.name}</div>
+        <div style="color: #fbbf24; font-size: 11px;">${isDone ? '★'.repeat(stars) + '☆'.repeat(3 - stars) : isUnlocked ? ((saveState.settings && saveState.settings.language === 'hi') ? 'खेलें' : 'PLAY') : '🔒'}</div>
         <div class="badge-icon-row">${'🌿'.repeat(badgesCount)}${'⚪'.repeat(3 - badgesCount)}</div>
       `;
         if (isUnlocked) card.onclick = () => { initAudio(); startLevel(idx); };
@@ -4804,11 +5150,15 @@
 
       // Assembled Cipher Codeword for Level 20 Terminal: S W A C H H
       const cipherKey = "SWACHH";
-      const cipherSectors = [1, 4, 8, 12, 16, 19];
-      const letters = cipherSectors.map((sec, i) => {
-        const isUnlocked = (saveState.completedLevels && saveState.completedLevels[sec]) || (saveState.unlockedLevel > sec);
-        return isUnlocked ? cipherKey[i] : "_";
-      });
+      const groupReqs = [
+        (saveState.completedLevels && (saveState.completedLevels[1] || saveState.completedLevels[2] || saveState.completedLevels[3])) || saveState.unlockedLevel > 3,
+        (saveState.completedLevels && (saveState.completedLevels[4] || saveState.completedLevels[5] || saveState.completedLevels[6] || saveState.completedLevels[7])) || saveState.unlockedLevel > 7,
+        (saveState.completedLevels && (saveState.completedLevels[8] || saveState.completedLevels[9] || saveState.completedLevels[10] || saveState.completedLevels[11])) || saveState.unlockedLevel > 11,
+        (saveState.completedLevels && (saveState.completedLevels[12] || saveState.completedLevels[13] || saveState.completedLevels[14] || saveState.completedLevels[15])) || saveState.unlockedLevel > 15,
+        (saveState.completedLevels && (saveState.completedLevels[16] || saveState.completedLevels[17] || saveState.completedLevels[18])) || saveState.unlockedLevel > 18,
+        (saveState.completedLevels && saveState.completedLevels[19]) || saveState.unlockedLevel > 19
+      ];
+      const letters = groupReqs.map((ok, i) => ok ? cipherKey[i] : "_");
 
       const cipherEl = document.getElementById('cipher-codeword');
       if (cipherEl) {
@@ -4852,6 +5202,8 @@
       document.getElementById('vol-master').value = saveState.settings.masterVol;
       document.getElementById('vol-music').value = saveState.settings.musicVol;
       document.getElementById('vol-sfx').value = saveState.settings.sfxVol;
+      const vVoice = document.getElementById('vol-voice');
+      if (vVoice) vVoice.value = (saveState.settings.voiceVol !== undefined) ? saveState.settings.voiceVol : 0.9;
       document.getElementById('chk-hints').checked = saveState.settings.hintsEnabled !== false;
       document.getElementById('chk-compass').checked = saveState.settings.compassEnabled !== false;
       document.getElementById('chk-nearmiss').checked = saveState.settings.nearMiss !== false;
@@ -5171,6 +5523,13 @@
         if (sfxGain) sfxGain.gain.value = saveState.settings.sfxVol;
         saveGameData();
       };
+      const vVoiceInput = document.getElementById('vol-voice');
+      if (vVoiceInput) {
+        vVoiceInput.oninput = (e) => {
+          saveState.settings.voiceVol = parseFloat(e.target.value);
+          saveGameData();
+        };
+      }
       document.getElementById('chk-hints').onchange = (e) => { saveState.settings.hintsEnabled = e.target.checked; saveGameData(); };
       document.getElementById('chk-compass').onchange = (e) => { saveState.settings.compassEnabled = e.target.checked; saveGameData(); };
       document.getElementById('chk-nearmiss').onchange = (e) => { saveState.settings.nearMiss = e.target.checked; saveGameData(); };
@@ -5208,17 +5567,26 @@
         navigator.clipboard.writeText(val).then(() => showToast("Save string copied to clipboard!"))
           .catch(() => showToast("Selected! Use Ctrl+C to copy."));
       };
+      let previousSaveBackup = null;
       document.getElementById('btn-save-apply').onclick = () => {
         const val = document.getElementById('txt-save-io').value.trim();
         if (!val) return;
         if (val.length > 100000) {
-          alert("Save string exceeds safety threshold (>100KB). Import rejected.");
+          alert("Invalid save: nothing was changed");
           return;
         }
         try {
           const decoded = decodeUnicodeSave(val);
-          const clean = validateAndSanitizeSave(decoded);
+          if (!decoded) {
+            alert("Invalid save: nothing was changed");
+            return;
+          }
+          const clean = validateAndSanitizeSave(decoded, true);
           if (clean) {
+            previousSaveBackup = JSON.parse(JSON.stringify(saveState));
+            const undoBtn = document.getElementById('btn-save-undo');
+            if (undoBtn) undoBtn.style.display = 'inline-block';
+
             saveState = clean;
             checkDailyStreakValidity();
             saveGameData();
@@ -5229,12 +5597,27 @@
             applyTouchVisibility();
             document.body.classList.toggle('left-handed', !!saveState.settings.leftHanded);
           } else {
-            alert("Invalid save data structure. Required game fields could not be verified.");
+            alert("Invalid save: nothing was changed");
           }
         } catch (err) {
-          alert("Failed to decode save string. Verify that the full string was copied correctly.");
+          alert("Invalid save: nothing was changed");
         }
       };
+
+      const undoBtn = document.getElementById('btn-save-undo');
+      if (undoBtn) {
+        undoBtn.onclick = () => {
+          if (previousSaveBackup) {
+            saveState = previousSaveBackup;
+            previousSaveBackup = null;
+            undoBtn.style.display = 'none';
+            saveGameData();
+            showToast("Import undone: Previous save restored.");
+            showSettings();
+            applyLanguageToUI();
+          }
+        };
+      }
       document.getElementById('btn-save-io-close').onclick = () => {
         document.getElementById('save-io-modal').style.display = 'none';
       };
