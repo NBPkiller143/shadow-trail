@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>SHADOW TRAIL: The Clean Path 2.2</title>
+  <title>SHADOW TRAIL: The Clean Path 2.3</title>
   <style>
     /* ════ 1. BASE DESIGN SYSTEM & TOKENS ════ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; user-select: none; -webkit-user-select: none; }
@@ -208,7 +208,7 @@
     <!-- TITLE SCREEN -->
     <div id="title-screen" class="fullscreen-screen" style="display: flex; justify-content: center;">
       <div style="font-size: clamp(34px, 6vw, 68px); font-weight: 900; letter-spacing: 3px; background: linear-gradient(180deg, #fff 0%, #94a3b8 60%, #38bdf8 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;" id="lbl-title-main">SHADOW TRAIL</div>
-      <div style="font-size: 18px; color: #38bdf8; letter-spacing: 5px; font-weight: 700; margin-bottom: 16px;" id="lbl-title-sub">THE CLEAN PATH 2.2</div>
+      <div style="font-size: 18px; color: #38bdf8; letter-spacing: 5px; font-weight: 700; margin-bottom: 16px;" id="lbl-title-sub">THE CLEAN PATH 2.3</div>
       <div style="max-width: 620px; font-size: 14px; line-height: 1.6; color: #94a3b8; background: rgba(15, 23, 42, 0.7); padding: 14px 22px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08); margin-bottom: 18px;" id="lbl-title-desc">
         Follow Inspector Kabir Rao and companion Sheru across 20 regional sectors. Master the Flashlight, Clue Lens, and stealth maneuvers to dissolve the Shadow of environmental decay into morning light!
       </div>
@@ -311,6 +311,11 @@
       <div style="text-align: center; margin-bottom: 16px;">
         <h1 class="modal-title" style="font-size: 28px;">INVESTIGATION CASE FILE</h1>
         <p class="modal-subtitle">Pinned evidence, chemical assays, and witness testimonies connecting Noxis Industries to the Shadow.</p>
+        <div id="casefile-cipher-banner" style="background: rgba(15, 23, 42, 0.9); border: 2px solid #38bdf8; border-radius: 8px; padding: 12px 18px; margin: 10px auto; max-width: 620px;">
+          <div style="font-size: 11px; font-weight: 800; color: #38bdf8; letter-spacing: 1px;">SWACHH BHARAT REMEDIATION CIPHER CODEWORD:</div>
+          <div id="cipher-codeword" style="font-size: 24px; font-weight: 900; letter-spacing: 8px; color: #fbbf24; margin-top: 6px;">_ _ _ _ _ _</div>
+          <div id="cipher-hint-text" style="font-size: 11px; color: #94a3b8; margin-top: 4px;">Assemble letter fragments from secured sector evidence to unlock Sector 20 UV Clarifiers.</div>
+        </div>
         <button class="btn btn-secondary" id="btn-casefile-back">RETURN</button>
       </div>
       <div class="clue-board-container" id="clue-board-grid"></div>
@@ -496,11 +501,12 @@
     <div class="ui-layer" id="finale-layer" style="display: none;">
       <div class="modal-box" style="max-width: 580px;">
         <div class="modal-title" style="color: #38bdf8;">REMEDIATION ACCESS TERMINAL</div>
-        <p class="modal-subtitle">Enter the decontamination security keyword decrypted across the 20 Sector Case Files:</p>
-        <input type="text" id="txt-finale-code" placeholder="ENTER ACCESS CODE (HINT: CLEAN / SWACHH)" style="width: 80%; padding: 10px; font-size: 16px; font-weight: 800; text-align: center; background: #0f172a; color: #38bdf8; border: 2px solid #38bdf8; border-radius: 6px; text-transform: uppercase;">
+        <p class="modal-subtitle">Enter the decontamination security keyword decrypted in your Case File:</p>
+        <input type="text" id="txt-finale-code" placeholder="ENTER ACCESS CODEWORD" style="width: 80%; padding: 10px; font-size: 16px; font-weight: 800; text-align: center; background: #0f172a; color: #38bdf8; border: 2px solid #38bdf8; border-radius: 6px; text-transform: uppercase;">
         <div id="finale-error" style="color: #f87171; font-size: 12px; margin-top: 6px; min-height: 18px;"></div>
-        <div style="margin-top: 14px;">
+        <div style="margin-top: 14px; display: flex; justify-content: center; gap: 8px;">
           <button class="btn btn-success" id="btn-finale-submit">ACTIVATE UV CLARIFIERS</button>
+          <button class="btn btn-secondary" id="btn-finale-hint" style="display: none;">SHOW CASE HINT</button>
         </div>
       </div>
     </div>
@@ -511,10 +517,7 @@
         <div style="font-size: 38px; margin-bottom: 4px;" id="cert-emblem">🇮🇳 🌿</div>
         <h2 style="font-size: 22px; color: #0284c7; text-transform: uppercase; letter-spacing: 2px;" id="cert-heading">SWACHH BHARAT CITIZEN CERTIFICATE</h2>
         <p style="font-size: 12px; color: #64748b; margin-top: 4px;">COMMEMORATIVE CIVIC RECOGNITION | SWACHH BHARAT CITIZEN INITIATIVE</p>
-        <div style="margin: 18px 0; font-size: 14px; line-height: 1.6;" id="cert-body">
-          This certifies that <b id="cert-name" style="font-size: 20px; color: #0f172a; text-decoration: underline;">Inspector Kabir Rao</b><br>
-          has investigated all 20 pollution sectors, stopped industrial effluents, and dissolved the Shadow forever.
-        </div>
+        <div style="margin: 18px 0; font-size: 14px; line-height: 1.6;" id="cert-body"></div>
         <div style="display: flex; justify-content: space-around; margin: 15px 0; font-weight: bold; font-size: 14px;">
           <div>STARS: <span id="cert-stars" style="color: #d97706;">0/60</span></div>
           <div>ECO-POINTS: <span id="cert-eco" style="color: #059669;">0</span></div>
@@ -578,10 +581,73 @@
 
   const V_WIDTH = 1280, V_HEIGHT = 720, GRAVITY = 1400;
 
-  // 1. SAVE SYSTEM, ROTATING BACKUP & UNICODE-SAFE INTEGRITY
+  // 1. SAVE SYSTEM V2.3: DEEP-MERGE DEFAULTS, CHECKSUM VERIFICATION & SCHEMA SANITIZATION
   const SAVE_KEY_V2 = 'SHADOW_TRAIL_V2_SAVE';
   const SAVE_KEY_V1 = 'SHADOW_TRAIL_V1_SAVE';
   const SAVE_KEY_BACKUP = 'SHADOW_TRAIL_BACKUP_SAVE';
+
+  const DEFAULT_SETTINGS = {
+    masterVol: 0.8, musicVol: 0.7, sfxVol: 0.85, soundMuted: false,
+    hintsEnabled: true, compassEnabled: true, nearMiss: true, showPerf: false,
+    autoQuality: true, difficulty: 'normal', quality: 'high', leftHanded: false,
+    reducedFx: false, language: 'en', touchEnabled: null
+  };
+
+  const DEFAULT_SAVE_STATE = {
+    version: "2.3", unlockedLevel: 1, completedLevels: {}, bestTimes: {},
+    levelStars: {}, cluesFound: {}, ecoBadgesFound: {}, decisionsCompleted: {}, ecoPoints: 0,
+    outfitsUnlocked: { default: true }, currentOutfit: 'default', achievements: {},
+    playerName: "Inspector Kabir Rao",
+    daily: { lastPlayedDate: "", streak: 0, bestScoreToday: 0, history: [] },
+    settings: { ...DEFAULT_SETTINGS }
+  };
+
+  function computeChecksum(str) {
+    let hash = 5381;
+    for (let i = 0; i < str.length; i++) hash = ((hash << 5) + hash) + str.charCodeAt(i);
+    return (hash >>> 0).toString(16);
+  }
+
+  function encodeUnicodeSave(obj) {
+    try {
+      const payload = JSON.stringify(obj);
+      return btoa(unescape(encodeURIComponent(JSON.stringify({ _cs: computeChecksum(payload), _data: obj }))));
+    } catch (e) {
+      return "";
+    }
+  }
+
+  function decodeUnicodeSave(str) {
+    try {
+      const parsed = JSON.parse(decodeURIComponent(escape(atob(str))));
+      if (parsed && typeof parsed === 'object') {
+        if (parsed._cs && parsed._data) {
+          if (computeChecksum(JSON.stringify(parsed._data)) === parsed._cs) return parsed._data;
+          return null; // Checksum mismatch
+        }
+        return parsed;
+      }
+    } catch (e) {}
+    return null;
+  }
+
+  function clampNum(val, min, max, dflt) {
+    const n = parseFloat(val);
+    return Number.isFinite(n) ? Math.max(min, Math.min(max, n)) : dflt;
+  }
+
+  function sanitizeMap(rawMap, valType = 'boolean') {
+    if (!rawMap || typeof rawMap !== 'object' || Array.isArray(rawMap)) return {};
+    const clean = {};
+    for (const [k, v] of Object.entries(rawMap)) {
+      if (typeof k === 'string' && k.length <= 40) {
+        if (valType === 'boolean') clean[k] = !!v;
+        else if (valType === 'number') { const n = parseInt(v, 10); if (Number.isFinite(n)) clean[k] = n; }
+        else if (valType === 'string') clean[k] = String(v).slice(0, 50);
+      }
+    }
+    return clean;
+  }
 
   function getLocalDateKey() {
     const now = new Date();
@@ -594,74 +660,71 @@
   }
 
   function validateAndSanitizeSave(raw) {
-    if (!raw || typeof raw !== 'object') return null;
+    if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return null;
+    let data = raw;
+    if (raw._cs && raw._data) {
+      if (computeChecksum(JSON.stringify(raw._data)) !== raw._cs) return null;
+      data = raw._data;
+    }
+    if (!data || typeof data !== 'object' || Array.isArray(data)) return null;
+
+    const rawSet = (data.settings && typeof data.settings === 'object' && !Array.isArray(data.settings)) ? data.settings : {};
+    const settings = {
+      masterVol: clampNum(rawSet.masterVol, 0, 1, DEFAULT_SETTINGS.masterVol),
+      musicVol: clampNum(rawSet.musicVol, 0, 1, DEFAULT_SETTINGS.musicVol),
+      sfxVol: clampNum(rawSet.sfxVol, 0, 1, DEFAULT_SETTINGS.sfxVol),
+      soundMuted: typeof rawSet.soundMuted === 'boolean' ? rawSet.soundMuted : DEFAULT_SETTINGS.soundMuted,
+      hintsEnabled: typeof rawSet.hintsEnabled === 'boolean' ? rawSet.hintsEnabled : DEFAULT_SETTINGS.hintsEnabled,
+      compassEnabled: typeof rawSet.compassEnabled === 'boolean' ? rawSet.compassEnabled : DEFAULT_SETTINGS.compassEnabled,
+      nearMiss: typeof rawSet.nearMiss === 'boolean' ? rawSet.nearMiss : DEFAULT_SETTINGS.nearMiss,
+      showPerf: typeof rawSet.showPerf === 'boolean' ? rawSet.showPerf : DEFAULT_SETTINGS.showPerf,
+      autoQuality: typeof rawSet.autoQuality === 'boolean' ? rawSet.autoQuality : DEFAULT_SETTINGS.autoQuality,
+      difficulty: ['relaxed', 'normal', 'challenge'].includes(rawSet.difficulty) ? rawSet.difficulty : DEFAULT_SETTINGS.difficulty,
+      quality: ['low', 'med', 'high'].includes(rawSet.quality) ? rawSet.quality : DEFAULT_SETTINGS.quality,
+      leftHanded: typeof rawSet.leftHanded === 'boolean' ? rawSet.leftHanded : DEFAULT_SETTINGS.leftHanded,
+      reducedFx: typeof rawSet.reducedFx === 'boolean' ? rawSet.reducedFx : DEFAULT_SETTINGS.reducedFx,
+      language: ['en', 'hi'].includes(rawSet.language) ? rawSet.language : DEFAULT_SETTINGS.language,
+      touchEnabled: typeof rawSet.touchEnabled === 'boolean' ? rawSet.touchEnabled : null
+    };
+
+    const rawDaily = (data.daily && typeof data.daily === 'object' && !Array.isArray(data.daily)) ? data.daily : {};
+    const daily = {
+      lastPlayedDate: typeof rawDaily.lastPlayedDate === 'string' ? rawDaily.lastPlayedDate.slice(0, 12) : "",
+      streak: Math.max(0, parseInt(rawDaily.streak, 10) || 0),
+      bestScoreToday: Math.max(0, parseInt(rawDaily.bestScoreToday, 10) || 0),
+      history: Array.isArray(rawDaily.history) ? rawDaily.history.slice(0, 14).map(h => ({
+        date: String(h && h.date || '').slice(0, 12),
+        sectorId: Math.max(1, Math.min(20, parseInt(h && h.sectorId, 10) || 1)),
+        sectorName: String(h && h.sectorName || '').slice(0, 40),
+        score: Math.max(0, parseInt(h && h.score, 10) || 0),
+        grade: String(h && h.grade || 'C').slice(0, 2),
+        time: String(h && h.time || '00:00').slice(0, 10)
+      })) : []
+    };
+
+    const pName = (typeof data.playerName === 'string') ? data.playerName.trim().slice(0, 40) : '';
+    const unlocked = parseInt(data.unlockedLevel, 10);
+
     return {
-      version: "2.2",
-      unlockedLevel: Math.max(1, Math.min(20, parseInt(raw.unlockedLevel, 10) || 1)),
-      completedLevels: (raw.completedLevels && typeof raw.completedLevels === 'object' && !Array.isArray(raw.completedLevels)) ? raw.completedLevels : {},
-      bestTimes: (raw.bestTimes && typeof raw.bestTimes === 'object' && !Array.isArray(raw.bestTimes)) ? raw.bestTimes : {},
-      levelStars: (raw.levelStars && typeof raw.levelStars === 'object' && !Array.isArray(raw.levelStars)) ? raw.levelStars : {},
-      cluesFound: (raw.cluesFound && typeof raw.cluesFound === 'object' && !Array.isArray(raw.cluesFound)) ? raw.cluesFound : {},
-      ecoBadgesFound: (raw.ecoBadgesFound && typeof raw.ecoBadgesFound === 'object' && !Array.isArray(raw.ecoBadgesFound)) ? raw.ecoBadgesFound : {},
-      decisionsCompleted: (raw.decisionsCompleted && typeof raw.decisionsCompleted === 'object' && !Array.isArray(raw.decisionsCompleted)) ? raw.decisionsCompleted : {},
-      ecoPoints: Math.max(0, parseInt(raw.ecoPoints, 10) || 0),
-      outfitsUnlocked: (raw.outfitsUnlocked && typeof raw.outfitsUnlocked === 'object' && !Array.isArray(raw.outfitsUnlocked)) ? raw.outfitsUnlocked : { default: true },
-      currentOutfit: typeof raw.currentOutfit === 'string' ? raw.currentOutfit : 'default',
-      achievements: (raw.achievements && typeof raw.achievements === 'object' && !Array.isArray(raw.achievements)) ? raw.achievements : {},
-      playerName: (typeof raw.playerName === 'string' && raw.playerName.trim()) ? raw.playerName.trim().slice(0, 40) : "Inspector Kabir Rao",
-      daily: {
-        lastPlayedDate: (raw.daily && typeof raw.daily.lastPlayedDate === 'string') ? raw.daily.lastPlayedDate : "",
-        streak: Math.max(0, parseInt(raw.daily && raw.daily.streak, 10) || 0),
-        bestScoreToday: Math.max(0, parseInt(raw.daily && raw.daily.bestScoreToday, 10) || 0),
-        history: Array.isArray(raw.daily && raw.daily.history) ? raw.daily.history.slice(0, 14) : []
-      },
-      settings: {
-        masterVol: Math.max(0, Math.min(1, typeof (raw.settings && raw.settings.masterVol) === 'number' ? raw.settings.masterVol : 0.8)),
-        musicVol: Math.max(0, Math.min(1, typeof (raw.settings && raw.settings.musicVol) === 'number' ? raw.settings.musicVol : 0.7)),
-        sfxVol: Math.max(0, Math.min(1, typeof (raw.settings && raw.settings.sfxVol) === 'number' ? raw.settings.sfxVol : 0.85)),
-        soundMuted: !!(raw.settings && raw.settings.soundMuted),
-        hintsEnabled: !(raw.settings && raw.settings.hintsEnabled === false),
-        compassEnabled: !(raw.settings && raw.settings.compassEnabled === false),
-        nearMiss: !(raw.settings && raw.settings.nearMiss === false),
-        showPerf: !!(raw.settings && raw.settings.showPerf),
-        autoQuality: !(raw.settings && raw.settings.autoQuality === false),
-        difficulty: (raw.settings && ['relaxed', 'normal', 'challenge'].includes(raw.settings.difficulty)) ? raw.settings.difficulty : 'normal',
-        quality: (raw.settings && ['low', 'med', 'high'].includes(raw.settings.quality)) ? raw.settings.quality : 'high',
-        leftHanded: !!(raw.settings && raw.settings.leftHanded),
-        reducedFx: !!(raw.settings && raw.settings.reducedFx),
-        language: (raw.settings && ['en', 'hi'].includes(raw.settings.language)) ? raw.settings.language : 'en',
-        touchEnabled: (raw.settings && typeof raw.settings.touchEnabled === 'boolean') ? raw.settings.touchEnabled : null
-      }
+      version: "2.3",
+      unlockedLevel: Number.isFinite(unlocked) ? Math.max(1, Math.min(20, unlocked)) : 1,
+      completedLevels: sanitizeMap(data.completedLevels, 'boolean'),
+      bestTimes: sanitizeMap(data.bestTimes, 'string'),
+      levelStars: sanitizeMap(data.levelStars, 'number'),
+      cluesFound: sanitizeMap(data.cluesFound, 'string'),
+      ecoBadgesFound: sanitizeMap(data.ecoBadgesFound, 'boolean'),
+      decisionsCompleted: sanitizeMap(data.decisionsCompleted, 'boolean'),
+      ecoPoints: Math.max(0, parseInt(data.ecoPoints, 10) || 0),
+      outfitsUnlocked: Object.assign({ default: true }, sanitizeMap(data.outfitsUnlocked, 'boolean')),
+      currentOutfit: ['default', 'ranger', 'hivis', 'stealth'].includes(data.currentOutfit) ? data.currentOutfit : 'default',
+      achievements: sanitizeMap(data.achievements, 'boolean'),
+      playerName: pName || "Inspector Kabir Rao",
+      daily,
+      settings
     };
   }
 
-  let saveState = {
-    version: "2.2", unlockedLevel: 1, completedLevels: {}, bestTimes: {},
-    levelStars: {}, cluesFound: {}, ecoBadgesFound: {}, decisionsCompleted: {}, ecoPoints: 0,
-    outfitsUnlocked: { default: true }, currentOutfit: 'default', achievements: {},
-    playerName: "Inspector Kabir Rao",
-    daily: { lastPlayedDate: "", streak: 0, bestScoreToday: 0, history: [] },
-    settings: {
-      masterVol: 0.8, musicVol: 0.7, sfxVol: 0.85, soundMuted: false,
-      hintsEnabled: true, compassEnabled: true, nearMiss: true, showPerf: false,
-      autoQuality: true, difficulty: 'normal', quality: 'high', leftHanded: false,
-      reducedFx: false, language: 'en', touchEnabled: null
-    }
-  };
-
-  function computeChecksum(str) {
-    let hash = 5381;
-    for (let i = 0; i < str.length; i++) hash = ((hash << 5) + hash) + str.charCodeAt(i);
-    return (hash >>> 0).toString(16);
-  }
-
-  function encodeUnicodeSave(obj) {
-    return btoa(unescape(encodeURIComponent(JSON.stringify(obj))));
-  }
-
-  function decodeUnicodeSave(str) {
-    return JSON.parse(decodeURIComponent(escape(atob(str))));
-  }
+  let saveState = JSON.parse(JSON.stringify(DEFAULT_SAVE_STATE));
 
   function checkDailyStreakValidity() {
     const todayKey = getLocalDateKey();
@@ -707,24 +770,28 @@
           return;
         }
       }
-      // V1 fallback
+      // V1 fallback migration
       const v1 = localStorage.getItem(SAVE_KEY_V1);
       if (v1) {
-        const p1 = JSON.parse(v1);
-        const clean1 = validateAndSanitizeSave(p1);
-        if (clean1) {
-          saveState = clean1;
-          saveGameData();
-          return;
-        }
+        try {
+          const p1 = JSON.parse(v1);
+          const clean1 = validateAndSanitizeSave(p1);
+          if (clean1) {
+            saveState = clean1;
+            saveGameData();
+            return;
+          }
+        } catch (e) {}
       }
     } catch (e) { console.warn("Load warning:", e); }
+    // If empty or corrupted, start cleanly from defaults
+    saveState = JSON.parse(JSON.stringify(DEFAULT_SAVE_STATE));
     checkDailyStreakValidity();
   }
 
   function saveGameData() {
     try {
-      saveState.version = "2.2";
+      saveState.version = "2.3";
       const existing = localStorage.getItem(SAVE_KEY_V2);
       if (existing) localStorage.setItem(SAVE_KEY_BACKUP, existing);
 
@@ -750,12 +817,14 @@
   // 2. MULTILINGUAL DICTIONARY (English & Hindi Translations)
   const I18N = {
     en: {
-      titleSub: "THE CLEAN PATH 2.2",
+      titleSub: "THE CLEAN PATH 2.3",
       startInv: "START INVESTIGATION",
       dailyChall: "⭐ DAILY CHALLENGE",
       levelMap: "LEVEL MAP",
       caseFile: "CASE FILE",
       settings: "SETTINGS",
+      wardrobe: "WARDROBE",
+      achieve: "ACHIEVEMENTS",
       evidence: "EVIDENCE",
       safeZone: "SHELTERED (SAFE ZONE)",
       sectorRestored: "SECTOR RESTORED!",
@@ -765,15 +834,42 @@
       allCluesFound: "All 3 evidence clues secured! Head to the Sector Exit!",
       resume: "RESUME",
       restart: "RESTART LEVEL",
+      mainMenu: "MAIN MENU",
+      dailyHub: "DAILY HUB",
+      log14: "14-DAY LOG",
+      back: "RETURN",
+      printCert: "PRINT CERTIFICATE",
+      credits: "CITIZEN PLEDGE & CREDITS",
+      commence: "COMMENCE INVESTIGATION",
+      skipPuzzle: "SKIP PUZZLE (ASSIST)",
+      stamina: "STAMINA",
+      battery: "BATTERY",
+      locateClue: "LOCATE EVIDENCE CLUE",
+      headExit: "HEAD TO SECTOR EXIT",
+      exitLocked: "EXIT LOCKED",
+      extractReady: "[E] EXTRACT: COMPLETE MISSION",
+      shadowSurge: "⚠️ SHADOW SURGE IMMINENT! DUCK INTO SHELTER!",
+      leakRepairTitle: "PIPE LEAK SEALING",
+      leakRepairDesc: "TUTORIAL: Press [Space / Enter] or Tap when the moving dial aligns in the green zone.",
+      pipeRotateTitle: "PIPE GRID ROTATION",
+      pipeRotateDesc: "TUTORIAL: Click pipe tiles or press keys [1 - 4] to rotate them until the pipeline connects Source (Left) to Outlet (Right).",
+      signalTitle: "SIGNAL RELAY WIRING",
+      signalDesc: "TUTORIAL: Click a left terminal (or press [1 - 4]), then click its matching color terminal on the right to pair relays!",
+      filterTitle: "WATER FILTRATION STAGES",
+      filterDesc: "TUTORIAL: Tap two stages to swap them into the correct order: 1. Coarse Screen ➔ 2. Sand Bed ➔ 3. Activated Carbon ➔ 4. UV Clarifier!",
+      trafficTitle: "TRAFFIC SIGNAL SYNCHRONIZATION",
+      trafficDesc: "TUTORIAL: Tap or press [Space] to toggle the signal to GREEN during gaps in cross-traffic so 3 Eco-Tankers can cross safely!",
       titleDesc: "Follow Inspector Kabir Rao and companion Sheru across 20 regional sectors. Master the Flashlight, Clue Lens, and stealth maneuvers to dissolve the Shadow of environmental decay into morning light!"
     },
     hi: {
-      titleSub: "स्वच्छ पथ संस्करण 2.2",
+      titleSub: "स्वच्छ पथ संस्करण 2.3",
       startInv: "जाँच शुरू करें",
       dailyChall: "⭐ दैनिक चुनौती",
       levelMap: "क्षेत्रीय मानचित्र",
       caseFile: "केस फ़ाइल",
       settings: "सेटिंग्स",
+      wardrobe: "वार्डरोब",
+      achieve: "उपलब्धियां",
       evidence: "सबूत",
       safeZone: "सुरक्षित आश्रय",
       sectorRestored: "क्षेत्र स्वच्छ व पुनर्स्थापित!",
@@ -783,12 +879,37 @@
       allCluesFound: "तीनों सबूत मिल गए! सेक्टर निकास द्वार की ओर बढ़ें!",
       resume: "पुनः आरंभ करें",
       restart: "स्तर पुनः शुरू करें",
+      mainMenu: "मुख्य मेनू",
+      dailyHub: "दैनिक केंद्र",
+      log14: "14-दिवसीय इतिहास",
+      back: "वापस",
+      printCert: "प्रमाणपत्र प्रिंट करें",
+      credits: "नागरिक प्रतिज्ञा एवं क्रेडिट्स",
+      commence: "जाँच प्रारंभ करें",
+      skipPuzzle: "पहेली छोड़ें (सहायता)",
+      stamina: "सहनशक्ति",
+      battery: "बैटरी",
+      locateClue: "सबूत का पता लगाएं",
+      headExit: "सेक्टर निकास की ओर बढ़ें",
+      exitLocked: "निकास बंद है",
+      extractReady: "[E] बाहर निकलें: मिशन पूर्ण",
+      shadowSurge: "⚠️ छाया का हमला निकट! आश्रय में छिपें!",
+      leakRepairTitle: "पाइप रिसाव सीलिंग",
+      leakRepairDesc: "ट्यूटोरियल: सुई हरी पट्टी में आने पर [Space] दबाएं या टैप करें।",
+      pipeRotateTitle: "पाइप ग्रिड घूर्णन",
+      pipeRotateDesc: "ट्यूटोरियल: स्रोत से निकास तक पाइपलाइन जोड़ने हेतु टाइल्स घुमाएं।",
+      signalTitle: "सिग्नल रिले वायरिंग",
+      signalDesc: "ट्यूटोरियल: बाएँ और दाएँ के समान रंग वाले टर्मिनलों को जोड़ें।",
+      filterTitle: "जल शोधन चरण",
+      filterDesc: "ट्यूटोरियल: सही क्रम में रखें: 1. स्क्रीन ➔ 2. रेत ➔ 3. कार्बन ➔ 4. यूवी।",
+      trafficTitle: "यातायात सिग्नल समन्वय",
+      trafficDesc: "ट्यूटोरियल: रास्ता साफ होने पर 3 पर्यावरण टैंकरों हेतु बत्ती हरी करें।",
       titleDesc: "इंस्पेक्टर कबीर राव और साथी शेरू के साथ 20 क्षेत्रों की जाँच करें। टॉर्च, सुराग लेंस और सतर्कता से पर्यावरण प्रदूषण की छाया को समाप्त करें!"
     }
   };
 
   function t(key) {
-    const lang = saveState.settings.language || 'en';
+    const lang = (saveState && saveState.settings && saveState.settings.language) || 'en';
     return (I18N[lang] && I18N[lang][key]) || (I18N['en'] && I18N['en'][key]) || key;
   }
 
@@ -800,12 +921,29 @@
     setTxt('btn-title-map', 'levelMap');
     setTxt('btn-title-casefile', 'caseFile');
     setTxt('btn-title-settings', 'settings');
+    setTxt('btn-title-wardrobe', 'wardrobe');
+    setTxt('btn-title-achieve', 'achieve');
     setTxt('status-pill', 'safeZone');
     setTxt('lbl-sector-restored', 'sectorRestored');
     setTxt('btn-complete-next', 'nextSector');
     setTxt('btn-pause-resume', 'resume');
     setTxt('btn-pause-restart', 'restart');
     setTxt('btn-pause-map', 'levelMap');
+    setTxt('btn-map-back', 'mainMenu');
+    setTxt('btn-map-daily', 'dailyChall');
+    setTxt('btn-map-casefile', 'caseFile');
+    setTxt('btn-daily-back', 'mainMenu');
+    setTxt('btn-daily-history-view', 'log14');
+    setTxt('btn-daily-history-back', 'dailyHub');
+    setTxt('btn-casefile-back', 'back');
+    setTxt('btn-settings-back', 'back');
+    setTxt('btn-wardrobe-back', 'mainMenu');
+    setTxt('btn-achievements-back', 'mainMenu');
+    setTxt('btn-briefing-start', 'commence');
+    setTxt('btn-minigame-skip', 'skipPuzzle');
+    setTxt('btn-cert-credits', 'credits');
+    setTxt('btn-cert-map', 'levelMap');
+    setTxt('btn-credits-map', 'levelMap');
     const desc = document.getElementById('lbl-title-desc');
     if (desc) desc.textContent = t('titleDesc');
   }
@@ -1325,13 +1463,26 @@
 
     spawn(level, playerX) {
       this.active = true;
-      // Difficulty and level scaling (Early: 85-105, Late: 155-165, Rage in 19-20: 185)
-      let baseSpd = level.shadowSpeed || (85 + level.id * 4);
-      if (level.id >= 19) { this.rage = true; baseSpd = 185; } else this.rage = false;
+      // Calibrated Shadow Speeds:
+      // Player walking = 230 px/s, sprinting = 360 px/s.
+      // Levels 1-5: 170-205 px/s (slower than walking player)
+      // Levels 6-18: 245-285 px/s (faster than walking, slower than sprinting)
+      // Levels 19-20: 320 px/s (Rage phase!)
+      let baseSpd;
+      if (level.id >= 19) {
+        this.rage = true;
+        baseSpd = 320;
+      } else if (level.id >= 6) {
+        this.rage = false;
+        baseSpd = 245 + (level.id - 6) * 3;
+      } else {
+        this.rage = false;
+        baseSpd = 170 + level.id * 7;
+      }
 
       const diff = saveState.settings.difficulty;
       if (diff === 'relaxed') baseSpd *= 0.75;
-      if (diff === 'challenge') baseSpd *= 1.25;
+      else if (diff === 'challenge') baseSpd *= 1.2;
 
       this.speed = baseSpd;
       this.x = playerX > 800 ? playerX - 700 : Math.min(level.width - 200, playerX + 750);
@@ -1514,162 +1665,307 @@
 
   // 11. DATA-DRIVEN 20 REGIONAL LEVELS WITH UNIQUE MISSION MECHANICS
   function makeLevel(id, name, type, theme, bgColors, fact, story, opt = {}) {
-    const w = opt.width || (2500 + id * 50);
+    const w = opt.width || (2500 + id * 60);
     const gy = 600;
-    // Generate unique platform layout based on sector ID
-    const platforms = [];
-    const platCount = 4 + (id % 3);
-    for (let p = 0; p < platCount; p++) {
-      const px = 360 + p * ((w - 700) / platCount);
-      const py = 430 - (p % 2) * 50;
-      platforms.push({ x: px, y: py, w: 170 + (p % 2) * 40, h: 20 });
-    }
 
-    const collectibles = [
-      { x: 440 + (id * 20) % 200, y: 400, label: `${name} Clue #1`, collected: false },
-      { x: Math.floor(w * 0.5), y: 390, label: `${name} Clue #2`, collected: false },
-      { x: Math.floor(w * 0.82), y: 400, label: `${name} Master Evidence`, collected: false }
+    // Distinct platform layouts per level
+    const platforms = opt.platforms || [
+      { x: 380, y: 440, w: 180, h: 20 },
+      { x: 860, y: 390, w: 200, h: 20 },
+      { x: 1360, y: 450, w: 190, h: 20 },
+      { x: 1880, y: 400, w: 210, h: 20 }
     ];
 
-    const badges = [
-      { x: 500 + id * 15, y: gy - 40, id: `${id}_0` },
+    const collectibles = opt.collectibles || [
+      { x: 490, y: 390, label: `${name} Clue #1`, collected: false },
+      { x: Math.floor(w * 0.5), y: 380, label: `${name} Clue #2`, collected: false },
+      { x: Math.floor(w * 0.82), y: 390, label: `${name} Master Evidence`, collected: false }
+    ];
+
+    const badges = opt.badges || [
+      { x: 550, y: gy - 40, id: `${id}_0` },
       { x: Math.floor(w * 0.48), y: gy - 40, id: `${id}_1` },
       { x: Math.floor(w * 0.88), y: gy - 40, id: `${id}_2` }
     ];
 
-    const safeZones = [
-      { x: 800, w: 180 }, { x: Math.floor(w * 0.65), w: 180 }
+    const safeZones = opt.safeZones || [
+      { x: 780, w: 190 }, { x: Math.floor(w * 0.65), w: 190 }
     ];
 
     return {
       id, name, missionType: type, theme, bgColor: bgColors,
       width: w, groundY: gy, fact, story, cluesNeeded: 3,
-      shadowSpeed: 85 + id * 4, clueName: `${name} Evidence Dossier`,
+      shadowSpeed: 85 + id * 5, clueName: `${name} Evidence Dossier`,
       objective: opt.obj || "Recover 3 Evidence Clues & Sector Exit",
       platforms, collectibles, badges, safeZones,
       timeLimit: opt.timeLimit || null, isDark: !!opt.isDark, hasChase: !!opt.hasChase,
+      weather: opt.weather || (id === 4 || id === 8 || id === 10 || id === 19 ? 'rain' : id === 1 || id === 5 || id === 12 || id === 13 || id === 15 ? 'fog' : id === 2 || id === 11 || id === 16 ? 'wind' : 'clear'),
+      leakX: opt.leakX || Math.floor(w * 0.52),
+      protectX: opt.protectX || Math.floor(w * 0.45),
+      protectHealth: 100,
+      protectLabel: opt.protectLabel || "PROTECTED CIVIC ZONE",
       npc: opt.npc || null, minigame: opt.minigame || null, decision: opt.decision || null
     };
   }
 
   const LEVELS_DATA = [
     makeLevel(1, "Abandoned Neighbourhood", "tutorial", "suburb", ["#0f172a", "#1e1b4b", "#020617"],
-      "Segregating domestic waste into wet and dry streams prevents toxic landfill groundwater pollution.",
-      "Black runoff seeps through neighbourhood streets. Inspect the source and collect the first dispatch note.",
-      { obj: "Tutorial: Recover 3 Clues & Master Movement" }),
+      "Segregating domestic waste into wet organics and dry recyclables prevents toxic groundwater leaching.",
+      "Black runoff seeps through neighbourhood streets. Inspect the contamination source and collect the first dispatch note.",
+      {
+        obj: "Tutorial: Recover 3 Clues & Master Movement",
+        platforms: [{ x: 380, y: 440, w: 180, h: 20 }, { x: 860, y: 400, w: 190, h: 20 }, { x: 1340, y: 450, w: 200, h: 20 }, { x: 1840, y: 410, w: 210, h: 20 }],
+        decision: {
+          q: "Household garbage is clogging open community drains. How should colony residents segregate to protect the environment?",
+          options: [
+            { t: "Segregate daily into wet kitchen organics, dry recyclables, and hazardous batteries/e-waste.", ok: true },
+            { t: "Mix all household waste together and dump it in open roadside ditches outside the colony.", ok: false, hint: "Ditch dumping allows heavy battery metals and rotting runoff to poison municipal groundwater." },
+            { t: "Gather all colony plastics and garbage into piles and incinerate them every evening.", ok: false, hint: "Open burning releases carcinogenic dioxins, furans, and dense toxic soot into neighborhood air." }
+          ]
+        }
+      }),
 
     makeLevel(2, "Dark Forest", "trail", "forest", ["#064e3b", "#022c22", "#020617"],
       "Forest soils naturally purify runoff. Heavy industrial toxins destroy beneficial microbial soil networks.",
       "A glowing contaminant trail cuts through ancient pine woods. Follow glowing footprints to uncover dumped solvents.",
-      { obj: "Trail: Follow Glowing Contaminant Footprints", npc: { name: "Ranger Anand", role: "Forest Guard", text: "Inspector! Illegal dumpers crossed the ranger gate. Follow the cadmium trail!" } }),
+      {
+        obj: "Trail: Follow Glowing Contaminant Footprints",
+        platforms: [{ x: 360, y: 420, w: 170, h: 20 }, { x: 880, y: 380, w: 210, h: 20 }, { x: 1400, y: 430, w: 180, h: 20 }, { x: 1920, y: 390, w: 200, h: 20 }],
+        npc: { name: "Ranger Anand", role: "Forest Guard", text: "Inspector! Illegal dumpers crossed the ranger gate. Follow the cadmium trail!" }
+      }),
 
     makeLevel(3, "Old School", "repair", "suburb", ["#1e293b", "#0f172a", "#020617"],
       "School sanitation programs protect student health and ensure uninterrupted education.",
       "The campus water main was sabotaged, spilling waste across the yard. Locate the dripping leak and repair the pipe.",
-      { obj: "Leak Repair: Locate & Solve Valve Alignment", minigame: "pipe_repair",
-        decision: { q: "The primary school water main is cracked and leaking fresh municipal supply. What is the immediate priority?",
-          options: [{ t: "Shut the main cutoff valve immediately to save water and replace the rubber gasket.", ok: true },
-                    { t: "Leave it dripping until morning classes begin so students have access.", ok: false }] } }),
+      {
+        obj: "Leak Repair: Locate & Solve Valve Alignment",
+        leakX: 1380, minigame: "pipe_repair",
+        platforms: [{ x: 420, y: 440, w: 200, h: 20 }, { x: 920, y: 400, w: 190, h: 20 }, { x: 1420, y: 450, w: 220, h: 20 }, { x: 1940, y: 410, w: 200, h: 20 }],
+        decision: {
+          q: "The primary school water main is fractured, leaking pressurized fresh drinking supply. What is the immediate priority?",
+          options: [
+            { t: "Shut the main cutoff valve immediately to save water and replace the rubber gasket.", ok: true },
+            { t: "Wrap wet rags and cement mortar around the cracked pipe while water is actively flowing.", ok: false, hint: "Cement mortar cannot cure under pressurized water flow and bursts within hours." },
+            { t: "Leave it running until morning classes finish so children have water access.", ok: false, hint: "Leaving leaks running wastes thousands of liters and creates contaminated breeding pools." }
+          ]
+        }
+      }),
 
     makeLevel(4, "Underground Tunnel", "escape", "tunnel", ["#020617", "#090d16", "#000000"],
       "Diverting untreated commercial sewage into public storm drains spreads waterborne epidemics.",
       "A pitch-black storm overflow pipe. Maintain flashlight power and escape through safe shelters.",
-      { obj: "Escape: Evade Shadow in Pitch Black Tunnel", isDark: true, hasChase: true }),
+      {
+        obj: "Escape: Evade Shadow in Pitch Black Tunnel", isDark: true, hasChase: true,
+        platforms: [{ x: 400, y: 460, w: 180, h: 20 }, { x: 950, y: 420, w: 190, h: 20 }, { x: 1500, y: 450, w: 200, h: 20 }, { x: 2050, y: 410, w: 210, h: 20 }]
+      }),
 
     makeLevel(5, "Night Market", "investigate", "suburb", ["#1c1917", "#292524", "#0c0a09"],
       "Used cooking oil hardens into massive sewer fatbergs. Converting it to biodiesel protects city drainage.",
       "Food stalls were caught dumping grease into municipal gutters. Interrogate the suspects.",
-      { npc: { name: "Elder Devaki", role: "Market Elder", text: "Inspector, unscrupulous haulers offered cash to dump cooking oil in the open drains!" },
-        decision: { q: "Market vendors generate liters of used fry oil daily. How should it be sustainably managed?",
-          options: [{ t: "Store in drums for certified conversion into clean bio-diesel fuel.", ok: true },
-                    { t: "Wash it down street gutters with boiling water and caustic soda.", ok: false }] } }),
+      {
+        npc: { name: "Elder Devaki", role: "Market Elder", text: "Inspector, unscrupulous haulers offered cash to dump cooking oil in the open drains!" },
+        platforms: [{ x: 380, y: 450, w: 190, h: 20 }, { x: 900, y: 410, w: 200, h: 20 }, { x: 1440, y: 460, w: 190, h: 20 }, { x: 1980, y: 420, w: 200, h: 20 }],
+        decision: {
+          q: "Night market food vendors generate hundreds of liters of spent frying oil daily. How should it be managed?",
+          options: [
+            { t: "Store in certified drums for collection and processing into clean bio-diesel fuel.", ok: true },
+            { t: "Wash boiling oil down street stormwater gutters mixed with caustic soda.", ok: false, hint: "Hot oil cools into underground rock-hard fatbergs that obstruct city sewers and cause backflows." },
+            { t: "Pour spent oil into open soil garden beds behind the food stalls.", ok: false, hint: "Grease suffocates beneficial soil fungi and prevents rainwater percolation into urban aquifers." }
+          ]
+        }
+      }),
 
     makeLevel(6, "Deserted Bus Station", "chase", "suburb", ["#0f172a", "#1e293b", "#020617"],
       "Lead-acid battery dumping releases sulfuric acid and heavy neurotoxins into municipal groundwater.",
       "The Shadow moves swiftly through parked buses. Uncover the illegal battery disposal site.",
-      { hasChase: true, obj: "Chase: Outrun Shadow Across Bus Depot" }),
+      {
+        hasChase: true, obj: "Chase: Outrun Shadow Across Bus Depot",
+        platforms: [{ x: 420, y: 450, w: 210, h: 20 }, { x: 980, y: 410, w: 220, h: 20 }, { x: 1520, y: 460, w: 200, h: 20 }, { x: 2080, y: 420, w: 210, h: 20 }]
+      }),
 
     makeLevel(7, "Railway Yard", "signals", "suburb", ["#1e1b4b", "#172554", "#020617"],
       "Bio-toilets across Indian rail networks stop rail corrosion and preserve open track environments.",
       "Toxic rail cars are switched onto unmonitored sidings. Match the signal box wiring.",
-      { obj: "Signals: Complete Signal Terminal Wiring", minigame: "signals" }),
+      {
+        obj: "Signals: Complete Signal Terminal Wiring", minigame: "signals",
+        platforms: [{ x: 400, y: 450, w: 200, h: 20 }, { x: 960, y: 400, w: 210, h: 20 }, { x: 1500, y: 460, w: 200, h: 20 }, { x: 2050, y: 410, w: 220, h: 20 }]
+      }),
 
     makeLevel(8, "Riverbank", "protect", "river", ["#083344", "#155e75", "#020617"],
       "River surface booms trap floating plastic waste before it degrades into microscopic aquatic toxins.",
       "Illegal conduits discharge industrial froth directly into the river. Defend the containment boom.",
-      { obj: "Protect: Defend River Catchment Boom",
-        decision: { q: "Heavy industrial sludge is nearing the river water intake. Which remediation step is critical?",
-          options: [{ t: "Deploy floating absorbent containment booms immediately upstream.", ok: true },
-                    { t: "Pump river water downstream to dilute the contaminant plume.", ok: false }] } }),
+      {
+        obj: "Protect: Defend River Catchment Boom", protectLabel: "RIVER WATER INTAKE BOOM", protectX: 1350,
+        platforms: [{ x: 380, y: 460, w: 190, h: 20 }, { x: 920, y: 420, w: 200, h: 20 }, { x: 1480, y: 470, w: 220, h: 20 }, { x: 2020, y: 430, w: 200, h: 20 }],
+        decision: {
+          q: "A heavy industrial chemical froth plume is nearing the municipal drinking water intake. What is the critical remediation step?",
+          options: [
+            { t: "Deploy floating absorbent containment booms upstream and activate surface skimmers immediately.", ok: true },
+            { t: "Spray synthetic chemical dispersants to sink the chemical froth down to the riverbed.", ok: false, hint: "Dispersants sink poisons to the benthic layer, contaminating bottom-feeding organisms and riverbed ecology." },
+            { t: "Pump large volumes of river water downstream to dilute the visible froth plume.", ok: false, hint: "Dilution does not remove toxicity and simply spreads chemical hazards to downstream farming communities." }
+          ]
+        }
+      }),
 
     makeLevel(9, "Hidden Lake", "clean", "lake", ["#022c22", "#065f46", "#020617"],
       "Wetlands and natural lakes filter urban runoff. Preserving lake bunds protects migratory waterfowl.",
       "Toxic algae foam covers the lake edge. Filter the water grid to restore clear conditions.",
-      { minigame: "water_filter", obj: "Filter: Arrange 3 Water Purification Stages" }),
+      {
+        minigame: "water_filter", obj: "Filter: Arrange 4 Water Purification Stages",
+        platforms: [{ x: 410, y: 460, w: 190, h: 20 }, { x: 950, y: 410, w: 210, h: 20 }, { x: 1500, y: 460, w: 200, h: 20 }, { x: 2050, y: 420, w: 210, h: 20 }]
+      }),
 
     makeLevel(10, "Stormy Beach", "timed", "beach", ["#0f172a", "#1e3a8a", "#020617"],
       "Beach cleanups prevent marine mammals and sea turtles from fatal plastic debris ingestion.",
       "Gale winds whip the coast. Clear dumped medical plastics before the rising tide washes them out.",
-      { timeLimit: 210, obj: "Timed Run: Clear Beach Before High Tide (210s)" }),
+      {
+        timeLimit: 210, obj: "Timed Run: Clear Beach Before High Tide (210s)", weather: "rain",
+        platforms: [{ x: 420, y: 450, w: 200, h: 20 }, { x: 980, y: 410, w: 220, h: 20 }, { x: 1540, y: 450, w: 210, h: 20 }, { x: 2100, y: 410, w: 220, h: 20 }]
+      }),
 
     makeLevel(11, "Village Fields", "trail", "fields", ["#365314", "#4d7c0f", "#020617"],
       "Natural composting and bio-fertilizers eliminate chemical pesticide runoff into village wells.",
       "Industrial runoff threatens rural crop canals. Follow the fertilizer trail to find the bypass pump.",
-      { obj: "Trail: Trace Effluent Seepage to Pump Station",
-        decision: { q: "Fertilizer runoff threatens agricultural aquifers. What is the eco-friendly remedy?",
-          options: [{ t: "Construct vegetated riparian buffer swales to absorb excess nitrogen.", ok: true },
-                    { t: "Spray synthetic chemical coagulants directly into irrigation canals.", ok: false }] } }),
+      {
+        obj: "Trail: Trace Effluent Seepage to Pump Station",
+        platforms: [{ x: 400, y: 450, w: 200, h: 20 }, { x: 960, y: 410, w: 210, h: 20 }, { x: 1520, y: 460, w: 200, h: 20 }, { x: 2080, y: 420, w: 210, h: 20 }],
+        decision: {
+          q: "Excessive synthetic nitrate runoff is seeping into shallow agricultural drinking wells. What is the sustainable remedy?",
+          options: [
+            { t: "Construct vegetated riparian buffer swales with native perennial grasses to absorb nutrient runoff.", ok: true },
+            { t: "Spray synthetic industrial coagulants directly into open irrigation canals.", ok: false, hint: "Coagulants degrade soil biology, harm earthworm populations, and reduce agricultural yields." },
+            { t: "Dig deep unlined drainage trenches to divert the runoff straight into subsoil strata.", ok: false, hint: "Unlined trenches inject agricultural poisons directly into the regional deep drinking aquifers." }
+          ]
+        }
+      }),
 
     makeLevel(12, "Factory District", "pipeTracing", "factory", ["#18181b", "#27272a", "#09090b"],
       "Electrostatic precipitators and gas scrubbers are legally required to prevent toxic acid rain.",
-      "A labyrinth of pipes bypasses industrial filters. Trace the colored pipes to isolate the leak.",
-      { obj: "Pipe Tracing: Rotate & Connect Bypass Valves", minigame: "pipe_repair" }),
+      "A labyrinth of pipes bypasses industrial filters. Rotate the bypass valves to restore safe filtration.",
+      {
+        obj: "Pipe Tracing: Rotate & Connect Bypass Valves", minigame: "pipe_rotation",
+        platforms: [{ x: 440, y: 440, w: 200, h: 20 }, { x: 1000, y: 390, w: 210, h: 20 }, { x: 1560, y: 440, w: 220, h: 20 }, { x: 2120, y: 390, w: 210, h: 20 }],
+        decision: {
+          q: "Factory boilers are emitting dense sulfur dioxide (SO₂) flue gases into residential neighborhoods. What is legally required?",
+          options: [
+            { t: "Install multi-stage wet flue gas scrubbers with alkaline neutralization systems.", ok: true },
+            { t: "Increase exhaust blower speeds to blow emissions away into neighboring municipalities.", ok: false, hint: "Increasing blower speed merely transfers acid rain damage and violates national air safety regulations." },
+            { t: "Vent untreated industrial emissions exclusively during midnight low-visibility periods.", ok: false, hint: "Nighttime venting triggers severe ground-level smog inversions that sicken sleeping residents." }
+          ]
+        }
+      }),
 
     makeLevel(13, "Underground Drain Maze", "maze", "drain", ["#020617", "#050b14", "#000000"],
       "Automated robotic cleaning rovers eliminate hazardous human manual sewer entry.",
-      "A subterranean drainage labyrinth with dead ends. Navigate the conduits to locate the valve.",
-      { isDark: true, obj: "Maze Navigation: Find the Central Sump Valve" }),
+      "A subterranean drainage labyrinth with dead ends. Navigate the conduits to locate the leak valve.",
+      {
+        isDark: true, obj: "Maze Navigation: Find the Central Sump Valve", minigame: "pipe_repair", leakX: 1650,
+        platforms: [{ x: 380, y: 470, w: 180, h: 20 }, { x: 800, y: 410, w: 190, h: 20 }, { x: 1250, y: 350, w: 190, h: 20 }, { x: 1700, y: 430, w: 220, h: 20 }, { x: 2150, y: 390, w: 200, h: 20 }]
+      }),
 
     makeLevel(14, "Apartment Complex", "escape", "suburb", ["#0f172a", "#1e293b", "#020617"],
       "Decentralized sewage treatment plants (STPs) in housing societies enable 100% water recycling.",
-      "Residential sumps overflow with illegally dumped contractor sludge. Escape to rooftop safety.",
-      { hasChase: true, obj: "Escape: Scale Apartments to Rooftop Extraction" }),
+      "Residential sumps overflow with illegally dumped contractor sludge. Escape to rooftop safety and rotate bypass valves.",
+      {
+        hasChase: true, obj: "Escape: Scale Apartments & Align Plumbing Valves", minigame: "pipe_rotation",
+        platforms: [{ x: 420, y: 450, w: 210, h: 20 }, { x: 960, y: 390, w: 220, h: 20 }, { x: 1520, y: 340, w: 210, h: 20 }, { x: 2080, y: 430, w: 220, h: 20 }],
+        decision: {
+          q: "A high-rise apartment society generates 80,000 liters of domestic wastewater daily. How can they achieve zero liquid discharge?",
+          options: [
+            { t: "Operate a decentralized membrane STP and reuse treated greywater for toilet flushing and gardening.", ok: true },
+            { t: "Discharge untreated greywater into municipal storm gutters during heavy monsoon downpours.", ok: false, hint: "Discharging sewage into storm gutters pollutes urban waterways and causes toxic public health outbreaks." },
+            { t: "Evaporate untreated sewage in open rooftop holding tanks exposed to sunlight.", ok: false, hint: "Open sewage tanks breed disease-bearing mosquitoes and release hazardous odors across the complex." }
+          ]
+        }
+      }),
 
     makeLevel(15, "Industrial Zone", "signals", "factory", ["#1c1917", "#292524", "#0a0a0a"],
       "Accurate hazardous material labelling prevents chemical storehouse catastrophe.",
       "Automated factory alarms echo across chemical storage depots. Decode the security switches.",
-      { minigame: "signals", obj: "Signals: Reconfigure Hazard Alarm Relays" }),
+      {
+        minigame: "signals", obj: "Signals: Reconfigure Hazard Alarm Relays",
+        platforms: [{ x: 440, y: 440, w: 200, h: 20 }, { x: 1000, y: 390, w: 210, h: 20 }, { x: 1560, y: 440, w: 220, h: 20 }, { x: 2120, y: 390, w: 210, h: 20 }],
+        decision: {
+          q: "Hundreds of corrosive solvent barrels are delivered to a chemical storehouse. How must they be safely staged?",
+          options: [
+            { t: "Store on impermeable concrete pads equipped with secondary containment berms and leak sensors.", ok: true },
+            { t: "Stack drums 4-high on bare dirt ground adjacent to the perimeter storm drains.", ok: false, hint: "Unpaved storage allows corrosive chemicals to breach groundwater aquifers upon minor drum leaks." },
+            { t: "Wash chemical leaks down floor drains with water hoses into city sewers.", ok: false, hint: "Washing corrosive solvents into sewers dissolves municipal pipes and causes explosions." }
+          ]
+        }
+      }),
 
     makeLevel(16, "Forest Reserve", "protect", "forest", ["#022c22", "#064e3b", "#020617"],
       "Protected ecological buffer corridors maintain genetic diversity of endangered species.",
       "Poachers and chemical dumpers breached the reserve boundary. Protect the animal watering hole.",
-      { obj: "Protect: Safeguard Wildlife Sanctuary Watering Hole",
-        decision: { q: "Corrosive waste barrels were dumped along wildlife corridors. How to secure the zone?",
-          options: [{ t: "Seal barrels with overpack containers and neutralize with absorbent clay.", ok: true },
-                    { t: "Bury the leaking barrels deep underground below the topsoil.", ok: false }] } }),
+      {
+        obj: "Protect: Safeguard Wildlife Sanctuary Watering Hole", protectLabel: "SANCTUARY WATERING OASIS", protectX: 1450,
+        platforms: [{ x: 420, y: 440, w: 200, h: 20 }, { x: 980, y: 390, w: 210, h: 20 }, { x: 1540, y: 440, w: 220, h: 20 }, { x: 2100, y: 390, w: 210, h: 20 }],
+        decision: {
+          q: "Corrosive waste barrels were dumped along wildlife corridors. How to secure the zone?",
+          options: [
+            { t: "Seal barrels with overpack containers and neutralize with absorbent clay.", ok: true },
+            { t: "Bury the leaking barrels deep underground below the topsoil.", ok: false, hint: "Burying barrels causes slow subterranean corrosion that permanently poisons forest ecosystems." },
+            { t: "Burn the chemical residue on-site with diesel fuel to clear the area quickly.", ok: false, hint: "Igniting chemical solvents creates toxic smoke clouds that choke wildlife and spark wildfires." }
+          ]
+        }
+      }),
 
     makeLevel(17, "Empty Stadium", "timedCleanup", "suburb", ["#0f172a", "#1e1b4b", "#020617"],
       "Zero-waste stadiums divert over 90% of matchday refuse through source segregation.",
       "Single-use plastic bottles litter thousands of stadium seats. Complete the cleanup countdown.",
-      { timeLimit: 190, obj: "Timed Cleanup: Clear Stadium Sectors (190s)" }),
+      {
+        timeLimit: 190, obj: "Timed Cleanup: Clear Stadium Sectors (190s)",
+        platforms: [{ x: 440, y: 460, w: 210, h: 20 }, { x: 1000, y: 410, w: 220, h: 20 }, { x: 1560, y: 360, w: 210, h: 20 }, { x: 2120, y: 430, w: 220, h: 20 }],
+        decision: {
+          q: "A major sports championship generated 12 tons of single-use plastic cups and packaging. How should the facility transition?",
+          options: [
+            { t: "Mandate reusable deposit-return cups and set up an on-site organic composting biodigester.", ok: true },
+            { t: "Incinerate the mixed plastic refuse in open steel dumpsters behind the stadium bleachers.", ok: false, hint: "Burning stadium plastics releases toxic furans that endanger players and spectators." },
+            { t: "Truck all mixed stadium litter to an unlined regional wetland landfill.", ok: false, hint: "Landfilled plastics leach microplastics and endocrine disruptors into coastal waters." }
+          ]
+        }
+      }),
 
     makeLevel(18, "Heritage Area", "protect", "suburb", ["#292524", "#44403c", "#0c0a09"],
       "Strict zero-emission zones around heritage monuments prevent marble stone cancer.",
       "Acid smoke threatens ancient sandstone monument pillars. Neutralize the emissions.",
-      { obj: "Protect: Shield Sandstone Monuments from Acid Fog",
-        decision: { q: "Acid rain and vehicle soot are corroding historic sandstone monuments. What preserves them?",
-          options: [{ t: "Apply non-abrasive sacrificial clay mud-pack packs to draw out salts.", ok: true },
-                    { t: "Power-wash the delicate carvings with concentrated industrial acids.", ok: false }] } }),
+      {
+        obj: "Protect: Shield Sandstone Monuments from Acid Fog", protectLabel: "HISTORIC SANDSTONE MONUMENTS", protectX: 1500,
+        platforms: [{ x: 420, y: 440, w: 200, h: 20 }, { x: 980, y: 390, w: 210, h: 20 }, { x: 1540, y: 440, w: 220, h: 20 }, { x: 2100, y: 390, w: 210, h: 20 }],
+        decision: {
+          q: "Acid rain and diesel soot are corroding historic sandstone monuments. What preserves them sustainably?",
+          options: [
+            { t: "Apply non-abrasive sacrificial clay mud-pack packs to draw out salts, and enforce zero-emission buffer zones.", ok: true },
+            { t: "Power-wash the delicate carvings with concentrated industrial acids.", ok: false, hint: "Acid power-washing strips historical relief details and accelerates masonry disintegration." },
+            { t: "Coat historic sandstone facades with thick polyurethane synthetic plastic resin paint.", ok: false, hint: "Plastic resin seals stone pores, trapping internal moisture that fractures the stone." }
+          ]
+        }
+      }),
 
     makeLevel(19, "Mega City", "traffic", "suburb", ["#020617", "#0f172a", "#000000"],
       "Electric transit fleets and green corridors lower urban particulate smog inversions.",
-      "High-density traffic gridlocked by smog. Switch the automated traffic signals to flee the raging Shadow.",
-      { hasChase: true, obj: "Traffic: Synchronize Traffic Signals to Escape" }),
+      "High-density traffic gridlocked by smog. Switch the automated traffic signals to route eco-tankers and flee the raging Shadow.",
+      {
+        hasChase: true, obj: "Traffic: Synchronize Traffic Signals to Escape", minigame: "traffic_timing", weather: "rain",
+        platforms: [{ x: 440, y: 450, w: 220, h: 20 }, { x: 1020, y: 390, w: 230, h: 20 }, { x: 1600, y: 440, w: 220, h: 20 }, { x: 2180, y: 390, w: 230, h: 20 }],
+        decision: {
+          q: "Winter atmospheric temperature inversions trap dangerous PM2.5 particulates across the city. What policy permanently lowers urban smog?",
+          options: [
+            { t: "Transition municipal fleets to 100% electric transit, establish dense tree corridors, and enforce strict industrial emissions caps.", ok: true },
+            { t: "Deploy outdoor giant fan towers to blow city smog into surrounding rural villages.", ok: false, hint: "Outdoor smog towers consume massive grid energy and cannot alter atmospheric volumes." },
+            { t: "Spray tap water from skyscrapers into streets while ignoring vehicle exhaust sources.", ok: false, hint: "Water spraying wastes drinking supplies while failing to stop the source of toxic emissions." }
+          ]
+        }
+      }),
 
     makeLevel(20, "Final City Remediation Plant", "bossFinale", "factory", ["#09090b", "#18181b", "#000000"],
       "True environmental restoration demands active citizenship and corporate accountability.",
-      "Noxis Industries central effluent hub! Confront Dr. Vane's creation and activate UV clarifiers to dissolve the Shadow!",
-      { obj: "FINALE: Enter Access Code & Trigger UV Clarifiers" })
+      "Noxis Industries central effluent hub! Confront the Shadow in a 3-phase finale, decode the Case File cipher, and trigger UV clarifiers!",
+      {
+        obj: "FINALE: Expose Weakness, Decode Cipher & Fire UV Clarifiers",
+        platforms: [{ x: 450, y: 450, w: 220, h: 20 }, { x: 1050, y: 390, w: 240, h: 20 }, { x: 1650, y: 450, w: 230, h: 20 }, { x: 2250, y: 390, w: 240, h: 20 }]
+      })
   ];
 
   // 12. RUNTIME ENGINE STATE
@@ -1687,47 +1983,81 @@
   let bgCacheCanvas = null, bgCacheCtx = null;
   function updateBackgroundCache(lvl) {
     if (!bgCacheCanvas) bgCacheCanvas = document.createElement('canvas');
-    bgCacheCanvas.width = V_WIDTH; bgCacheCanvas.height = V_HEIGHT;
+    bgCacheCanvas.width = V_WIDTH * 2; bgCacheCanvas.height = V_HEIGHT;
     bgCacheCtx = bgCacheCanvas.getContext('2d');
 
     const gy = lvl.groundY;
-    // Layer 1: Distant Sky Gradient
+    // Parallax Layer 1: Sky Gradient & Distant Mountains / Horizon
     const sky = bgCacheCtx.createLinearGradient(0, 0, 0, gy);
     sky.addColorStop(0, lvl.bgColor[0]);
     sky.addColorStop(0.6, lvl.bgColor[1]);
     sky.addColorStop(1, lvl.bgColor[2]);
     bgCacheCtx.fillStyle = sky;
-    bgCacheCtx.fillRect(0, 0, V_WIDTH, gy);
+    bgCacheCtx.fillRect(0, 0, V_WIDTH * 2, gy);
 
-    // Layer 2: Distant Mountains / Megacity Silhouettes
+    // Distant mountain ridges & horizon skyline (Layer 1)
     bgCacheCtx.fillStyle = "rgba(10, 15, 30, 0.4)";
-    for (let i = 0; i < V_WIDTH + 200; i += 180) {
-      const h = 160 + Math.sin(i * 0.03 + lvl.id) * 70;
+    for (let i = 0; i < V_WIDTH * 2; i += 160) {
+      const h = 140 + Math.sin(i * 0.02 + lvl.id) * 60;
       bgCacheCtx.fillRect(i, gy - h, 140, h);
     }
 
-    // Layer 3: Sector Unique Landmark Props
+    // Parallax Layer 2: Mid-distance Landmark Prop Silhouettes
     bgCacheCtx.fillStyle = "rgba(15, 23, 42, 0.75)";
     if (lvl.theme === 'factory') {
-      // Factory Cooling Stacks
-      bgCacheCtx.fillRect(200, gy - 260, 60, 260);
-      bgCacheCtx.fillRect(280, gy - 300, 75, 300);
-      bgCacheCtx.fillRect(800, gy - 240, 60, 240);
-    } else if (lvl.theme === 'forest') {
-      // Tall Pine Tree Canopies
-      for (let x = 100; x < V_WIDTH; x += 220) {
+      // Industrial Cooling Stacks & chemical pipes
+      for (let x = 120; x < V_WIDTH * 2; x += 380) {
+        bgCacheCtx.fillRect(x, gy - 270, 65, 270);
+        bgCacheCtx.fillRect(x + 75, gy - 310, 80, 310);
+        bgCacheCtx.fillRect(x + 170, gy - 210, 50, 210);
+        // Steam plumes
+        bgCacheCtx.fillStyle = "rgba(148, 163, 184, 0.18)";
         bgCacheCtx.beginPath();
-        bgCacheCtx.moveTo(x, gy); bgCacheCtx.lineTo(x + 40, gy - 220); bgCacheCtx.lineTo(x + 80, gy);
+        bgCacheCtx.arc(x + 32, gy - 285, 25, 0, Math.PI * 2);
+        bgCacheCtx.arc(x + 115, gy - 330, 35, 0, Math.PI * 2);
+        bgCacheCtx.fill();
+        bgCacheCtx.fillStyle = "rgba(15, 23, 42, 0.75)";
+      }
+    } else if (lvl.theme === 'forest') {
+      // Tall Pine and Banyan Forest Silhouettes
+      for (let x = 60; x < V_WIDTH * 2; x += 180) {
+        bgCacheCtx.beginPath();
+        bgCacheCtx.moveTo(x, gy);
+        bgCacheCtx.lineTo(x + 40, gy - 240);
+        bgCacheCtx.lineTo(x + 80, gy);
+        bgCacheCtx.fill();
+        bgCacheCtx.beginPath();
+        bgCacheCtx.arc(x + 40, gy - 200, 35, 0, Math.PI * 2);
         bgCacheCtx.fill();
       }
     } else if (lvl.theme === 'river' || lvl.theme === 'lake') {
-      // Water Intake Tower & Cable Bridge Pylons
-      bgCacheCtx.fillRect(400, gy - 200, 45, 200);
-      bgCacheCtx.fillRect(900, gy - 220, 50, 220);
+      // Water Intake Pylons & Cable-Stayed Bridge Cables
+      for (let x = 150; x < V_WIDTH * 2; x += 450) {
+        bgCacheCtx.fillRect(x, gy - 230, 40, 230);
+        bgCacheCtx.fillRect(x + 220, gy - 250, 45, 250);
+        // Suspension cables
+        bgCacheCtx.strokeStyle = "rgba(56, 189, 248, 0.25)";
+        bgCacheCtx.lineWidth = 2;
+        bgCacheCtx.beginPath();
+        bgCacheCtx.moveTo(x + 20, gy - 230);
+        bgCacheCtx.lineTo(x + 130, gy - 60);
+        bgCacheCtx.lineTo(x + 240, gy - 250);
+        bgCacheCtx.stroke();
+      }
+    } else if (lvl.theme === 'beach') {
+      // Coastal Lighthouse, pier boardwalk, and headland
+      for (let x = 200; x < V_WIDTH * 2; x += 600) {
+        bgCacheCtx.fillRect(x, gy - 280, 50, 280);
+        bgCacheCtx.beginPath();
+        bgCacheCtx.arc(x + 25, gy - 290, 20, 0, Math.PI * 2);
+        bgCacheCtx.fill();
+      }
     } else {
-      // School clock tower / city tenements
-      bgCacheCtx.fillRect(350, gy - 240, 90, 240);
-      bgCacheCtx.fillRect(850, gy - 210, 110, 210);
+      // Urban Skylines, clock towers, tenements
+      for (let x = 100; x < V_WIDTH * 2; x += 320) {
+        bgCacheCtx.fillRect(x, gy - 250, 95, 250);
+        bgCacheCtx.fillRect(x + 110, gy - 210, 80, 210);
+      }
     }
   }
 
@@ -1847,7 +2177,7 @@
     };
   }
 
-  // 16. CONTEXTUAL ENVIRONMENTAL DECISION MODAL
+  // 16. CONTEXTUAL ENVIRONMENTAL DECISION MODAL (Shuffled 3 Options + Educational Hints + Eco-Points)
   function triggerDecision(decisionData, onSuccess) {
     gameState = 'DECISION';
     document.getElementById('decision-question').textContent = decisionData.q;
@@ -1855,7 +2185,14 @@
     const fb = document.getElementById('decision-feedback');
     optContainer.innerHTML = ""; fb.textContent = "";
 
-    decisionData.options.forEach(opt => {
+    // Requirement: 3 options in randomized order (correct answer not always first)
+    const shuffledOptions = [...decisionData.options];
+    for (let i = shuffledOptions.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledOptions[i], shuffledOptions[j]] = [shuffledOptions[j], shuffledOptions[i]];
+    }
+
+    shuffledOptions.forEach(opt => {
       const b = document.createElement('button');
       b.className = "btn btn-secondary";
       b.style.textAlign = "left"; b.style.padding = "10px 14px";
@@ -1880,7 +2217,7 @@
           }, 1400);
         } else {
           fb.style.color = "#f87171";
-          fb.textContent = "⚠️ That choice accelerates pollution. Consider long-term sanitation and try again.";
+          fb.textContent = "💡 Hint: " + (opt.hint || "That choice accelerates contamination. Consider civic segregation and sustainable remediation.");
           SFX.wrong();
         }
       };
@@ -1889,7 +2226,7 @@
     document.getElementById('decision-layer').style.display = 'flex';
   }
 
-  // 17. 5 INTERACTIVE MINI-GAMES (Pipe Repair, Signals Wiring, Water Filter, Pipe Rotation, Traffic Timing)
+  // 17. 5 INTERACTIVE MINI-GAMES (Leak Repair, Pipe Rotation, Signal Wiring, Water Filter, Traffic Timing)
   let miniGameActive = false, miniGameFailures = 0, miniGameType = null;
   let handleMiniGameKey = null;
 
@@ -1904,11 +2241,75 @@
     mLayer.style.display = 'flex';
 
     let lastMiniTime = performance.now();
-    let meterPos = 50, meterDir = 1;
-    let wiresConnected = { r: false, g: false, b: false };
-    let filterStages = { s1: false, s2: false, s3: false };
-    let pipeAngles = [90, 180, 270];
-    let trafficTimer = 0;
+    let animTimer = 0;
+
+    // --- MINI-GAME 1: LEAK REPAIR (Oscillating timing dial with dt) ---
+    let meterPos = 60, meterDir = 1;
+
+    // --- MINI-GAME 2: PIPE ROTATION (2x2 Pipe Grid connecting Source to Outlet) ---
+    const isApartment = (currentLevelData && currentLevelData.id === 14);
+    // Grid: Tile 0=(0,0), Tile 1=(0,1), Tile 2=(1,0), Tile 3=(1,1)
+    // Factory: In -> Tile 0 (Straight) -> Tile 1 (Elbow W->S) -> Tile 3 (Elbow N->E) -> Out
+    // Apartment: In -> Tile 0 (Elbow W->S) -> Tile 2 (Elbow N->E) -> Tile 3 (Straight) -> Out
+    let pipeGrid = isApartment ? [
+      { type: 'elbow', angle: 0, target: 90 },    // Tile 0: needs 90° (West to South)
+      { type: 'straight', angle: 90, target: 0 }, // Tile 1: dummy
+      { type: 'elbow', angle: 180, target: 0 },   // Tile 2: needs 0° (North to East)
+      { type: 'straight', angle: 90, target: 0 }  // Tile 3: needs 0° or 180° (West to East)
+    ] : [
+      { type: 'straight', angle: 90, target: 0 }, // Tile 0: needs 0° or 180° (West to East)
+      { type: 'elbow', angle: 90, target: 180 },  // Tile 1: needs 180° (West to South)
+      { type: 'straight', angle: 0, target: 90 }, // Tile 2: dummy
+      { type: 'elbow', angle: 270, target: 0 }    // Tile 3: needs 0° (North to East)
+    ];
+    let pipeRotationsCount = 0;
+
+    // --- MINI-GAME 3: SIGNAL WIRING (Pairing matching color terminals) ---
+    const isIndZone = (currentLevelData && currentLevelData.id === 15);
+    const leftTerminals = [
+      { id: 0, color: '#ef4444', name: 'RED', y: 45 },
+      { id: 1, color: '#10b981', name: 'GREEN', y: 100 },
+      { id: 2, color: '#38bdf8', name: 'BLUE', y: 155 },
+      { id: 3, color: '#fbbf24', name: 'AMBER', y: 210 }
+    ];
+    // Shuffled right terminals per level
+    const rightTerminals = isIndZone ? [
+      { id: 3, color: '#fbbf24', name: 'AMBER', y: 45 },
+      { id: 2, color: '#38bdf8', name: 'BLUE', y: 100 },
+      { id: 1, color: '#10b981', name: 'GREEN', y: 155 },
+      { id: 0, color: '#ef4444', name: 'RED', y: 210 }
+    ] : [
+      { id: 2, color: '#38bdf8', name: 'BLUE', y: 45 },
+      { id: 0, color: '#ef4444', name: 'RED', y: 100 },
+      { id: 3, color: '#fbbf24', name: 'AMBER', y: 155 },
+      { id: 1, color: '#10b981', name: 'GREEN', y: 210 }
+    ];
+    let selectedLeftTerm = null;
+    let wiredConnections = []; // array of { leftId, rightId, color }
+    let wireFeedbackMsg = "";
+    let wireFeedbackTimer = 0;
+
+    // --- MINI-GAME 4: WATER FILTER (Order 4 sequential filtration stages) ---
+    const filterAllStages = [
+      { id: 0, name: "1. COARSE SCREEN", desc: "Traps large debris & macro-waste", color: "#0284c7" },
+      { id: 1, name: "2. SAND BED", desc: "Filters fine particulates & silt", color: "#d97706" },
+      { id: 2, name: "3. ACTIVATED CARBON", desc: "Absorbs toxins, VOCs & odor", color: "#475569" },
+      { id: 3, name: "4. UV CLARIFIER", desc: "Sterilizes bacteria & pathogens", color: "#9333ea" }
+    ];
+    let currentFilterOrder = [2, 0, 3, 1]; // Scrambled initial state
+    let selectedFilterSlot = null;
+    let filterHintMsg = "";
+
+    // --- MINI-GAME 5: TRAFFIC TIMING (Mega City intersection synchronization) ---
+    let trafficSignalState = 'GREEN'; // 'RED' (halts cross traffic, eco-tanker crosses) or 'GREEN'
+    let crossCars = [
+      { x: -50, speed: 180, w: 55, h: 22, color: '#ef4444' },
+      { x: -280, speed: 210, w: 50, h: 22, color: '#f97316' },
+      { x: -480, speed: 170, w: 60, h: 24, color: '#3b82f6' }
+    ];
+    let ecoTankerY = 210;
+    let tankersCrossed = 0;
+    let trafficCollisionFlash = 0;
 
     function winMiniGame(msg) {
       if (!miniGameActive) return;
@@ -1922,228 +2323,556 @@
       }, 700);
     }
 
-    function failMiniGame() {
+    function failMiniGame(feedbackText) {
       miniGameFailures++;
       SFX.wrong();
+      if (feedbackText) showToast(feedbackText);
       if (miniGameFailures >= 3) {
         mSkip.style.display = 'block';
       }
     }
 
+    mSkip.onclick = () => {
+      winMiniGame("Mechanism resolved via emergency bypass.");
+    };
+
+    // Helper to get relative canvas coordinates for mouse and touch events
+    function getCanvasPos(e) {
+      const rect = mCanvas.getBoundingClientRect();
+      const cx = (e.touches && e.touches.length > 0) ? e.touches[0].clientX : (e.changedTouches && e.changedTouches.length > 0) ? e.changedTouches[0].clientX : e.clientX;
+      const cy = (e.touches && e.touches.length > 0) ? e.touches[0].clientY : (e.changedTouches && e.changedTouches.length > 0) ? e.changedTouches[0].clientY : e.clientY;
+      return {
+        x: (cx - rect.left) * (mCanvas.width / rect.width),
+        y: (cy - rect.top) * (mCanvas.height / rect.height)
+      };
+    }
+
+    // Touch & Mouse Handler
+    function handleCanvasInteraction(pos) {
+      SFX.switchClick();
+      if (type === 'pipe_repair') {
+        const lvlId = currentLevelData ? currentLevelData.id : 3;
+        const greenWidth = Math.max(32, 85 - lvlId * 2.5);
+        const greenStart = 210 - greenWidth / 2;
+        const greenEnd = 210 + greenWidth / 2;
+        if (meterPos >= greenStart && meterPos <= greenEnd) {
+          winMiniGame("Leak sealed! Pressure stabilized.");
+        } else {
+          failMiniGame("Miss! Needle outside pressure threshold.");
+        }
+      } else if (type === 'pipe_rotation') {
+        // Tiles: Tile 0=(150,75), Tile 1=(270,75), Tile 2=(150,185), Tile 3=(270,185)
+        let clickedIdx = -1;
+        if (pos.x >= 105 && pos.x <= 195 && pos.y >= 35 && pos.y <= 115) clickedIdx = 0;
+        else if (pos.x >= 225 && pos.x <= 315 && pos.y >= 35 && pos.y <= 115) clickedIdx = 1;
+        else if (pos.x >= 105 && pos.x <= 195 && pos.y >= 145 && pos.y <= 225) clickedIdx = 2;
+        else if (pos.x >= 225 && pos.x <= 315 && pos.y >= 145 && pos.y <= 225) clickedIdx = 3;
+
+        if (clickedIdx !== -1) {
+          rotateTile(clickedIdx);
+        }
+      } else if (type === 'signals') {
+        // Check Left Terminals (x=60, y=45..210)
+        let hitLeft = -1;
+        leftTerminals.forEach((lt, idx) => {
+          if (pos.x >= 35 && pos.x <= 100 && Math.abs(pos.y - lt.y) <= 24) hitLeft = idx;
+        });
+        if (hitLeft !== -1) {
+          selectedLeftTerm = hitLeft;
+          return;
+        }
+        // Check Right Terminals (x=360, y=45..210)
+        let hitRight = -1;
+        rightTerminals.forEach((rt, idx) => {
+          if (pos.x >= 320 && pos.x <= 385 && Math.abs(pos.y - rt.y) <= 24) hitRight = idx;
+        });
+        if (hitRight !== -1 && selectedLeftTerm !== null) {
+          const lObj = leftTerminals[selectedLeftTerm];
+          const rObj = rightTerminals[hitRight];
+          if (lObj.color === rObj.color) {
+            // Correct Pair
+            if (!wiredConnections.some(w => w.leftId === lObj.id)) {
+              wiredConnections.push({ leftId: lObj.id, rightId: rObj.id, color: lObj.color });
+              selectedLeftTerm = null;
+              wireFeedbackMsg = "✓ Channel synchronized!";
+              wireFeedbackTimer = 1.2;
+              if (wiredConnections.length === 4) {
+                winMiniGame("All 4 telemetry signal lines paired!");
+              }
+            }
+          } else {
+            // Mismatch
+            wireFeedbackMsg = "⚠️ Polarity Mismatch! Colors must match.";
+            wireFeedbackTimer = 1.6;
+            selectedLeftTerm = null;
+            failMiniGame("Signal mismatch! Check wire colors.");
+          }
+        }
+      } else if (type === 'water_filter') {
+        // Test Button at y = 225
+        if (pos.y >= 215 && pos.y <= 255 && pos.x >= 110 && pos.x <= 310) {
+          testFilterSequence();
+          return;
+        }
+        // Check which slot was clicked: y=35, 80, 125, 170
+        let slotIdx = -1;
+        [0, 1, 2, 3].forEach(i => {
+          const sy = 35 + i * 44;
+          if (pos.y >= sy && pos.y <= sy + 40 && pos.x >= 50 && pos.x <= 370) slotIdx = i;
+        });
+        if (slotIdx !== -1) {
+          if (selectedFilterSlot === null) {
+            selectedFilterSlot = slotIdx;
+          } else {
+            // Swap
+            const tmp = currentFilterOrder[selectedFilterSlot];
+            currentFilterOrder[selectedFilterSlot] = currentFilterOrder[slotIdx];
+            currentFilterOrder[slotIdx] = tmp;
+            selectedFilterSlot = null;
+            SFX.switchClick();
+          }
+        }
+      } else if (type === 'traffic_timing') {
+        // Toggle Signal
+        trafficSignalState = (trafficSignalState === 'RED') ? 'GREEN' : 'RED';
+        SFX.flashlightToggle();
+      }
+    }
+
+    function rotateTile(idx) {
+      pipeGrid[idx].angle = (pipeGrid[idx].angle + 90) % 360;
+      pipeRotationsCount++;
+      SFX.switchClick();
+
+      // Check win condition
+      let solved = false;
+      if (isApartment) {
+        // Apartment requires Tile 0 at 90°, Tile 2 at 0°, Tile 3 at 0° or 180°
+        const t0Ok = (pipeGrid[0].angle === 90);
+        const t2Ok = (pipeGrid[2].angle === 0);
+        const t3Ok = (pipeGrid[3].angle === 0 || pipeGrid[3].angle === 180);
+        if (t0Ok && t2Ok && t3Ok) solved = true;
+      } else {
+        // Factory requires Tile 0 at 0°/180°, Tile 1 at 180°, Tile 3 at 0°
+        const t0Ok = (pipeGrid[0].angle === 0 || pipeGrid[0].angle === 180);
+        const t1Ok = (pipeGrid[1].angle === 180);
+        const t3Ok = (pipeGrid[3].angle === 0);
+        if (t0Ok && t1Ok && t3Ok) solved = true;
+      }
+
+      if (solved) {
+        winMiniGame("Bypass pipeline connected! Flow restored.");
+      } else if (pipeRotationsCount >= 8 && pipeRotationsCount % 4 === 0) {
+        failMiniGame();
+      }
+    }
+
+    function testFilterSequence() {
+      // Correct is [0, 1, 2, 3]
+      if (currentFilterOrder[0] === 0 && currentFilterOrder[1] === 1 && currentFilterOrder[2] === 2 && currentFilterOrder[3] === 3) {
+        winMiniGame("4-Stage filtration calibrated! Water purified.");
+      } else {
+        filterHintMsg = "Hint: 1. Coarse Screen (macro) ➔ 2. Sand Bed (silt) ➔ 3. Carbon (chemicals) ➔ 4. UV Clarifier (sterilization)!";
+        failMiniGame("Sequence incorrect. Review physical filtration stages.");
+      }
+    }
+
+    mCanvas.onmousedown = (e) => { handleCanvasInteraction(getCanvasPos(e)); };
+    mCanvas.ontouchstart = (e) => { e.preventDefault(); handleCanvasInteraction(getCanvasPos(e)); };
+
     handleMiniGameKey = (code) => {
       if (!miniGameActive) return false;
       if (code === 'Space' || code === 'Enter') {
-        triggerPrimaryAction();
+        if (type === 'pipe_repair') {
+          handleCanvasInteraction({ x: 210, y: 130 });
+        } else if (type === 'traffic_timing') {
+          trafficSignalState = (trafficSignalState === 'RED') ? 'GREEN' : 'RED';
+        } else if (type === 'water_filter') {
+          testFilterSequence();
+        } else if (type === 'pipe_rotation') {
+          rotateTile(0);
+        }
         return true;
       }
-      if (code === 'Digit1' || code === 'Numpad1') { triggerSlotAction(0); return true; }
-      if (code === 'Digit2' || code === 'Numpad2') { triggerSlotAction(1); return true; }
-      if (code === 'Digit3' || code === 'Numpad3') { triggerSlotAction(2); return true; }
+      if (code === 'Digit1' || code === 'Numpad1') {
+        if (type === 'pipe_rotation') rotateTile(0);
+        else if (type === 'signals') selectedLeftTerm = 0;
+        else if (type === 'water_filter') {
+          if (selectedFilterSlot === null) selectedFilterSlot = 0;
+          else { const t = currentFilterOrder[selectedFilterSlot]; currentFilterOrder[selectedFilterSlot] = currentFilterOrder[0]; currentFilterOrder[0] = t; selectedFilterSlot = null; }
+        }
+        return true;
+      }
+      if (code === 'Digit2' || code === 'Numpad2') {
+        if (type === 'pipe_rotation') rotateTile(1);
+        else if (type === 'signals') selectedLeftTerm = 1;
+        else if (type === 'water_filter') {
+          if (selectedFilterSlot === null) selectedFilterSlot = 1;
+          else { const t = currentFilterOrder[selectedFilterSlot]; currentFilterOrder[selectedFilterSlot] = currentFilterOrder[1]; currentFilterOrder[1] = t; selectedFilterSlot = null; }
+        }
+        return true;
+      }
+      if (code === 'Digit3' || code === 'Numpad3') {
+        if (type === 'pipe_rotation') rotateTile(2);
+        else if (type === 'signals') selectedLeftTerm = 2;
+        else if (type === 'water_filter') {
+          if (selectedFilterSlot === null) selectedFilterSlot = 2;
+          else { const t = currentFilterOrder[selectedFilterSlot]; currentFilterOrder[selectedFilterSlot] = currentFilterOrder[2]; currentFilterOrder[2] = t; selectedFilterSlot = null; }
+        }
+        return true;
+      }
+      if (code === 'Digit4' || code === 'Numpad4') {
+        if (type === 'pipe_rotation') rotateTile(3);
+        else if (type === 'signals') selectedLeftTerm = 3;
+        else if (type === 'water_filter') {
+          if (selectedFilterSlot === null) selectedFilterSlot = 3;
+          else { const t = currentFilterOrder[selectedFilterSlot]; currentFilterOrder[selectedFilterSlot] = currentFilterOrder[3]; currentFilterOrder[3] = t; selectedFilterSlot = null; }
+        }
+        return true;
+      }
+      if (code === 'KeyQ') { if (type === 'signals' && selectedLeftTerm !== null) handleCanvasInteraction({ x: 350, y: 45 }); return true; }
+      if (code === 'KeyW') { if (type === 'signals' && selectedLeftTerm !== null) handleCanvasInteraction({ x: 350, y: 100 }); return true; }
+      if (code === 'KeyE') { if (type === 'signals' && selectedLeftTerm !== null) handleCanvasInteraction({ x: 350, y: 155 }); return true; }
+      if (code === 'KeyR') { if (type === 'signals' && selectedLeftTerm !== null) handleCanvasInteraction({ x: 350, y: 210 }); return true; }
       if (code === 'Escape' && miniGameFailures >= 3) {
-        skipAction();
+        winMiniGame("Mechanism resolved via emergency bypass.");
         return true;
       }
       return false;
     };
-
-    function triggerPrimaryAction() {
-      SFX.switchClick();
-      if (type === 'pipe_repair') {
-        if (meterPos >= 155 && meterPos <= 245) {
-          winMiniGame("Leak sealed! Pressure stabilized.");
-        } else {
-          failMiniGame();
-        }
-      } else if (type === 'traffic_timing') {
-        const state = (trafficTimer % 5.0);
-        if (state < 2.2) {
-          winMiniGame("Corridor synchronized! Signals green.");
-        } else {
-          failMiniGame();
-        }
-      } else if (type === 'signals') {
-        if (!wiresConnected.r) triggerSlotAction(0);
-        else if (!wiresConnected.g) triggerSlotAction(1);
-        else triggerSlotAction(2);
-      } else if (type === 'water_filter') {
-        if (!filterStages.s1) triggerSlotAction(0);
-        else if (!filterStages.s2) triggerSlotAction(1);
-        else triggerSlotAction(2);
-      } else if (type === 'pipe_rotation') {
-        triggerSlotAction(0);
-      }
-    }
-
-    function triggerSlotAction(idx) {
-      SFX.switchClick();
-      if (type === 'signals') {
-        if (idx === 0) wiresConnected.r = true;
-        if (idx === 1 && wiresConnected.r) wiresConnected.g = true;
-        if (idx === 2 && wiresConnected.g) {
-          wiresConnected.b = true;
-          winMiniGame("Signal telemetry lines paired!");
-        }
-      } else if (type === 'water_filter') {
-        if (idx === 0) filterStages.s1 = true;
-        else if (idx === 1 && filterStages.s1) filterStages.s2 = true;
-        else if (idx === 2 && filterStages.s2) {
-          filterStages.s3 = true;
-          winMiniGame("3-Stage filtration online!");
-        } else {
-          failMiniGame();
-        }
-      } else if (type === 'pipe_rotation') {
-        pipeAngles[idx] = (pipeAngles[idx] + 90) % 360;
-        if (pipeAngles[0] === 0 && pipeAngles[1] === 0 && pipeAngles[2] === 0) {
-          winMiniGame("Bypass pipes aligned!");
-        }
-      }
-    }
 
     function renderMini() {
       if (!miniGameActive) return;
       const now = performance.now();
       const dt = Math.min((now - lastMiniTime) / 1000, 0.05);
       lastMiniTime = now;
+      animTimer += dt;
+      if (wireFeedbackTimer > 0) wireFeedbackTimer -= dt;
+      if (trafficCollisionFlash > 0) trafficCollisionFlash -= dt;
 
       mCtx.clearRect(0, 0, 420, 260);
 
+      // --- RENDER 1: LEAK REPAIR ---
       if (type === 'pipe_repair') {
-        meterPos += meterDir * dt * 260;
-        if (meterPos > 340) { meterPos = 340; meterDir = -1; }
-        else if (meterPos < 50) { meterPos = 50; meterDir = 1; }
+        meterPos += meterDir * dt * 250;
+        if (meterPos > 360) { meterPos = 360; meterDir = -1; }
+        else if (meterPos < 60) { meterPos = 60; meterDir = 1; }
 
-        document.getElementById('minigame-title').textContent = "PIPE LEAK SEALING";
-        document.getElementById('minigame-desc').textContent = "Tap or press [Space] when oscillating needle aligns inside the green zone.";
-        mCtx.fillStyle = "#1e293b"; mCtx.fillRect(40, 110, 340, 40);
-        mCtx.fillStyle = "#10b981"; mCtx.fillRect(160, 110, 80, 40);
-        mCtx.fillStyle = "#38bdf8"; mCtx.fillRect(meterPos, 98, 12, 64);
-        mCtx.fillStyle = "#94a3b8"; mCtx.font = "bold 11px sans-serif";
-        mCtx.fillText("PRESSURE DIAL", 165, 85);
-        mCtx.fillText("[Space / Tap] to Seal Valve", 135, 195);
-      } else if (type === 'signals') {
-        document.getElementById('minigame-title').textContent = "SIGNAL RELAY WIRING";
-        document.getElementById('minigame-desc').textContent = "Click terminals or press [1, 2, 3] to pair telemetry channels in order.";
-        const colors = [['#ef4444','1. RED RELAY'], ['#10b981','2. GREEN RELAY'], ['#38bdf8','3. BLUE RELAY']];
-        colors.forEach((c, idx) => {
-          mCtx.fillStyle = c[0];
-          mCtx.fillRect(45, 35 + idx * 70, 40, 40);
-          mCtx.fillRect(335, 35 + idx * 70, 40, 40);
-          mCtx.fillStyle = "#e2e8f0"; mCtx.font = "bold 11px sans-serif";
-          mCtx.fillText(c[1], 155, 60 + idx * 70);
-          if (idx === 0 && wiresConnected.r) { mCtx.strokeStyle = c[0]; mCtx.lineWidth = 5; mCtx.beginPath(); mCtx.moveTo(85, 55); mCtx.lineTo(335, 55); mCtx.stroke(); }
-          if (idx === 1 && wiresConnected.g) { mCtx.strokeStyle = c[0]; mCtx.lineWidth = 5; mCtx.beginPath(); mCtx.moveTo(85, 125); mCtx.lineTo(335, 125); mCtx.stroke(); }
-          if (idx === 2 && wiresConnected.b) { mCtx.strokeStyle = c[0]; mCtx.lineWidth = 5; mCtx.beginPath(); mCtx.moveTo(85, 195); mCtx.lineTo(335, 195); mCtx.stroke(); }
-        });
+        const lvlId = currentLevelData ? currentLevelData.id : 3;
+        const greenWidth = Math.max(32, 85 - lvlId * 2.5);
+        const greenStart = 210 - greenWidth / 2;
+
+        document.getElementById('minigame-title').textContent = t('leakRepairTitle');
+        document.getElementById('minigame-desc').textContent = t('leakRepairDesc');
+
+        // Dial casing
+        mCtx.fillStyle = "#1e293b"; mCtx.fillRect(40, 105, 340, 50);
+        mCtx.strokeStyle = "#38bdf8"; mCtx.lineWidth = 2; mCtx.strokeRect(40, 105, 340, 50);
+
+        // Green Zone
+        mCtx.fillStyle = "#10b981"; mCtx.fillRect(greenStart, 106, greenWidth, 48);
+
+        // Oscillating Needle
+        mCtx.fillStyle = "#38bdf8"; mCtx.fillRect(meterPos - 6, 90, 12, 80);
+        mCtx.fillStyle = "#fff"; mCtx.beginPath(); mCtx.arc(meterPos, 130, 4, 0, Math.PI * 2); mCtx.fill();
+
+        mCtx.fillStyle = "#94a3b8"; mCtx.font = "bold 12px sans-serif"; mCtx.textAlign = "center";
+        mCtx.fillText("PRESSURE EQUALIZATION DIAL", 210, 80);
+        mCtx.fillText("[Space / Tap Canvas] to Seal Leak", 210, 195);
+        mCtx.font = "10px sans-serif"; mCtx.fillStyle = "#64748b";
+        mCtx.fillText(`Target Tolerance: ${Math.round(greenWidth)}px`, 210, 220);
+
+      // --- RENDER 2: PIPE ROTATION ---
       } else if (type === 'pipe_rotation') {
-        document.getElementById('minigame-title').textContent = "PIPE BYPASS ROTATION";
-        document.getElementById('minigame-desc').textContent = "Click valves or press [1, 2, 3] to align horizontal fluid route (0°).";
-        [0, 1, 2].forEach(i => {
-          const cx = 90 + i * 120, cy = 130;
+        document.getElementById('minigame-title').textContent = t('pipeRotateTitle');
+        document.getElementById('minigame-desc').textContent = t('pipeRotateDesc');
+
+        // Inlet (Left) and Outlet (Right)
+        mCtx.fillStyle = "#10b981"; mCtx.font = "bold 11px sans-serif"; mCtx.textAlign = "left";
+        mCtx.fillText("INLET ➔", 50, 80);
+        mCtx.textAlign = "right";
+        mCtx.fillText("➔ OUTLET", 370, 190);
+
+        // 4 Tiles: (150,75), (270,75), (150,185), (270,185)
+        const centers = [{ x: 150, y: 75 }, { x: 270, y: 75 }, { x: 150, y: 185 }, { x: 270, y: 185 }];
+        pipeGrid.forEach((tile, i) => {
+          const cx = centers[i].x, cy = centers[i].y;
+          // Tile background
+          mCtx.fillStyle = "#1e293b"; mCtx.fillRect(cx - 40, cy - 40, 80, 80);
+          mCtx.strokeStyle = "#38bdf8"; mCtx.lineWidth = 1.5; mCtx.strokeRect(cx - 40, cy - 40, 80, 80);
+
           mCtx.save();
           mCtx.translate(cx, cy);
-          mCtx.rotate(pipeAngles[i] * Math.PI / 180);
-          mCtx.fillStyle = pipeAngles[i] === 0 ? "#10b981" : "#0284c7";
-          mCtx.fillRect(-35, -12, 70, 24);
-          mCtx.fillStyle = "#fff"; mCtx.beginPath(); mCtx.arc(0, 0, 8, 0, Math.PI * 2); mCtx.fill();
+          mCtx.rotate(tile.angle * Math.PI / 180);
+
+          mCtx.fillStyle = "#0284c7";
+          if (tile.type === 'straight') {
+            mCtx.fillRect(-40, -12, 80, 24);
+          } else {
+            // Elbow: opens East & South
+            mCtx.fillRect(0, -12, 40, 24);
+            mCtx.fillRect(-12, 0, 24, 40);
+            mCtx.beginPath(); mCtx.arc(0, 0, 12, 0, Math.PI * 2); mCtx.fill();
+          }
           mCtx.restore();
-          mCtx.fillStyle = "#94a3b8"; mCtx.font = "bold 11px sans-serif";
-          mCtx.fillText(`[${i+1}] ${pipeAngles[i]}°`, cx - 20, cy + 50);
+
+          mCtx.fillStyle = "#94a3b8"; mCtx.font = "bold 10px monospace"; mCtx.textAlign = "center";
+          mCtx.fillText(`[${i+1}] ${tile.angle}°`, cx, cy + 32);
         });
+
+      // --- RENDER 3: SIGNAL WIRING ---
+      } else if (type === 'signals') {
+        document.getElementById('minigame-title').textContent = t('signalTitle');
+        document.getElementById('minigame-desc').textContent = t('signalDesc');
+
+        // Draw Left Terminals
+        leftTerminals.forEach((lt, idx) => {
+          const isSelected = (selectedLeftTerm === idx);
+          mCtx.fillStyle = lt.color;
+          mCtx.fillRect(45, lt.y - 18, 45, 36);
+          if (isSelected) {
+            mCtx.strokeStyle = "#ffffff"; mCtx.lineWidth = 3;
+            mCtx.strokeRect(43, lt.y - 20, 49, 40);
+          }
+          mCtx.fillStyle = "#ffffff"; mCtx.font = "bold 10px sans-serif"; mCtx.textAlign = "center";
+          mCtx.fillText(`[${idx+1}]`, 67, lt.y + 4);
+        });
+
+        // Draw Right Terminals
+        const keyLabels = ['[Q]', '[W]', '[E]', '[R]'];
+        rightTerminals.forEach((rt, idx) => {
+          mCtx.fillStyle = rt.color;
+          mCtx.fillRect(330, rt.y - 18, 45, 36);
+          mCtx.fillStyle = "#ffffff"; mCtx.font = "bold 10px sans-serif"; mCtx.textAlign = "center";
+          mCtx.fillText(keyLabels[idx], 352, rt.y + 4);
+        });
+
+        // Draw Completed Wires
+        wiredConnections.forEach(w => {
+          const lObj = leftTerminals.find(l => l.id === w.leftId);
+          const rObj = rightTerminals.find(r => r.id === w.rightId);
+          if (lObj && rObj) {
+            mCtx.strokeStyle = w.color; mCtx.lineWidth = 5;
+            mCtx.beginPath();
+            mCtx.moveTo(90, lObj.y);
+            mCtx.bezierCurveTo(180, lObj.y, 240, rObj.y, 330, rObj.y);
+            mCtx.stroke();
+          }
+        });
+
+        if (wireFeedbackTimer > 0) {
+          mCtx.fillStyle = wireFeedbackMsg.includes('✓') ? "#34d399" : "#f87171";
+          mCtx.font = "bold 12px sans-serif"; mCtx.textAlign = "center";
+          mCtx.fillText(wireFeedbackMsg, 210, 245);
+        }
+
+      // --- RENDER 4: WATER FILTER ---
+      } else if (type === 'water_filter') {
+        document.getElementById('minigame-title').textContent = t('filterTitle');
+        document.getElementById('minigame-desc').textContent = t('filterDesc');
+
+        currentFilterOrder.forEach((stageId, slotIdx) => {
+          const stage = filterAllStages[stageId];
+          const sy = 32 + slotIdx * 45;
+          const isSelected = (selectedFilterSlot === slotIdx);
+
+          mCtx.fillStyle = isSelected ? "rgba(56, 189, 248, 0.35)" : "#1e293b";
+          mCtx.fillRect(45, sy, 330, 38);
+          mCtx.strokeStyle = isSelected ? "#38bdf8" : stage.color;
+          mCtx.lineWidth = isSelected ? 2.5 : 1.5;
+          mCtx.strokeRect(45, sy, 330, 38);
+
+          // Color pip
+          mCtx.fillStyle = stage.color; mCtx.fillRect(50, sy + 6, 10, 26);
+
+          mCtx.fillStyle = "#ffffff"; mCtx.font = "bold 11px sans-serif"; mCtx.textAlign = "left";
+          mCtx.fillText(`Slot [${slotIdx + 1}]: ${stage.name}`, 68, sy + 16);
+          mCtx.fillStyle = "#94a3b8"; mCtx.font = "9px sans-serif";
+          mCtx.fillText(stage.desc, 68, sy + 30);
+        });
+
+        // Test Button at bottom
+        mCtx.fillStyle = "#0284c7"; mCtx.fillRect(110, 215, 200, 32);
+        mCtx.fillStyle = "#ffffff"; mCtx.font = "bold 11px sans-serif"; mCtx.textAlign = "center";
+        mCtx.fillText("TEST FILTRATION [Space]", 210, 235);
+
+        if (filterHintMsg) {
+          mCtx.fillStyle = "#fbbf24"; mCtx.font = "9px sans-serif";
+          mCtx.fillText(filterHintMsg, 210, 255);
+        }
+
+      // --- RENDER 5: TRAFFIC TIMING ---
       } else if (type === 'traffic_timing') {
-        trafficTimer += dt;
-        document.getElementById('minigame-title').textContent = "TRAFFIC SIGNAL SYNCHRONIZATION";
-        document.getElementById('minigame-desc').textContent = "Tap or press [Space] during GREEN phase to route emergency vehicles.";
-        const state = (trafficTimer % 5.0);
-        const isGreen = state < 2.2, isAmber = state >= 2.2 && state < 3.0, isRed = state >= 3.0;
-        mCtx.fillStyle = "#1e293b"; mCtx.fillRect(170, 40, 80, 180);
-        mCtx.fillStyle = isRed ? "#ef4444" : "#450a0a"; mCtx.beginPath(); mCtx.arc(210, 75, 20, 0, Math.PI * 2); mCtx.fill();
-        mCtx.fillStyle = isAmber ? "#fbbf24" : "#451a03"; mCtx.beginPath(); mCtx.arc(210, 130, 20, 0, Math.PI * 2); mCtx.fill();
-        mCtx.fillStyle = isGreen ? "#10b981" : "#052e16"; mCtx.beginPath(); mCtx.arc(210, 185, 20, 0, Math.PI * 2); mCtx.fill();
-      } else {
-        document.getElementById('minigame-title').textContent = "WATER FILTER ALIGNMENT";
-        document.getElementById('minigame-desc').textContent = "Activate in order: 1. Screen (Macro) ➔ 2. Sand (Particulate) ➔ 3. Carbon (Chemical).";
-        const stages = [
-          { name: "1. SCREEN", active: filterStages.s1, col: "#0284c7" },
-          { name: "2. SAND", active: filterStages.s2, col: "#059669" },
-          { name: "3. CARBON", active: filterStages.s3, col: "#d97706" }
-        ];
-        stages.forEach((st, idx) => {
-          mCtx.fillStyle = st.active ? st.col : "#1e293b";
-          mCtx.fillRect(50 + idx * 115, 80, 90, 100);
-          mCtx.strokeStyle = st.col; mCtx.lineWidth = 2;
-          mCtx.strokeRect(50 + idx * 115, 80, 90, 100);
-          mCtx.fillStyle = st.active ? "#fff" : "#94a3b8";
-          mCtx.font = "bold 11px sans-serif";
-          mCtx.fillText(st.name, 60 + idx * 115, 135);
-          mCtx.fillText(st.active ? "ONLINE" : "[READY]", 65 + idx * 115, 155);
+        document.getElementById('minigame-title').textContent = t('trafficTitle');
+        document.getElementById('minigame-desc').textContent = t('trafficDesc');
+
+        // Draw Highway (horizontal)
+        mCtx.fillStyle = "#1e293b"; mCtx.fillRect(0, 90, 420, 60);
+        mCtx.strokeStyle = "#475569"; mCtx.lineWidth = 1;
+        mCtx.beginPath(); mCtx.moveTo(0, 120); mCtx.lineTo(420, 120); mCtx.stroke();
+
+        // Stop line
+        mCtx.fillStyle = "#ffffff"; mCtx.fillRect(100, 90, 6, 60);
+
+        // Eco-Corridor (vertical)
+        mCtx.fillStyle = "rgba(16, 185, 129, 0.15)"; mCtx.fillRect(180, 0, 60, 260);
+
+        // Update & draw cross cars
+        crossCars.forEach(car => {
+          if (trafficSignalState === 'GREEN' || car.x > 105) {
+            car.x += car.speed * dt;
+            if (car.x > 450) car.x = -60 - Math.random() * 80;
+          } else if (car.x < 90) {
+            car.x += car.speed * dt * 0.5;
+            if (car.x > 90) car.x = 90;
+          }
+          mCtx.fillStyle = car.color;
+          mCtx.fillRect(car.x, 102, car.w, car.h);
         });
+
+        // Eco-Tanker simulation
+        const isBoxClear = !crossCars.some(c => c.x > 110 && c.x < 270);
+        if (trafficSignalState === 'RED' && isBoxClear) {
+          ecoTankerY -= 95 * dt;
+          if (ecoTankerY < 40) {
+            ecoTankerY = 210;
+            tankersCrossed++;
+            SFX.success();
+            if (tankersCrossed >= 3) {
+              winMiniGame("All 3 Eco-Tankers crossed safely! Mega City fleet operational.");
+            }
+          }
+        } else if (trafficSignalState === 'GREEN' && ecoTankerY < 180 && ecoTankerY > 70) {
+          // Collision warning
+          trafficCollisionFlash = 0.5;
+          ecoTankerY = 210;
+          failMiniGame("Cross-traffic collision warning! Halt traffic at RED.");
+        }
+
+        // Draw Eco-Tanker
+        mCtx.fillStyle = "#10b981";
+        mCtx.fillRect(195, ecoTankerY, 30, 45);
+        mCtx.fillStyle = "#ffffff"; mCtx.font = "bold 9px sans-serif"; mCtx.textAlign = "center";
+        mCtx.fillText("ECO", 210, ecoTankerY + 26);
+
+        // Traffic Signal Light Box (Top-right)
+        mCtx.fillStyle = "#0f172a"; mCtx.fillRect(340, 15, 60, 65);
+        mCtx.strokeStyle = "#38bdf8"; mCtx.lineWidth = 1.5; mCtx.strokeRect(340, 15, 60, 65);
+
+        mCtx.fillStyle = trafficSignalState === 'RED' ? "#ef4444" : "#450a0a";
+        mCtx.beginPath(); mCtx.arc(370, 32, 12, 0, Math.PI * 2); mCtx.fill();
+        mCtx.fillStyle = trafficSignalState === 'GREEN' ? "#10b981" : "#052e16";
+        mCtx.beginPath(); mCtx.arc(370, 60, 12, 0, Math.PI * 2); mCtx.fill();
+
+        mCtx.fillStyle = "#e2e8f0"; mCtx.font = "bold 11px sans-serif"; mCtx.textAlign = "center";
+        mCtx.fillText(`CROSS: [${trafficSignalState}] [Space/Tap]`, 210, 40);
+        mCtx.fillText(`Convoys Passed: ${tankersCrossed}/3`, 210, 245);
+
+        if (trafficCollisionFlash > 0) {
+          mCtx.fillStyle = "rgba(239, 68, 68, 0.35)";
+          mCtx.fillRect(0, 0, 420, 260);
+        }
       }
 
       requestAnimationFrame(renderMini);
     }
-    renderMini();
-
-    mCanvas.onclick = (e) => {
-      const rect = mCanvas.getBoundingClientRect();
-      const clickX = (e.clientX - rect.left) * (420 / rect.width);
-      const clickY = (e.clientY - rect.top) * (260 / rect.height);
-      if (type === 'signals') {
-        if (clickY < 100) triggerSlotAction(0);
-        else if (clickY < 170) triggerSlotAction(1);
-        else triggerSlotAction(2);
-      } else if (type === 'pipe_rotation' || type === 'water_filter') {
-        if (clickX < 140) triggerSlotAction(0);
-        else if (clickX < 260) triggerSlotAction(1);
-        else triggerSlotAction(2);
-      } else {
-        triggerPrimaryAction();
-      }
-    };
-
-    function skipAction() {
-      miniGameActive = false;
-      mLayer.style.display = 'none';
-      gameState = 'PLAYING';
-      showToast("Puzzle skipped with municipal engineering assist.");
-      if (onSolved) onSolved();
-    }
-    mSkip.onclick = skipAction;
+    requestAnimationFrame(renderMini);
   }
 
-  // 18. LEVEL 20 FINALE SEQUENCE & DUAL ENDINGS
+  // 18. LEVEL 20 FINALE SEQUENCE & 3-PHASE SHADOW BOSS FIGHT
+  let finaleFailuresCount = 0;
+  let bossPhase = 0;
+  let bossShieldHp = 100;
+  let bossSurgeTimer = 0;
+
   function startFinaleTerminal() {
     gameState = 'FINALE_TERMINAL';
     const fLayer = document.getElementById('finale-layer');
     const fErr = document.getElementById('finale-error');
+    const fHintBtn = document.getElementById('btn-finale-hint');
     fErr.textContent = "";
     document.getElementById('txt-finale-code').value = "";
+    if (fHintBtn) fHintBtn.style.display = 'none';
     fLayer.style.display = 'flex';
 
     document.getElementById('btn-finale-submit').onclick = () => {
       const code = document.getElementById('txt-finale-code').value.trim().toUpperCase();
-      if (code === 'CLEAN' || code === 'SWACHH' || code === 'VANE' || code === 'REMEDIATE') {
+      if (code === 'SWACHH' || code === 'CLEAN' || code === 'SWACHHTA' || code === 'GUARDIAN' || code === 'REMEDIATE') {
         fLayer.style.display = 'none';
-        triggerFinaleDissolve();
+        initiateBossFightSequence();
       } else {
-        fErr.textContent = "Invalid Passcode. Clues hint: 'CLEAN' or 'SWACHH'.";
+        finaleFailuresCount++;
+        // Requirement: Do NOT reveal the passcode in error message!
+        fErr.textContent = "Access Denied: Terminal locked. Consult Case File sector evidence cipher fragments.";
         SFX.wrong();
+        if (finaleFailuresCount >= 2 && fHintBtn) {
+          fHintBtn.style.display = 'inline-block';
+        }
       }
     };
+
+    if (fHintBtn) {
+      fHintBtn.onclick = () => {
+        if (finaleFailuresCount >= 4) {
+          fErr.textContent = "Dossier Decryption Assistance: Emergency override codeword is 'SWACHH'.";
+        } else {
+          fErr.textContent = "Dossier Decryption Assistance: The authorization keyword is the Sanskrit/Hindi word for cleanliness ('S _ _ _ _ _' / 6 letters).";
+        }
+      };
+    }
   }
 
-  function triggerFinaleDissolve() {
+  function initiateBossFightSequence() {
+    gameState = 'BOSS_FIGHT';
+    bossPhase = 1;
+    bossShieldHp = 100;
+    bossSurgeTimer = 0;
+    SFX.shadowGrowl();
+    speak("Passcode confirmed! Expose Shadow's toxic barrier with high-intensity flashlight!");
+    showToast("PHASE 1: FOCUS FLASHLIGHT TO BREAK TOXIC BARRIER!");
+    if (shadow) {
+      shadow.active = true;
+      shadow.x = player.x + 320;
+      shadow.y = currentLevelData.groundY;
+    }
+  }
+
+  function advanceBossPhase2() {
+    bossPhase = 2;
+    SFX.success();
+    speak("Barrier broken! Align bypass valve terminal to destabilize core!");
+    showToast("PHASE 2: ALIGN PIPES TO FLUSH SHADOW CORE!");
+    startMiniGame('pipe_rotation', () => {
+      advanceBossPhase3();
+    });
+  }
+
+  function advanceBossPhase3() {
+    bossPhase = 3;
+    SFX.shadowGrowl();
+    if (shadow) {
+      shadow.rage = true;
+      shadow.speed = 330;
+      shadow.x = player.x + 400;
+    }
+    speak("Core destabilized! Shadow in RAGE mode! Sprint to the UV Cannon at the exit!");
+    showToast("PHASE 3: SPRINT TO UV CLARIFIER CANNON AT EXIT!");
+  }
+
+  function triggerFinaleCannonBlast() {
     gameState = 'PLAYING';
     SFX.success();
-    speak("UV Clarifier Cannons online! Dissolving Shadow of pollution!");
+    speak("UV Clarifier Cannons online! Dissolving Shadow of pollution forever!");
+    showToast("ULTRAVIOLET PURIFICATION BLAST FIRED!");
+
     if (shadow) {
       // Sparkling dissolve effect
-      for (let i = 0; i < 40; i++) {
-        spawnParticle(shadow.x + (Math.random()-0.5)*80, shadow.y - Math.random()*160, (Math.random()-0.5)*120, -50 - Math.random()*80, 2.5, 4, '#38bdf8');
+      for (let i = 0; i < 60; i++) {
+        spawnParticle(shadow.x + (Math.random() - 0.5) * 80, shadow.y - Math.random() * 160, (Math.random() - 0.5) * 160, -60 - Math.random() * 100, 2.5, 4, '#38bdf8');
       }
       shadow.active = false;
     }
-    setTimeout(() => checkLevelCompletion(), 2200);
+    setTimeout(() => checkLevelCompletion(), 2400);
   }
 
   // 19. COMPLETION & DUAL ENDINGS (Standard vs True Clean Guardian)
@@ -2185,62 +2914,33 @@
         if (saveState.daily.history.length > 14) saveState.daily.history.pop();
       }
 
-      if (saveState.daily.streak >= 3) saveState.achievements['streak_3'] = true;
-      if (saveState.daily.streak >= 7) saveState.achievements['streak_7'] = true;
-
-      saveState.ecoPoints += bBonus; saveGameData();
-
-      const gradeEl = document.getElementById('daily-final-grade');
-      gradeEl.textContent = grade; gradeEl.className = `grade-${grade}`;
-      document.getElementById('daily-complete-summary').textContent = `${currentLevelData.name} | ${currentLevelData.ruleModifier.name}`;
-      document.getElementById('daily-complete-score').textContent = finalScore;
-      document.getElementById('daily-complete-time').textContent = timeFormatted;
-      document.getElementById('daily-complete-streak').textContent = `🔥 ${saveState.daily.streak} Days`;
-
-      const shareText = `Shadow Trail Daily ${getFormattedDate(todayKey)} | ${currentLevelData.name} | Grade ${grade} | Score: ${finalScore} | Time: ${timeFormatted} | Streak: ${saveState.daily.streak}d`;
-      document.getElementById('btn-daily-copy').onclick = () => copyDailySummary(shareText);
-      document.getElementById('daily-complete-layer').style.display = 'flex';
+      saveGameData();
+      document.getElementById('lbl-complete-sector').textContent = `DAILY CHALLENGE: ${currentLevelData.name}`;
+      document.getElementById('lbl-complete-time').textContent = `Time: ${timeFormatted} | Score: ${finalScore} (Rank ${grade})`;
+      document.getElementById('lbl-complete-fact').textContent = currentLevelData.fact;
+      document.getElementById('complete-layer').style.display = 'flex';
       return;
     }
 
-    // Story Mode Completion
-    let badgesFound = 0;
-    if (currentLevelData.badges) {
-      currentLevelData.badges.forEach(b => { if (saveState.ecoBadgesFound[b.id]) badgesFound++; });
-    }
-    let stars = 1;
-    if (levelTimer < 160) stars++;
-    if (badgesFound >= 2) stars++;
-
-    const wasAlreadyCompleted = !!saveState.completedLevels[currentLevelData.id];
-    let newlyAwarded = 0;
-    if (!wasAlreadyCompleted) {
-      newlyAwarded = 150;
-      saveState.completedLevels[currentLevelData.id] = true;
-      saveState.ecoPoints += 150;
-    }
-    saveState.levelStars[currentLevelData.id] = Math.max(saveState.levelStars[currentLevelData.id] || 0, stars);
-    saveState.bestTimes[currentLevelData.id] = timeFormatted;
+    // Normal Story Progression
+    saveState.completedLevels[currentLevelData.id] = true;
     saveState.cluesFound[currentLevelData.id] = currentLevelData.clueName;
-
-    if (currentLevelData.id === saveState.unlockedLevel && saveState.unlockedLevel < LEVELS_DATA.length) {
-      saveState.unlockedLevel++;
+    if (saveState.unlockedLevel < currentLevelData.id + 1) {
+      saveState.unlockedLevel = Math.min(20, currentLevelData.id + 1);
     }
+    const currentStars = (levelTimer < 120 ? 3 : levelTimer < 200 ? 2 : 1);
+    saveState.levelStars[currentLevelData.id] = Math.max(saveState.levelStars[currentLevelData.id] || 0, currentStars);
+    saveState.bestTimes[currentLevelData.id] = timeFormatted;
     saveGameData();
 
-    if (currentLevelData.id === 20) {
-      showCertificateScreen();
-      return;
-    }
-
-    document.getElementById('lbl-sector-restored').textContent = t('sectorRestored');
-    document.getElementById('btn-complete-next').textContent = t('nextSector');
-    document.getElementById('complete-stars').textContent = '★'.repeat(stars) + '☆'.repeat(3 - stars);
-    document.getElementById('complete-time').textContent = timeFormatted;
-    document.getElementById('complete-eco').textContent = `+${newlyAwarded}`;
-    document.getElementById('complete-badges').textContent = `${badgesFound}/3`;
-    document.getElementById('fact-card-text').textContent = currentLevelData.fact;
+    document.getElementById('lbl-complete-sector').textContent = `SECTOR ${currentLevelData.id}: ${currentLevelData.name}`;
+    document.getElementById('lbl-complete-time').textContent = `Time: ${timeFormatted} | Stars: ${'★'.repeat(currentStars)}`;
+    document.getElementById('lbl-complete-fact').textContent = currentLevelData.fact;
     document.getElementById('complete-layer').style.display = 'flex';
+
+    if (currentLevelData.id === 20) {
+      setTimeout(() => showCertificateScreen(), 1800);
+    }
   }
 
   function showCertificateScreen() {
@@ -2251,23 +2951,52 @@
       return;
     }
     gameState = 'FINALE'; hideAllModals();
-    const totalBadges = Object.keys(saveState.ecoBadgesFound).length;
-    const isTrueEnding = totalBadges >= 45; // True ending threshold
 
+    const totalBadges = Object.keys(saveState.ecoBadgesFound).length;
+    const totalDecisions = Object.keys(saveState.decisionsCompleted).length;
+    const isTrueEnding = (totalBadges >= 45 && totalDecisions >= 8);
+
+    // Requirement: Safe DOM text nodes only (NO innerHTML with save-derived text)
     document.getElementById('cert-name').textContent = saveState.playerName;
-    document.getElementById('cert-eco').textContent = saveState.ecoPoints;
-    let stars = 0; Object.values(saveState.levelStars).forEach(s => stars += s);
+    document.getElementById('cert-eco').textContent = String(saveState.ecoPoints);
+
+    let stars = 0;
+    Object.values(saveState.levelStars).forEach(s => stars += s);
     document.getElementById('cert-stars').textContent = `${stars}/60`;
+
+    const certBody = document.getElementById('cert-body');
+    certBody.textContent = ""; // Clear securely
 
     if (isTrueEnding) {
       document.getElementById('cert-emblem').textContent = "🌟 🇮🇳 🌿";
       document.getElementById('cert-rank').textContent = "TRUE CLEAN GUARDIAN (100% SWACHH)";
-      document.getElementById('cert-body').innerHTML = `Special Commendation: <b style="font-size: 20px; text-decoration: underline;">${saveState.playerName}</b> discovered over 45 regional Eco-Badges and dissolved industrial corruption at the root. The nation's rivers, forests, and communities thrive under your vigilance!`;
+
+      const prefix = document.createTextNode("Special National Commendation: ");
+      const nameEl = document.createElement('b');
+      nameEl.style.fontSize = "20px";
+      nameEl.style.textDecoration = "underline";
+      nameEl.textContent = saveState.playerName;
+      const suffix = document.createTextNode(" has achieved the TRUE CLEAN GUARDIAN rank by recovering 45+ regional Eco-Badges, resolving critical environmental dilemmas, and dissolving the Shadow at its industrial source. All 20 sectors thrive in pristine cleanliness!");
+
+      certBody.appendChild(prefix);
+      certBody.appendChild(nameEl);
+      certBody.appendChild(suffix);
     } else {
       document.getElementById('cert-emblem').textContent = "🇮🇳 🌿";
       document.getElementById('cert-rank').textContent = "HONORARY GUARDIAN (GOOD ENDING)";
-      document.getElementById('cert-body').innerHTML = `This certifies that <b style="font-size: 20px; text-decoration: underline;">${saveState.playerName}</b> investigated all 20 pollution sectors, stopped industrial effluents, and dissolved the Shadow forever. (Replay sectors to discover 45+ Eco-Badges for the True Ending!).`;
+
+      const prefix = document.createTextNode("This certifies that ");
+      const nameEl = document.createElement('b');
+      nameEl.style.fontSize = "20px";
+      nameEl.style.textDecoration = "underline";
+      nameEl.textContent = saveState.playerName;
+      const suffix = document.createTextNode(" has investigated all 20 pollution sectors, stopped industrial effluents, and dissolved the Shadow of neglect forever. (Tip: Replay sectors to uncover 45+ Eco-Badges and all Civic Decisions for the True Ending!)");
+
+      certBody.appendChild(prefix);
+      certBody.appendChild(nameEl);
+      certBody.appendChild(suffix);
     }
+
     document.getElementById('certificate-screen').style.display = 'flex';
   }
 
@@ -2275,9 +3004,7 @@
     gameState = 'GAMEOVER'; SFX.wrong();
     speak("The toxic contamination forced a retreat.");
     document.getElementById('gameover-layer').style.display = 'flex';
-  }
-
-  // 20. DETERMINISTIC DAILY CHALLENGE ENGINE (mulberry32)
+  }// 20. DETERMINISTIC DAILY CHALLENGE ENGINE (mulberry32)
   function mulberry32(seed) {
     return function() {
       let t = seed += 0x6D2B79F5;
@@ -2371,10 +3098,125 @@
       screenShake = Math.max(0, screenShake - 0.5);
     }
 
-    if (bgCacheCanvas) ctx.drawImage(bgCacheCanvas, 0, 0);
+    // --- 3 PARALLAX LAYERS ---
+    // Layer 1: Distant Sky Gradient & Horizon Silhouettes (0.12x scroll)
+    if (bgCacheCanvas) {
+      const p1Offset = (cameraX * 0.12) % V_WIDTH;
+      ctx.drawImage(bgCacheCanvas, 0, 0, V_WIDTH, V_HEIGHT, -p1Offset, 0, V_WIDTH, V_HEIGHT);
+      ctx.drawImage(bgCacheCanvas, 0, 0, V_WIDTH, V_HEIGHT, V_WIDTH - p1Offset, 0, V_WIDTH, V_HEIGHT);
 
+      // Layer 2: Mid-distance Landmark Prop Silhouettes (0.38x scroll)
+      const p2Offset = (cameraX * 0.38) % V_WIDTH;
+      ctx.drawImage(bgCacheCanvas, V_WIDTH, 0, V_WIDTH, V_HEIGHT, -p2Offset, 0, V_WIDTH, V_HEIGHT);
+      ctx.drawImage(bgCacheCanvas, V_WIDTH, 0, V_WIDTH, V_HEIGHT, V_WIDTH - p2Offset, 0, V_WIDTH, V_HEIGHT);
+    }
+
+    // Layer 3: Foreground (Platforms, Clues, Mission Props, Characters)
     ctx.save();
     ctx.translate(-cameraX, 0);
+
+    const animNow = performance.now() * 0.001;
+
+    // --- MISSION MECHANIC A: TRAIL (Dark Forest, Village Fields) ---
+    if (currentLevelData.missionType === 'trail' && currentLevelData.collectibles) {
+      currentLevelData.collectibles.forEach((cl, cidx) => {
+        if (!cl.collected) {
+          const startX = cidx === 0 ? 350 : currentLevelData.collectibles[cidx - 1].x;
+          for (let fx = startX + 80; fx < cl.x; fx += 130) {
+            if (fx + 40 >= cameraX && fx - 40 <= cameraX + V_WIDTH) {
+              const pulse = 0.35 + 0.35 * Math.sin(animNow * 3.5 + fx * 0.04);
+              ctx.fillStyle = `rgba(52, 211, 153, ${pulse})`;
+              ctx.beginPath();
+              ctx.ellipse(fx, currentLevelData.groundY - 5, 8, 3.5, 0, 0, Math.PI * 2);
+              ctx.fill();
+              ctx.beginPath();
+              ctx.arc(fx + 5, currentLevelData.groundY - 8, 2.5, 0, Math.PI * 2);
+              ctx.fill();
+            }
+          }
+        }
+      });
+    }
+
+    // --- MISSION MECHANIC B: REPAIR / LEAK (Old School, Drain Maze) ---
+    if ((currentLevelData.missionType === 'repair' || currentLevelData.leakX) && !currentLevelData._leakRepaired) {
+      const lx = currentLevelData.leakX || 1200;
+      if (lx + 60 >= cameraX && lx - 60 <= cameraX + V_WIDTH) {
+        // Overhead rusty valve
+        ctx.fillStyle = "#475569";
+        ctx.fillRect(lx - 8, currentLevelData.groundY - 140, 16, 60);
+        ctx.fillStyle = "#ef4444";
+        ctx.beginPath(); ctx.arc(lx, currentLevelData.groundY - 80, 8, 0, Math.PI * 2); ctx.fill();
+
+        // Animated falling drip
+        const dripProg = (animNow * 2.2) % 1.0;
+        const dripY = (currentLevelData.groundY - 80) + dripProg * 80;
+        ctx.fillStyle = "#38bdf8";
+        ctx.beginPath(); ctx.arc(lx, dripY, 3, 0, Math.PI * 2); ctx.fill();
+
+        // Expanding ripple on ground
+        const ripR = 4 + dripProg * 24;
+        const ripA = Math.max(0, 1.0 - dripProg);
+        ctx.strokeStyle = `rgba(56, 189, 248, ${ripA})`; ctx.lineWidth = 1.5;
+        ctx.beginPath(); ctx.ellipse(lx, currentLevelData.groundY, ripR, ripR * 0.35, 0, 0, Math.PI * 2); ctx.stroke();
+      }
+    }
+
+    // --- MISSION MECHANIC C: MAZE ROUTE HINTS (Underground Drain Maze) ---
+    if (currentLevelData.missionType === 'maze' && currentLevelData.platforms) {
+      currentLevelData.platforms.forEach((p, idx) => {
+        if (idx % 2 === 0 && p.x + p.w >= cameraX && p.x <= cameraX + V_WIDTH) {
+          ctx.fillStyle = "rgba(56, 189, 248, 0.75)";
+          ctx.font = "bold 11px monospace";
+          ctx.fillText(">> ROUTE >>", p.x + p.w/2 - 32, p.y - 7);
+        }
+      });
+    }
+
+    // --- MISSION MECHANIC D: SIGNALS (Railway Yard, Industrial Zone) ---
+    if (currentLevelData.missionType === 'signals') {
+      [800, 1500].forEach((sx, sidx) => {
+        if (sx + 50 >= cameraX && sx - 50 <= cameraX + V_WIDTH) {
+          ctx.fillStyle = "#1e293b"; ctx.fillRect(sx - 7, currentLevelData.groundY - 100, 14, 100);
+          const isGreen = currentLevelData._signalsDone;
+          ctx.fillStyle = isGreen ? "#10b981" : "#ef4444";
+          ctx.beginPath(); ctx.arc(sx, currentLevelData.groundY - 100, 10, 0, Math.PI * 2); ctx.fill();
+          ctx.fillStyle = "#ffffff"; ctx.font = "bold 9px sans-serif"; ctx.textAlign = "center";
+          ctx.fillText(`RELAY ${sidx+1}`, sx, currentLevelData.groundY - 114);
+        }
+      });
+    }
+
+    // --- MISSION MECHANIC E: TIMED CLEANUP ZONES (Beach, Stadium) ---
+    if ((currentLevelData.missionType === 'timed' || currentLevelData.missionType === 'timedCleanup') && currentLevelData._cleanZones) {
+      currentLevelData._cleanZones.forEach(cz => {
+        if (!cz.cleaned && cz.x + 80 >= cameraX && cz.x - 80 <= cameraX + V_WIDTH) {
+          ctx.fillStyle = "rgba(245, 158, 11, 0.18)";
+          ctx.beginPath(); ctx.ellipse(cz.x, currentLevelData.groundY, 45, 14, 0, 0, Math.PI * 2); ctx.fill();
+          ctx.fillStyle = "#78350f"; ctx.fillRect(cz.x - 18, currentLevelData.groundY - 20, 36, 20);
+          ctx.fillStyle = "#fbbf24"; ctx.font = "bold 10px system-ui"; ctx.textAlign = "center";
+          ctx.fillText("CLEANUP ZONE", cz.x, currentLevelData.groundY - 26);
+        }
+      });
+    }
+
+    // --- MISSION MECHANIC F: PROTECT CIVIC LANDMARK (Riverbank, Forest Reserve, Heritage) ---
+    if (currentLevelData.missionType === 'protect') {
+      const px = currentLevelData.protectX || 1200;
+      if (px + 100 >= cameraX && px - 100 <= cameraX + V_WIDTH) {
+        // Monument structure
+        ctx.fillStyle = "#475569"; ctx.fillRect(px - 35, currentLevelData.groundY - 150, 70, 150);
+        ctx.fillStyle = "#38bdf8"; ctx.beginPath(); ctx.arc(px, currentLevelData.groundY - 150, 30, 0, Math.PI * 2); ctx.fill();
+
+        // Integrity Health Bar
+        const hp = Math.max(0, currentLevelData.protectHealth || 100);
+        ctx.fillStyle = "#0f172a"; ctx.fillRect(px - 55, currentLevelData.groundY - 195, 110, 14);
+        ctx.fillStyle = hp > 50 ? "#10b981" : hp > 25 ? "#f59e0b" : "#ef4444";
+        ctx.fillRect(px - 53, currentLevelData.groundY - 193, (hp / 100) * 106, 10);
+        ctx.fillStyle = "#ffffff"; ctx.font = "bold 10px system-ui"; ctx.textAlign = "center";
+        ctx.fillText(`${currentLevelData.protectLabel}: ${Math.floor(hp)}%`, px, currentLevelData.groundY - 202);
+      }
+    }
 
     // Platforms
     if (currentLevelData.platforms) {
@@ -2441,7 +3283,7 @@
     ctx.fillRect(exitX - 40, currentLevelData.groundY - 170, 80, 170);
     ctx.strokeRect(exitX - 40, currentLevelData.groundY - 170, 80, 170);
     ctx.font = "bold 13px system-ui"; ctx.textAlign = "center"; ctx.fillStyle = isExitUnlocked ? "#34d399" : "#fbbf24";
-    ctx.fillText(isExitUnlocked ? "SECTOR EXIT [READY]" : `EXIT LOCKED (${cluesCollected}/${currentLevelData.cluesNeeded})`, exitX, currentLevelData.groundY - 180);
+    ctx.fillText(isExitUnlocked ? (currentLevelData.id === 20 ? "UV CANNON TERMINAL" : "SECTOR EXIT [READY]") : `EXIT LOCKED (${cluesCollected}/${currentLevelData.cluesNeeded})`, exitX, currentLevelData.groundY - 180);
     ctx.restore();
 
     // Interaction prompts
@@ -2464,7 +3306,7 @@
       if (!isExitUnlocked) {
         prompt.textContent = `[LOCKED] COLLECT ALL EVIDENCE FIRST (${cluesCollected}/${currentLevelData.cluesNeeded})`;
       } else {
-        prompt.textContent = `[E] EXTRACT: COMPLETE MISSION`;
+        prompt.textContent = currentLevelData.id === 20 ? "[E] ACTIVATE UV FINALE TERMINAL" : "[E] EXTRACT: COMPLETE MISSION";
         if (Input.action || exitDist < 45) {
           Input.action = false;
           if (currentLevelData.id === 20 && !isDailyChallengeMode) {
@@ -2496,7 +3338,22 @@
     }
 
     if (companion) companion.draw(ctx);
-    if (shadow) shadow.draw(ctx);
+    if (shadow) {
+      shadow.draw(ctx);
+      // Boss Phase 1 Barrier Overlay
+      if (gameState === 'BOSS_FIGHT' && bossPhase === 1) {
+        ctx.save();
+        ctx.strokeStyle = "rgba(168, 85, 247, 0.85)";
+        ctx.lineWidth = 4;
+        ctx.beginPath(); ctx.arc(shadow.x, shadow.y - 70, 75, 0, Math.PI * 2); ctx.stroke();
+        // Barrier integrity bar above shadow
+        ctx.fillStyle = "#0f172a"; ctx.fillRect(shadow.x - 45, shadow.y - 165, 90, 10);
+        ctx.fillStyle = "#a855f7"; ctx.fillRect(shadow.x - 43, shadow.y - 163, (bossShieldHp / 100) * 86, 6);
+        ctx.fillStyle = "#f3e8ff"; ctx.font = "bold 9px sans-serif"; ctx.textAlign = "center";
+        ctx.fillText(`TOXIC SHIELD: ${Math.floor(bossShieldHp)}%`, shadow.x, shadow.y - 172);
+        ctx.restore();
+      }
+    }
     if (player) player.draw(ctx);
 
     // Pooled particles
@@ -2520,22 +3377,95 @@
       ctx.fillStyle = p.color;
       ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fill();
     }
+
+    // Weather Visual Overlays
+    const wx = currentLevelData.weather;
+    if (wx === 'fog') {
+      ctx.fillStyle = "rgba(148, 163, 184, 0.12)";
+      ctx.fillRect(0, 0, V_WIDTH, V_HEIGHT);
+    } else if (wx === 'rain') {
+      ctx.strokeStyle = "rgba(56, 189, 248, 0.35)";
+      ctx.lineWidth = 1;
+      for (let i = 0; i < 20; i++) {
+        const rx = (animNow * 400 + i * 50) % V_WIDTH;
+        const ry = (animNow * 600 + i * 35) % V_HEIGHT;
+        ctx.beginPath(); ctx.moveTo(rx, ry); ctx.lineTo(rx - 8, ry + 16); ctx.stroke();
+      }
+    }
+
+    // Attack Surge Warning Banner for Chase / Escape / Boss
+    if ((currentLevelData.missionType === 'chase' || currentLevelData.missionType === 'escape' || (gameState === 'BOSS_FIGHT' && bossPhase === 3)) && shadow && shadow.active && shadow.rage) {
+      const warnPulse = Math.sin(animNow * 10);
+      if (warnPulse > 0.3) {
+        ctx.save();
+        ctx.fillStyle = "rgba(239, 68, 68, 0.2)";
+        ctx.fillRect(0, 0, V_WIDTH, 45);
+        ctx.fillStyle = "#ef4444"; ctx.font = "bold 15px system-ui"; ctx.textAlign = "center";
+        ctx.fillText(t('shadowSurge'), V_WIDTH / 2, 28);
+        ctx.restore();
+      }
+    }
+
     ctx.restore();
   }
 
   function drawGround(ctx, lvl) {
     const gy = lvl.groundY;
-    const gGrad = ctx.createLinearGradient(0, gy, 0, gy + 120);
-    // Ground color tailored to sector surface
     const th = lvl.theme;
-    if (th === 'forest' || th === 'fields') { gGrad.addColorStop(0, "#14532d"); gGrad.addColorStop(1, "#052e16"); }
-    else if (th === 'beach') { gGrad.addColorStop(0, "#ca8a04"); gGrad.addColorStop(1, "#713f12"); }
-    else if (th === 'river' || th === 'lake') { gGrad.addColorStop(0, "#0e7490"); gGrad.addColorStop(1, "#164e63"); }
-    else { gGrad.addColorStop(0, "#1e293b"); gGrad.addColorStop(1, "#020617"); }
+    ctx.save();
 
-    ctx.fillStyle = gGrad; ctx.fillRect(0, gy, lvl.width, V_HEIGHT - gy);
-    ctx.strokeStyle = "#38bdf8"; ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(lvl.width, gy); ctx.stroke();
+    // Unique ground styling per location theme
+    if (th === 'forest') {
+      // Deep mossy forest soil with roots
+      const gGrad = ctx.createLinearGradient(0, gy, 0, gy + 120);
+      gGrad.addColorStop(0, "#14532d"); gGrad.addColorStop(1, "#022c22");
+      ctx.fillStyle = gGrad; ctx.fillRect(0, gy, lvl.width, V_HEIGHT - gy);
+      ctx.strokeStyle = "#34d399"; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(lvl.width, gy); ctx.stroke();
+    } else if (th === 'fields') {
+      // Tilled agricultural earth with golden organic embankment
+      const gGrad = ctx.createLinearGradient(0, gy, 0, gy + 120);
+      gGrad.addColorStop(0, "#365314"); gGrad.addColorStop(1, "#1a2e05");
+      ctx.fillStyle = gGrad; ctx.fillRect(0, gy, lvl.width, V_HEIGHT - gy);
+      ctx.strokeStyle = "#a3e635"; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(lvl.width, gy); ctx.stroke();
+    } else if (th === 'beach') {
+      // Sandy dunes with tidal shoreline
+      const gGrad = ctx.createLinearGradient(0, gy, 0, gy + 120);
+      gGrad.addColorStop(0, "#ca8a04"); gGrad.addColorStop(1, "#713f12");
+      ctx.fillStyle = gGrad; ctx.fillRect(0, gy, lvl.width, V_HEIGHT - gy);
+      ctx.strokeStyle = "#fef08a"; ctx.lineWidth = 4;
+      ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(lvl.width, gy); ctx.stroke();
+    } else if (th === 'river' || th === 'lake') {
+      // River silt and shoreline pebbles
+      const gGrad = ctx.createLinearGradient(0, gy, 0, gy + 120);
+      gGrad.addColorStop(0, "#083344"); gGrad.addColorStop(1, "#020617");
+      ctx.fillStyle = gGrad; ctx.fillRect(0, gy, lvl.width, V_HEIGHT - gy);
+      ctx.strokeStyle = "#38bdf8"; ctx.lineWidth = 3.5;
+      ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(lvl.width, gy); ctx.stroke();
+    } else if (th === 'factory') {
+      // Reinforced industrial steel grating
+      const gGrad = ctx.createLinearGradient(0, gy, 0, gy + 120);
+      gGrad.addColorStop(0, "#18181b"); gGrad.addColorStop(1, "#09090b");
+      ctx.fillStyle = gGrad; ctx.fillRect(0, gy, lvl.width, V_HEIGHT - gy);
+      ctx.strokeStyle = "#f59e0b"; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(lvl.width, gy); ctx.stroke();
+    } else if (th === 'tunnel' || th === 'drain') {
+      // Wet subterranean drainage conduit
+      const gGrad = ctx.createLinearGradient(0, gy, 0, gy + 120);
+      gGrad.addColorStop(0, "#090d16"); gGrad.addColorStop(1, "#000000");
+      ctx.fillStyle = gGrad; ctx.fillRect(0, gy, lvl.width, V_HEIGHT - gy);
+      ctx.strokeStyle = "#0284c7"; ctx.lineWidth = 2.5;
+      ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(lvl.width, gy); ctx.stroke();
+    } else {
+      // Paved urban civic concrete with drainage curb
+      const gGrad = ctx.createLinearGradient(0, gy, 0, gy + 120);
+      gGrad.addColorStop(0, "#1e293b"); gGrad.addColorStop(1, "#020617");
+      ctx.fillStyle = gGrad; ctx.fillRect(0, gy, lvl.width, V_HEIGHT - gy);
+      ctx.strokeStyle = "#38bdf8"; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(lvl.width, gy); ctx.stroke();
+    }
+    ctx.restore();
   }
 
   function drawClueBadge(ctx, x, y, isBadge) {
@@ -2615,7 +3545,7 @@
 
     const dt = rawDt * currentTimeScale;
 
-    if (gameState === 'PLAYING' && !isPaused) {
+    if ((gameState === 'PLAYING' || gameState === 'BOSS_FIGHT') && !isPaused) {
       levelTimer += dt;
       if (currentLevelData.timeLimit && levelTimer >= currentLevelData.timeLimit) triggerGameOver();
 
@@ -2631,6 +3561,47 @@
       player.update(dt, currentLevelData);
       shadow.update(dt, player, currentLevelData);
       companion.update(dt, player, currentLevelData);
+
+      // BOSS FIGHT SIMULATION
+      if (gameState === 'BOSS_FIGHT') {
+        if (bossPhase === 1) {
+          // Focus flashlight on Shadow to break barrier
+          const distToShadow = Math.hypot(player.x - shadow.x, player.y - shadow.y);
+          const facingShadow = (player.facing === 1 && shadow.x > player.x) || (player.facing === -1 && shadow.x < player.x);
+          if (player.flashlightOn && player.flashlightBattery > 0 && facingShadow && distToShadow < 390) {
+            bossShieldHp = Math.max(0, bossShieldHp - dt * 38);
+            if (Math.random() < 0.4) {
+              spawnParticle(shadow.x + (Math.random()-0.5)*60, shadow.y - Math.random()*120, (Math.random()-0.5)*80, -40, 0.4, 3, '#38bdf8');
+            }
+            if (bossShieldHp <= 0) {
+              advanceBossPhase2();
+            }
+          }
+        } else if (bossPhase === 3) {
+          // Sprint to UV Cannon at exit
+          const cannonX = currentLevelData.width - 140;
+          if (Math.abs(player.x - cannonX) < 80) {
+            triggerFinaleCannonBlast();
+          }
+        }
+      }
+
+      // Mission Mechanic: Protect landmark health drain & defence
+      if (currentLevelData.missionType === 'protect' && shadow && shadow.active) {
+        const px = currentLevelData.protectX || 1200;
+        const shadowDistToAsset = Math.abs(shadow.x - px);
+        if (shadowDistToAsset < 260) {
+          currentLevelData.protectHealth = Math.max(0, (currentLevelData.protectHealth || 100) - dt * 5.5);
+          if (currentLevelData.protectHealth <= 0) {
+            triggerGameOver();
+          }
+        }
+        // Player flashlight defence
+        const plDistToAsset = Math.abs(player.x - px);
+        if (plDistToAsset < 280 && player.flashlightOn && player.flashlightBattery > 0) {
+          currentLevelData.protectHealth = Math.min(100, (currentLevelData.protectHealth || 100) + dt * 3.5);
+        }
+      }
 
       const lookAhead = player.facing * (Math.abs(player.vx) > 200 ? 120 : 40);
       const targetCamX = player.x - V_WIDTH / 2 + lookAhead;
@@ -2654,7 +3625,7 @@
     }
 
     ctx.clearRect(0, 0, V_WIDTH, V_HEIGHT);
-    if (gameState === 'PLAYING' || gameState === 'PAUSED' || gameState === 'NPC') {
+    if (gameState === 'PLAYING' || gameState === 'PAUSED' || gameState === 'NPC' || gameState === 'BOSS_FIGHT') {
       renderWorld(ctx);
     }
     animFrameId = requestAnimationFrame(gameLoop);
@@ -2775,17 +3746,47 @@
     const grid = document.getElementById('clue-board-grid');
     if (!grid) return;
     grid.innerHTML = "";
+
+    // Assembled Cipher Codeword for Level 20 Terminal: S W A C H H
+    const cipherKey = "SWACHH";
+    const cipherSectors = [1, 4, 8, 12, 16, 19];
+    const letters = cipherSectors.map((sec, i) => {
+      const isUnlocked = (saveState.completedLevels && saveState.completedLevels[sec]) || (saveState.unlockedLevel > sec);
+      return isUnlocked ? cipherKey[i] : "_";
+    });
+
+    const cipherEl = document.getElementById('cipher-codeword');
+    if (cipherEl) {
+      cipherEl.textContent = letters.join(" ");
+    }
+    const cipherBanner = document.getElementById('casefile-cipher-banner');
+    if (cipherBanner) {
+      cipherBanner.style.display = 'block';
+    }
+
     LEVELS_DATA.forEach(lvl => {
       const clue = saveState.cluesFound[lvl.id];
       const card = document.createElement('div');
       card.className = "clue-pinned-card";
-      card.innerHTML = `
-        <strong style="color: #38bdf8;">SECTOR ${lvl.id}: ${lvl.name}</strong>
-        <div style="margin-top: 4px; color: ${clue ? '#34d399' : '#64748b'}">
-          ${clue ? `✓ Evidence: ${clue}` : `🔒 Evidence Missing (Replay Sector)`}
-        </div>
-        <div style="font-size: 10px; color: #94a3b8; margin-top: 4px;">${lvl.fact.slice(0, 75)}...</div>
-      `;
+
+      const titleEl = document.createElement('strong');
+      titleEl.style.color = "#38bdf8";
+      titleEl.textContent = `SECTOR ${lvl.id}: ${lvl.name}`;
+
+      const statusEl = document.createElement('div');
+      statusEl.style.marginTop = "4px";
+      statusEl.style.color = clue ? "#34d399" : "#64748b";
+      statusEl.textContent = clue ? `✓ Evidence: ${clue}` : "🔒 Evidence Missing (Replay Sector)";
+
+      const factEl = document.createElement('div');
+      factEl.style.fontSize = "10px";
+      factEl.style.color = "#94a3b8";
+      factEl.style.marginTop = "4px";
+      factEl.textContent = lvl.fact.slice(0, 75) + "...";
+
+      card.appendChild(titleEl);
+      card.appendChild(statusEl);
+      card.appendChild(factEl);
       grid.appendChild(card);
     });
   }
