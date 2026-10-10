@@ -4309,6 +4309,10 @@
     let animFrameId = null;
     function gameLoop(timestamp) {
       try {
+        if (!ctx) {
+          canvas = document.getElementById('gameCanvas');
+          if (canvas) ctx = canvas.getContext('2d');
+        }
         if (!lastTimestamp) lastTimestamp = timestamp;
         const rawDt = Math.min((timestamp - lastTimestamp) / 1000, 0.05);
         lastTimestamp = timestamp;
@@ -4327,47 +4331,98 @@
 
         const dt = rawDt * currentTimeScale;
 
-        if (gameState === 'PLAYING' && !isPaused) {
+        if ((gameState === 'PLAYING' || gameState === 'BOSS_FIGHT') && !isPaused && currentLevelData) {
           levelTimer += dt;
           if (currentLevelData.timeLimit && levelTimer >= currentLevelData.timeLimit) triggerGameOver();
 
           let sheltered = false;
           if (currentLevelData.safeZones) {
             for (const sz of currentLevelData.safeZones) {
-              if (player.x > sz.x && player.x < sz.x + sz.w) { sheltered = true; break; }
+              if (player && player.x > sz.x && player.x < sz.x + sz.w) { sheltered = true; break; }
             }
           }
-          player.inSafeZone = sheltered; player.isHidden = sheltered || player.isCrouching;
+          if (player) {
+            player.inSafeZone = sheltered; player.isHidden = sheltered || player.isCrouching;
+          }
           if (DOM.statusPill) DOM.statusPill.style.display = sheltered ? 'block' : 'none';
 
-          player.update(dt, currentLevelData);
-          shadow.update(dt, player, currentLevelData);
-          companion.update(dt, player, currentLevelData);
+          if (player) player.update(dt, currentLevelData);
+          if (shadow) shadow.update(dt, player, currentLevelData);
+          if (companion) companion.update(dt, player, currentLevelData);
 
-          const lookAhead = player.facing * (Math.abs(player.vx) > 200 ? 120 : 40);
-          const targetCamX = player.x - V_WIDTH / 2 + lookAhead;
-          cameraX += (targetCamX - cameraX) * 0.08;
-          cameraX = Math.max(0, Math.min(cameraX, currentLevelData.width - V_WIDTH));
-
-          if (screenShakeTimer > 0) {
-            screenShakeTimer -= dt;
-            const intensity = (saveState.settings.reducedFx ? 2 : 6);
-            cameraX += (Math.random() - 0.5) * intensity;
+          // BOSS FIGHT SIMULATION
+          if (gameState === 'BOSS_FIGHT') {
+            if (bossPhase === 1) {
+              const distToShadow = Math.hypot((player ? player.x : 0) - (shadow ? shadow.x : 0), (player ? player.y : 0) - (shadow ? shadow.y : 0));
+              const facingShadow = player && shadow && ((player.facing === 1 && shadow.x > player.x) || (player.facing === -1 && shadow.x < player.x));
+              if (player && player.flashlightOn && player.flashlightBattery > 0 && facingShadow && distToShadow < 390) {
+                bossShieldHp = Math.max(0, bossShieldHp - dt * 38);
+                if (Math.random() < 0.4 && shadow) {
+                  spawnParticle(shadow.x + (Math.random()-0.5)*60, shadow.y - Math.random()*120, (Math.random()-0.5)*80, -40, 0.4, 3, '#38bdf8');
+                }
+                if (bossShieldHp <= 0) {
+                  advanceBossPhase2();
+                }
+              }
+            } else if (bossPhase === 3) {
+              const cannonX = currentLevelData.width - 140;
+              if (player && Math.abs(player.x - cannonX) < 80) {
+                triggerFinaleCannonBlast();
+              }
+            }
           }
 
-          checkClueInteraction();
-          checkBadgeInteraction();
+          // Mission Mechanic: Protect landmark health drain & defence
+          if (currentLevelData.missionType === 'protect' && shadow && shadow.active) {
+            const px = currentLevelData.protectX || 1200;
+            const shadowDistToAsset = Math.abs(shadow.x - px);
+            if (shadowDistToAsset < 260) {
+              currentLevelData.protectHealth = Math.max(0, (currentLevelData.protectHealth || 100) - dt * 5.5);
+              if (currentLevelData.protectHealth <= 0) {
+                triggerGameOver();
+              }
+            }
+            if (player) {
+              const plDistToAsset = Math.abs(player.x - px);
+              if (plDistToAsset < 280 && player.flashlightOn && player.flashlightBattery > 0) {
+                currentLevelData.protectHealth = Math.min(100, (currentLevelData.protectHealth || 100) + dt * 3.5);
+              }
+            }
+          }
+
+          const lookAhead = player ? player.facing * (Math.abs(player.vx) > 200 ? 120 : 40) : 0;
+          const targetCamX = (player ? player.x : 0) - V_WIDTH / 2 + lookAhead;
+          cameraX += (targetCamX - cameraX) * (dt * 5);
+          cameraX = Math.max(0, Math.min(cameraX, currentLevelData.width - V_WIDTH));
+
+          updateHUD();
+
+          if (ambientParticles) {
+            for (const p of ambientParticles) {
+              p.x += p.vx * dt; p.y += p.vy * dt;
+              if (p.y > V_HEIGHT) p.y = 0; if (p.x < 0) p.x = V_WIDTH; if (p.x > V_WIDTH) p.x = 0;
+            }
+          }
+
+          if (particlePool && particlePool.pool) {
+            for (let i = 0; i < particlePool.pool.length; i++) {
+              const p = particlePool.pool[i];
+              if (p.active) {
+                p.x += p.vx * dt; p.y += p.vy * dt; p.vy += p.gravity * dt; p.life -= dt;
+                if (p.life <= 0) p.active = false;
+              }
+            }
+          }
         }
 
-        ctx.clearRect(0, 0, V_WIDTH, V_HEIGHT);
-        if (gameState === 'PLAYING' || gameState === 'PAUSED' || gameState === 'NPC') {
-          renderWorld(ctx);
+        if (ctx) {
+          ctx.clearRect(0, 0, V_WIDTH, V_HEIGHT);
+          if (gameState === 'PLAYING' || gameState === 'PAUSED' || gameState === 'NPC' || gameState === 'BOSS_FIGHT') {
+            renderWorld(ctx);
+          }
         }
       } catch (err) {
         console.error("Non-fatal gameLoop recovery:", err);
-        if (typeof showToast === 'function') {
-          showToast("Engine recovery active. Resuming...", 1500);
-        }
       } finally {
         animFrameId = requestAnimationFrame(gameLoop);
       }
