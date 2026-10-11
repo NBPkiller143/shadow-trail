@@ -1087,8 +1087,8 @@
     <!-- SETTINGS SCREEN -->
     <div id="settings-screen" class="fullscreen-screen">
       <div style="text-align: center; margin-bottom: 16px;">
-        <h1 class="modal-title" style="font-size: 28px;">SETTINGS & ACCESSIBILITY</h1>
-        <p class="modal-subtitle">Configure audio mixing, accessibility toggles, performance, and data management.</p>
+        <h1 class="modal-title" id="lbl-settings-title" style="font-size: 28px;">SETTINGS & ACCESSIBILITY</h1>
+        <p class="modal-subtitle" id="lbl-settings-sub">Configure audio mixing, accessibility toggles, performance, and data management.</p>
         <button class="btn btn-secondary" id="btn-settings-back">BACK</button>
       </div>
       <div class="settings-table">
@@ -1156,8 +1156,8 @@
     <!-- SAVE IO MODAL (V2.2 Unicode-safe On-Screen Editor) -->
     <div id="save-io-modal">
       <div class="modal-box" style="max-width: 520px;">
-        <div class="modal-title" style="font-size: 20px;">SAVE DATA MANAGEMENT</div>
-        <p class="modal-subtitle">Backup your investigation progress or restore an encoded save string.</p>
+        <div class="modal-title" id="lbl-saveio-header" style="font-size: 20px;">SAVE DATA MANAGEMENT</div>
+        <p class="modal-subtitle" id="lbl-saveio-sub">Backup your investigation progress or restore an encoded save string.</p>
         <textarea id="txt-save-io" placeholder="Paste encoded save string here..."></textarea>
         <div style="display: flex; justify-content: center; gap: 8px; margin-top: 12px; flex-wrap: wrap;">
           <button class="btn btn-primary" id="btn-save-copy">📋 COPY SAVE</button>
@@ -1770,7 +1770,7 @@
     // 2. MULTILINGUAL DICTIONARY (English & Hindi Translations)
     const I18N = {
       en: {
-        titleSub: "THE CLEAN PATH 3.0 (FINAL)",
+        titleSub: "THE CLEAN PATH 3.0.1 (FINAL)",
         startInv: "START INVESTIGATION",
         dailyChall: "⭐ DAILY CHALLENGE",
         levelMap: "LEVEL MAP",
@@ -1800,7 +1800,7 @@
         battery: "BATTERY",
         locateClue: "LOCATE EVIDENCE CLUE",
         headExit: "HEAD TO SECTOR EXIT",
-        exitLocked: "EXIT LOCKED",
+        exitLocked: "[LOCKED] COLLECT ALL EVIDENCE FIRST",
         extractReady: "[E] EXTRACT: COMPLETE MISSION",
         shadowSurge: "⚠️ SHADOW SURGE IMMINENT! DUCK INTO SHELTER!",
         leakRepairTitle: "PIPE LEAK SEALING",
@@ -1813,7 +1813,7 @@
         filterDesc: "TUTORIAL: Tap two stages to swap them into the correct order: 1. Coarse Screen ➔ 2. Sand Bed ➔ 3. Activated Carbon ➔ 4. UV Clarifier!",
         trafficTitle: "TRAFFIC SIGNAL SYNCHRONIZATION",
         trafficDesc: "TUTORIAL: Tap or press [Space] to toggle the signal to GREEN during gaps in cross-traffic so 3 Eco-Tankers can cross safely!",
-        titleDesc: "Follow Inspector Kabir Rao and companion Sheru across 20 regional sectors. Master the Flashlight, Clue Lens, and stealth maneuvers to dissolve the Shadow of environmental decay into morning light!",
+        titleDesc: "Follow Inspector Kabir Rao and companion Sheru across 20 regional sectors. Master the Flashlight, Clue Lens, and stealth maneuvers to dissolve the Shadow of environmental decay into model clean civic zones!",
         codex: "📚 CODEX",
         pledge: "🌱 CITIZEN PLEDGE",
         photoMode: "📷 PHOTO MODE",
@@ -1822,8 +1822,9 @@
         certButton: "🏆 CERTIFICATE",
         resetProgress: "RESET PROGRESS",
         casefileTitle: "INVESTIGATION CASE FILE",
-        casefileSub: "Pinned evidence, chemical assays, and witness testimonies connecting Noxis Industries to the Shadow.",
+        casefileSub: "Evidence dossiers and pollution incident logs linking Noxis Industries to the Shadow.",
         cipherTitle: "SWACHH BHARAT REMEDIATION CIPHER CODEWORD:",
+        cipherDesc: "Assembled from regional sector evidence fragments. Used to bypass Noxis plant security terminal.",
         volMaster: "Master Volume",
         volMusic: "Music Volume",
         volSfx: "SFX Volume",
@@ -1843,13 +1844,55 @@
         txtPlayername: "Investigator Name",
         saveIoTitle: "Export / Import Save Data",
         btnManageSave: "MANAGE SAVE STRING",
+        settingsTitle: "SETTINGS & ACCESSIBILITY",
+        settingsSub: "Configure audio mixing, accessibility toggles, performance, and data management.",
+        saveIoHeader: "SAVE DATA MANAGEMENT",
+        saveIoSub: "Backup your investigation progress or restore an encoded save string.",
+        btnSaveCopy: "📋 COPY SAVE",
+        btnSaveApply: "📥 RESTORE SAVE",
+        btnSaveUndo: "↩️ UNDO IMPORT",
+        close: "CLOSE",
+        gameOverTitle: "MISSION COMPROMISED",
+        gameOverSub: "The toxic contamination forced a tactical retreat. Review environmental protocols and re-engage.",
+        retryMission: "RETRY MISSION",
+        finaleTitle: "SECURITY BYPASS TERMINAL",
+        finaleSub: "Enter the 6-letter Swachh Bharat remediation codeword from your Case File evidence fragments:",
+        authenticate: "AUTHENTICATE",
+        decodeHint: "DECODE HINT",
         codexTitle: "SWACHH BHARAT ENVIRONMENTAL CODEX",
-        codexSub: "Unlocked regional knowledge dossiers covering water systems, wildlife corridors, and civic sanitation.",
-        pledgeTitle: "🌱 CITIZEN SWACHHATA PLEDGE",
-        pledgeSub: "Commit to daily individual actions that keep our nation's waterways, colonies, and communities clean.",
+        codexSub: "Unlocked regional knowledge dossiers on hydrological systems, wildlife corridors, and civic sanitation.",
+        pledgeTitle: "🌱 CITIZEN SWACHHTA PLEDGE",
+        pledgeSub: "Commitment to daily personal actions preserving our waterways, neighbourhoods, and civic health.",
         btnSignPledge: "✓ SIGN CITIZEN PLEDGE (+200 ECO-POINTS)",
         certHeading: "SWACHH BHARAT CITIZEN CERTIFICATE",
-        certSub: "COMMEMORATIVE CIVIC RECOGNITION | SWACHH BHARAT CITIZEN INITIATIVE"
+        certSub: "Commemorative Civic Honour | Swachh Bharat Citizen Initiative",
+
+        // Toasts & Voice
+        tutMove: "Tutorial: Use WASD or Joystick to move!",
+        tutJump: "Tutorial: Press [Space] or [JUMP] to leap!",
+        tutLight: "Tutorial: Press [F] or [LIGHT] for your Flashlight!",
+        tutCrouch: "Tutorial: Press [C] or [HIDE] to crouch safely in Shelters!",
+        tutClue: "Tutorial: Approach dispatch notes and press [E] to collect!",
+        lungeTelegraphToast: "⚠️ SHADOW LUNGE TELEGRAPH! JUMP OR HIDE!",
+        lungeHitToast: "Lunge Hit! Toxic barrier regenerated!",
+        phase1Toast: "PHASE 1: FOCUS FLASHLIGHT TO BREAK TOXIC BARRIER!",
+        phase2Toast: "PHASE 2: ALIGN PIPES TO FLUSH SHADOW CORE!",
+        phase3Toast: "⚠️ PHASE 3: SPRINT 730PX TO UV CANNON! SHADOW PURSUING!",
+        cannonBlastToast: "ULTRAVIOLET PURIFICATION BLAST FIRED!",
+        phase3RetryToast: "Caught! Retrying Phase 3 sprint...",
+        sheruHintToast: "Companion Hint: Sheru caught the scent!",
+        saveVerifiedToast: "Save restored and verified cleanly!",
+        saveUndoneToast: "Import undone: Previous save restored.",
+        badgeFoundToast: "+150 Eco-Points: Badge Found!",
+        pledgeSignedToast: "Citizen Pledge signed! +200 Eco-Points awarded!",
+        sheruScent: "Sheru found a clue scent! Follow him!",
+        bossPhase1Speak: "Passcode confirmed! Expose Shadow's toxic barrier with high-intensity flashlight!",
+        bossPhase2Speak: "Barrier broken! Align bypass valve terminal to destabilize core!",
+        bossPhase3Speak: "Core destabilized! Shadow in RAGE mode! Sprint to the UV Cannon at the exit!",
+        cannonBlastSpeak: "UV Clarifier Cannons online! Dissolving Shadow of pollution forever!",
+        retreatSpeak: "The toxic contamination forced a retreat.",
+        badgeFoundSpeak: "Eco-Badge discovered!",
+        clueSecuredSpeak: "Clue secured"
       },
       hi: {
         sectors: {
@@ -1859,7 +1902,73 @@
           13: "भूमिगत नाला भूलभुलैया", 14: "आवासीय परिसर", 15: "औद्योगिक क्षेत्र", 16: "वन्य अभयारण्य",
           17: "रिक्त स्टेडियम", 18: "धरोहर क्षेत्र", 19: "महा नगर", 20: "केंद्रीय उपचार संयंत्र"
         },
-        titleSub: "स्वच्छ पथ संस्करण 3.0 (अंतिम)",
+        levelStories: {
+          1: "मोहल्ले की गलियों में काला अपशिष्ट बह रहा है। संदूषण स्रोत की जाँच करें और पहला डिस्पैच नोट एकत्र करें।",
+          2: "प्राचीन चीड़ के जंगलों से होकर एक चमकती प्रदूषक रेखा गुजरती है। फेंके गए विलायकों को खोजने के लिए पदचिह्नों का पीछा करें।",
+          3: "परिसर की मुख्य जल पाइपलाइन क्षतिग्रस्त हो गई है, जिससे कचरा फैल गया है। रिसाव का पता लगाएं और पाइप की मरम्मत करें।",
+          4: "एक घोर अंधेरी बरसाती नाली सुरंग। टॉर्च की शक्ति बनाए रखें और सुरक्षित आश्रयों से होकर बाहर निकलें।",
+          5: "दुकानदार नगर निगम के नालों में चिकनाई फेंकते पकड़े गए। संदिग्धों से पूछताछ करें और सबूत जुटाएं।",
+          6: "छाया खड़ी बसों के बीच तेजी से घूमती है। अवैध बैटरी निपटान स्थल का पता लगाएं।",
+          7: "विषाक्त मालगाड़ियों को लावारिस पटरियों पर भेजा जा रहा है। सिग्नल बॉक्स की वायरिंग को सही ढंग से जोड़ें।",
+          8: "अवैध पाइप सीधे नदी में औद्योगिक झाग छोड़ रहे हैं। प्रदूषण रोकने वाले तैरते बूम की रक्षा करें।",
+          9: "झील के किनारे जहरीला झाग जम गया है। पानी को शुद्ध करने के लिए 4-चरणीय ग्रिड को संरेखित करें।",
+          10: "तटीय हवाएं चल रही हैं। उच्च ज्वार आने से पहले फेंके गए मेडिकल प्लास्टिक कचरे को साफ करें।",
+          11: "औद्योगिक अपवाह ग्रामीण सिंचाई नहरों को दूषित कर रहा है। बाईपास पंप खोजने के लिए रासायनिक रिसाव का पीछा करें।",
+          12: "पाइपों की भूलभुलैया औद्योगिक फिल्टरों को बायपास कर रही है। सुरक्षित निस्पंदन बहाल करने के लिए वाल्व घुमाएं।",
+          13: "अंधेरी भूमिगत सीवर भूलभुलैया। रिसाव वाल्व का पता लगाने के लिए नालों से होकर रास्ता बनाएं।",
+          14: "अपार्टमेंट के टैंकों में अवैध मैला उफन रहा है। छत की ओर सुरक्षित भागें और प्लंबिंग वाल्व संरेखित करें।",
+          15: "रासायनिक डिपो में स्वचालित सायरन गूंज रहे हैं। आपातकालीन सुरक्षा अलार्म रिले को पुनर्गठित करें।",
+          16: "शिकारियों और रसायन फेंकने वालों ने सीमा तोड़ी है। वन्यजीवों के जलाशय की रक्षा करें।",
+          17: "हजारों सीटों पर सिंगल-यूज प्लास्टिक की बोतलें बिखरी हैं। सफाई उल्टी गिनती पूरी करें।",
+          18: "अम्लीय धुआं प्राचीन बलुआ पत्थर के स्मारकों को नुकसान पहुंचा रहा है। उत्सर्जन को बेअसर करें।",
+          19: "धुंध और जाम से ग्रसित शहर। इको-टैंकरों को रास्ता देने और छाया से बचने के लिए सिग्नल समन्वित करें।",
+          20: "नोक्सिस इंडस्ट्रीज का केंद्रीय प्रदूषक हब! 3-चरणीय फिनाले में छाया का सामना करें, साइफर सुलझाएं और यूवी तोप चलाएं!"
+        },
+        levelObjectives: {
+          1: "ट्यूटोरियल: 3 साक्ष्य एकत्र करें और आवागमन सीखें",
+          2: "निशान: चमकते प्रदूषक पदचिह्नों का पीछा करें",
+          3: "रिसाव मरम्मत: वाल्व संरेखण खोजें और ठीक करें",
+          4: "पलायन: घोर अंधेरी सुरंग में छाया से बचें",
+          5: "3 साक्ष्य सुराग एकत्र करें और सेक्टर से बाहर निकलें",
+          6: "पीछा: बस डिपो में छाया से तेज दौड़ें",
+          7: "सिग्नल: सिग्नल रिले टर्मिनल वायरिंग पूरी करें",
+          8: "सुरक्षा: नदी के कचरा रोकथाम बूम की रक्षा करें",
+          9: "फिल्टर: 4 जल शोधन चरणों को व्यवस्थित करें",
+          10: "समयबद्ध सफाई: उच्च ज्वार से पहले तट साफ करें (210s)",
+          11: "निशान: पंप स्टेशन तक प्रदूषक रिसाव का पता लगाएं",
+          12: "पाइप संरेखण: बाईपास वाल्व को घुमाएं और जोड़ें",
+          13: "भूलभुलैया: केंद्रीय सम्प वाल्व खोजें",
+          14: "पलायन: छत पर चढ़ें और प्लंबिंग वाल्व संरेखित करें",
+          15: "सिग्नल: रासायनिक अलार्म रिले को पुनर्गठित करें",
+          16: "सुरक्षा: वन्यजीव अभयारण्य जलाशय की रक्षा करें",
+          17: "समयबद्ध सफाई: स्टेडियम सेक्टर साफ करें (190s)",
+          18: "सुरक्षा: अम्लीय कोहरे से प्राचीन स्मारकों की रक्षा करें",
+          19: "यातायात: बचने हेतु यातायात सिग्नल समन्वय करें",
+          20: "फिनाले: कमजोरी उजागर करें, साइफर सुलझाएं और यूवी तोप दाग़ें"
+        },
+        levelFacts: {
+          1: "घरेलू कचरे को गीले जैविक और सूखे पुनर्चक्रण योग्य कचरे में अलग करने से भूजल का विषाक्त होना रुकता है।",
+          2: "जंगल की मिट्टी प्राकृतिक रूप से अपवाह को शुद्ध करती है। भारी औद्योगिक विषाक्त पदार्थ लाभकारी मिट्टी के तंत्र को नष्ट करते हैं।",
+          3: "स्कूल स्वच्छता कार्यक्रम छात्रों के स्वास्थ्य की रक्षा करते हैं और निर्बाध शिक्षा सुनिश्चित करते हैं।",
+          4: "सार्वजनिक बरसाती नालों में अशोधित वाणिज्यिक सीवेज बहाने से जलजनित महामारियां फैलती हैं।",
+          5: "इस्तेमाल किया हुआ पकाने का तेल सीवर में जमकर फैटबर्ग बनाता है। इसे बायोडीजल में बदलना शहर की जल निकासी की रक्षा करता है।",
+          6: "लेड-एसिड बैटरी फेंकने से सल्फ्यूरिक एसिड और तंत्रिका-विषाक्त पदार्थ भूजल में घुल जाते हैं।",
+          7: "भारतीय रेल पर बायो-टॉयलेट पटरियों के क्षरण को रोकते हैं और खुले रेल पर्यावरण की रक्षा करते हैं।",
+          8: "नदी की सतह पर लगे बूम प्लास्टिक कचरे को जलीय विषाक्त पदार्थों में बदलने से पहले ही रोक लेते हैं।",
+          9: "आर्द्रभूमियां और प्राकृतिक झीलें शहरी अपवाह को शुद्ध करती हैं। झील के किनारों की रक्षा प्रवासी पक्षियों को बचाती है।",
+          10: "समुद्र तट की सफाई समुद्री स्तनधारियों और कछुओं को घातक प्लास्टिक कचरा निगलने से बचाती है।",
+          11: "प्राकृतिक खाद और जैव-उर्वरक गांव के कुओं में रासायनिक कीटनाशकों के रिसाव को समाप्त करते हैं।",
+          12: "विषाक्त अम्लीय वर्षा को रोकने के लिए इलेक्ट्रोस्टैटिक प्रेसिपिटेटर और गैस स्क्रबर कानूनी रूप से अनिवार्य हैं।",
+          13: "स्वचालित रोबोटिक सफाई मशीनें खतरनाक मानवीय सीवर सफाई की आवश्यकता को समाप्त करती हैं।",
+          14: "सोसाइटियों में विकेंद्रीकृत सीवेज ट्रीटमेंट प्लांट (एसटीपी) 100% जल पुनर्चक्रण संभव बनाते हैं।",
+          15: "खतरनाक पदार्थों की सटीक लेबलिंग रासायनिक गोदाम आपदाओं को रोकती है।",
+          16: "सुरक्षित पारिस्थितिक गलियारे लुप्तप्राय प्रजातियों की आनुवंशिक विविधता बनाए रखते हैं।",
+          17: "जीरो-वेस्ट स्टेडियम स्रोत पर कचरा पृथक्करण द्वारा 90% से अधिक कचरे को पुनर्चक्रित करते हैं।",
+          18: "धरोहर स्मारकों के आसपास सख्त शून्य-उत्सर्जन क्षेत्र संगमरमर के कैंसर को रोकते हैं।",
+          19: "इलेक्ट्रिक परिवहन और हरित गलियारे शहरी पार्टिकुलेट स्मॉग को स्थायी रूप से घटाते हैं।",
+          20: "सच्ची पर्यावरण बहाली के लिए सक्रिय नागरिकता और कॉर्पोरेट जवाबदेही दोनों आवश्यक हैं।"
+        },
+        titleSub: "स्वच्छ पथ संस्करण 3.0.1 (अंतिम)",
         startInv: "जाँच शुरू करें",
         dailyChall: "⭐ दैनिक चुनौती",
         levelMap: "क्षेत्रीय मानचित्र",
@@ -1889,7 +1998,7 @@
         battery: "बैटरी",
         locateClue: "सबूत का पता लगाएं",
         headExit: "सेक्टर निकास की ओर बढ़ें",
-        exitLocked: "निकास बंद है",
+        exitLocked: "[बंद] पहले सभी साक्ष्य एकत्र करें",
         extractReady: "[E] बाहर निकलें: मिशन पूर्ण",
         shadowSurge: "⚠️ छाया का हमला निकट! आश्रय में छिपें!",
         leakRepairTitle: "पाइप रिसाव सीलिंग",
@@ -1913,6 +2022,7 @@
         casefileTitle: "जाँच केस फ़ाइल",
         casefileSub: "नोक्सिस इंडस्ट्रीज और प्रदूषण छाया को जोड़ने वाले साक्ष्य और रिपोर्ट।",
         cipherTitle: "स्वच्छ भारत उपचार साइफर पासवर्ड:",
+        cipherDesc: "क्षेत्रीय साक्ष्य टुकड़ों से एकत्रित। नोक्सिस संयंत्र सुरक्षा टर्मिनल को अनलॉक करने हेतु प्रयुक्त।",
         volMaster: "मास्टर वॉल्यूम",
         volMusic: "संगीत वॉल्यूम",
         volSfx: "ध्वनि प्रभाव",
@@ -1932,17 +2042,59 @@
         txtPlayername: "अन्वेषक का नाम",
         saveIoTitle: "डेटा सहेजें / आयात करें",
         btnManageSave: "सहेजें स्ट्रिंग प्रबंधित करें",
+        settingsTitle: "सेटिंग्स एवं सुगमता",
+        settingsSub: "ऑडियो मिक्सिंग, सुगमता टॉगल, प्रदर्शन और डेटा प्रबंधन कॉन्फ़िगर करें।",
+        saveIoHeader: "सहेजें डेटा प्रबंधन",
+        saveIoSub: "अपनी जाँच प्रगति का बैकअप लें या कोडित सहेजें स्ट्रिंग पुनर्स्थापित करें।",
+        btnSaveCopy: "📋 सहेजें कॉपी करें",
+        btnSaveApply: "📥 सहेजें पुनर्स्थापित करें",
+        btnSaveUndo: "↩️ आयात पूर्ववत करें",
+        close: "बंद करें",
+        gameOverTitle: "मिशन विफल",
+        gameOverSub: "विषाक्त संदूषण ने पीछे हटने पर विवश किया। पर्यावरणीय प्रोटोकॉल की समीक्षा करें और पुनः प्रयास करें।",
+        retryMission: "मिशन पुनः प्रयास करें",
+        finaleTitle: "सुरक्षा बाईपास टर्मिनल",
+        finaleSub: "अपनी केस फ़ाइल के साक्ष्य टुकड़ों से 6-अक्षरों का स्वच्छ भारत पासवर्ड दर्ज करें:",
+        authenticate: "सत्यापित करें",
+        decodeHint: "संकेत डिकोड करें",
         codexTitle: "स्वच्छ भारत पर्यावरण कॉडेक्स",
         codexSub: "जल प्रणालियों, वन्यजीव गलियारों और नागरिक स्वच्छता पर अनलॉक किए गए क्षेत्रीय ज्ञान डॉसियर।",
         pledgeTitle: "🌱 नागरिक स्वच्छता प्रतिज्ञा",
         pledgeSub: "दैनिक व्यक्तिगत कार्यों की प्रतिबद्धता जो हमारे जलस्रोतों, कॉलोनियों और समाज को स्वच्छ रखें।",
         btnSignPledge: "✓ नागरिक प्रतिज्ञा पर हस्ताक्षर करें (+200 इको-पॉइंट्स)",
         certHeading: "स्वच्छ भारत नागरिक प्रमाणपत्र",
-        certSub: "स्मारक नागरिक सम्मान | स्वच्छ भारत नागरिक पहल"
+        certSub: "स्मारक नागरिक सम्मान | स्वच्छ भारत नागरिक पहल",
+
+        // Toasts & Voice
+        tutMove: "ट्यूटोरियल: चलने हेतु WASD या जॉयस्टिक का उपयोग करें!",
+        tutJump: "ट्यूटोरियल: कूदने हेतु [Space] या [JUMP] दबाएं!",
+        tutLight: "ट्यूटोरियल: टॉर्च जलाने हेतु [F] या [LIGHT] दबाएं!",
+        tutCrouch: "ट्यूटोरियल: आश्रय में सुरक्षित छिपने हेतु [C] या [HIDE] दबाएं!",
+        tutClue: "ट्यूटोरियल: साक्ष्य के पास जाएं और [E] दबाकर सुरक्षित करें!",
+        lungeTelegraphToast: "⚠️ छाया का हमला निकट! कूदें या छिपें!",
+        lungeHitToast: "हमला लगा! जहरीली ढाल पुनः सक्रिय हुई!",
+        phase1Toast: "चरण 1: जहरीली ढाल तोड़ने हेतु टॉर्च की रोशनी केंद्रित करें!",
+        phase2Toast: "चरण 2: कोर को फ्लश करने के लिए पाइप संरेखित करें!",
+        phase3Toast: "⚠️ चरण 3: यूवी तोप की ओर 730 मीटर दौड़ें! छाया पीछा कर रही है!",
+        cannonBlastToast: "पराबैंगनी शुद्धिकरण प्रहार सक्रिय!",
+        phase3RetryToast: "पकड़े गए! चरण 3 पुनः प्रयास कर रहे हैं...",
+        sheruHintToast: "साथी संकेत: शेरू को सुराग की महक मिली!",
+        saveVerifiedToast: "सहेजा गया डेटा सफलतापूर्वक सत्यापित एवं पुनर्स्थापित हुआ!",
+        saveUndoneToast: "आयात पूर्ववत: पूर्व सहेजा गया डेटा पुनर्स्थापित हुआ।",
+        badgeFoundToast: "+150 इको-पॉइंट्स: बैज प्राप्त हुआ!",
+        pledgeSignedToast: "नागरिक प्रतिज्ञा हस्ताक्षरित! +200 इको-पॉइंट्स प्राप्त हुए!",
+        sheruScent: "शेरू को सुराग की गंध मिली! उसके पीछे चलें!",
+        bossPhase1Speak: "पासकोड स्वीकृत! हाई-इंटेंसिटी टॉर्च से छाया की ढाल समाप्त करें!",
+        bossPhase2Speak: "ढाल टूट गई! कोर को अस्थिर करने के लिए बाईपास वाल्व संरेखित करें!",
+        bossPhase3Speak: "कोर अस्थिर हुआ! छाया क्रोधित है! निकास पर यूवी तोप की ओर दौड़ें!",
+        cannonBlastSpeak: "यूवी शुद्धिकरण तोपें सक्रिय! प्रदूषण की छाया सदैव के लिए समाप्त!",
+        retreatSpeak: "विषाक्त संदूषण ने पीछे हटने पर विवश किया।",
+        badgeFoundSpeak: "इको-बैज प्राप्त हुआ!",
+        clueSecuredSpeak: "साक्ष्य सुरक्षित किया गया"
       }
     };
 
-    function t(key) {
+        function t(key) {
       const lang = (saveState && saveState.settings && saveState.settings.language) || 'en';
       return (I18N[lang] && I18N[lang][key]) || (I18N['en'] && I18N['en'][key]) || key;
     }
@@ -2016,6 +2168,39 @@
       setTxt('lbl-pledge-sub', 'pledgeSub');
       setTxt('cert-heading', 'certHeading');
       setTxt('cert-sub', 'certSub');
+      setTxt('lbl-settings-title', 'settingsTitle');
+      setTxt('lbl-settings-sub', 'settingsSub');
+      setTxt('lbl-saveio-header', 'saveIoHeader');
+      setTxt('lbl-saveio-sub', 'saveIoSub');
+      setTxt('btn-save-copy', 'btnSaveCopy');
+      setTxt('btn-save-apply', 'btnSaveApply');
+      setTxt('btn-save-undo', 'btnSaveUndo');
+      setTxt('btn-save-io-close', 'close');
+      setTxt('lbl-gameover-title', 'gameOverTitle');
+      setTxt('lbl-gameover-sub', 'gameOverSub');
+      setTxt('btn-gameover-retry', 'retryMission');
+      setTxt('lbl-finale-title', 'finaleTitle');
+      setTxt('lbl-finale-sub', 'finaleSub');
+      setTxt('btn-finale-submit', 'authenticate');
+      setTxt('btn-finale-hint', 'decodeHint');
+      setTxt('lbl-casefile-cipher-desc', 'cipherDesc');
+
+      const isHi = saveState && saveState.settings && saveState.settings.language === 'hi';
+      const selQual = document.getElementById('sel-quality');
+      if (selQual && selQual.options && selQual.options.length >= 3) {
+        selQual.options[0].text = isHi ? "निम्न (बैटरी सेवर)" : "Low (Battery Saver)";
+        selQual.options[1].text = isHi ? "मध्यम" : "Medium";
+        selQual.options[2].text = isHi ? "उच्च (सघन कण)" : "High (Rich Particles)";
+      }
+      const selDiff = document.getElementById('sel-diff');
+      if (selDiff && selDiff.options && selDiff.options.length >= 3) {
+        selDiff.options[0].text = isHi ? "सरल (शांत छाया)" : "Relaxed (Gentle Shadow)";
+        selDiff.options[1].text = isHi ? "सामान्य" : "Normal";
+        selDiff.options[2].text = isHi ? "चुनौतीपूर्ण (तेज़ छाया)" : "Challenge (Fast Shadow)";
+      }
+      const txtSave = document.getElementById('txt-save-io');
+      if (txtSave) txtSave.placeholder = isHi ? "यहाँ कोडित सहेजें स्ट्रिंग चिपकाएँ..." : "Paste encoded save string here...";
+
       const desc = document.getElementById('lbl-title-desc');
       if (desc) desc.textContent = t('titleDesc');
     }
@@ -2130,7 +2315,9 @@
     function speak(text, isShadow = false) {
       const box = document.getElementById('subtitles-box');
       if (box) {
-        box.textContent = (isShadow ? "THE SHADOW: \"" : "KABIR: \"") + text + "\"";
+        const isHi = saveState && saveState.settings && saveState.settings.language === 'hi';
+        const speakerTag = isShadow ? (isHi ? "छाया: \"" : "THE SHADOW: \"") : (isHi ? "कबीर: \"" : "KABIR: \"");
+        box.textContent = speakerTag + text + "\"";
         box.className = isShadow ? "shadow-speaker" : "";
         box.style.display = "block";
         clearTimeout(subtitleTimer);
@@ -2689,6 +2876,10 @@
         }
 
         // Catch check (Educator Mode turns off scary game overs)
+        if (gameState === 'BOSS_FIGHT' && bossPhase === 1) {
+          // In Boss Phase 1, lunges regenerate shield and knock player back, never causing game over!
+          return;
+        }
         if (!player.isHidden && !player.inSafeZone && Math.abs(player.x - this.x) < 44 && Math.abs((player.y - 60) - (this.y - 70)) < 70) {
           if (saveState.settings.educatorMode) {
             if (this.speechTimer <= 0) {
@@ -2772,8 +2963,8 @@
           if (!this.isPointingHint) {
             this.isPointingHint = true;
             SFX.dogBark();
-            speak("Sheru found a clue scent! Follow him!");
-            showToast("Companion Hint: Sheru caught the scent!");
+            speak(t('sheruScent'));
+            showToast(t('sheruHintToast'));
           }
           const targetClue = currentLevel.collectibles ? currentLevel.collectibles.find(c => !c.collected) : null;
           const targetX = targetClue ? targetClue.x : (currentLevel.width - 100);
@@ -3357,12 +3548,27 @@
 
     function showBriefingModal() {
       gameState = 'BRIEFING';
-      document.getElementById('briefing-title').textContent = isDailyChallengeMode ? "DAILY CHALLENGE" : `MISSION ${currentLevelData.id}`;
-      document.getElementById('briefing-location').textContent = currentLevelData.name.toUpperCase();
-      document.getElementById('briefing-story').textContent = isDailyChallengeMode
-        ? `Active Modifier: ${currentLevelData.ruleModifier.name}. ${currentLevelData.ruleModifier.desc}`
-        : currentLevelData.story;
-      document.getElementById('briefing-objective').textContent = currentLevelData.objective;
+      const isHi = saveState.settings && saveState.settings.language === 'hi';
+      const bTitle = document.getElementById('briefing-title');
+      if (bTitle) bTitle.textContent = isDailyChallengeMode ? (isHi ? "दैनिक चुनौती" : "DAILY CHALLENGE") : (isHi ? `मिशन ${currentLevelData.id}` : `MISSION ${currentLevelData.id}`);
+      const bLoc = document.getElementById('briefing-location');
+      if (bLoc) bLoc.textContent = (isHi && I18N.hi.sectors && I18N.hi.sectors[currentLevelData.id]) ? I18N.hi.sectors[currentLevelData.id] : currentLevelData.name.toUpperCase();
+      const bObjLbl = document.getElementById('briefing-obj-label');
+      if (bObjLbl) bObjLbl.textContent = isHi ? "उद्देश्य:" : "OBJECTIVE:";
+      const bStory = document.getElementById('briefing-story');
+      if (bStory) {
+        if (isDailyChallengeMode) {
+          bStory.textContent = `Active Modifier: ${currentLevelData.ruleModifier.name}. ${currentLevelData.ruleModifier.desc}`;
+        } else {
+          bStory.textContent = (isHi && I18N.hi.levelStories && I18N.hi.levelStories[currentLevelData.id]) ? I18N.hi.levelStories[currentLevelData.id] : currentLevelData.story;
+        }
+      }
+      const bObj = document.getElementById('briefing-objective');
+      if (bObj) {
+        bObj.textContent = (isHi && I18N.hi.levelObjectives && I18N.hi.levelObjectives[currentLevelData.id]) ? I18N.hi.levelObjectives[currentLevelData.id] : currentLevelData.objective;
+      }
+      const bStartBtn = document.getElementById('btn-briefing-start');
+      if (bStartBtn) bStartBtn.textContent = t('commence');
       document.getElementById('briefing-layer').style.display = 'flex';
     }
 
@@ -3373,7 +3579,7 @@
 
       // Level 1 tutorial: Prompt only uncompleted actions
       if (currentLevelData.id === 1 && !isDailyChallengeMode && !tutorialDone.move) {
-        showToast("Tutorial: Use WASD or Joystick to move!");
+        showToast(t('tutMove'));
       }
 
       if (currentLevelData.npc && !isDailyChallengeMode) {
@@ -3389,12 +3595,20 @@
 
     function showNPCDialogue(name, text) {
       gameState = 'NPC';
+      const isHi = saveState.settings && saveState.settings.language === 'hi';
+      let displayText = text;
+      if (isHi) {
+        if (name === 'Ranger Anand') displayText = "इंस्पेक्टर! अवैध कचरा फेंकने वाले रेंजर गेट पार कर गए हैं। कैडमियम के निशानों का पीछा करें!";
+        else if (name === 'Elder Devaki') displayText = "इंस्पेक्टर, बेईमान ठेकेदारों ने खुले नालों में इस्तेमाल किया हुआ तेल फेंकने के लिए पैसों की पेशकश की थी!";
+      }
       document.getElementById('npc-name').textContent = name;
-      document.getElementById('npc-text').textContent = text;
+      document.getElementById('npc-text').textContent = displayText;
       renderNPCPortrait(name);
       document.getElementById('npc-layer').style.display = 'flex';
-      speak(`${name}: "${text}"`);
-      document.getElementById('btn-npc-continue').onclick = () => {
+      speak(`${name}: "${displayText}"`);
+      const contBtn = document.getElementById('btn-npc-continue');
+      if (contBtn) contBtn.textContent = isHi ? "आगे बढ़ें" : "CONTINUE";
+      contBtn.onclick = () => {
         document.getElementById('npc-layer').style.display = 'none';
         gameState = 'PLAYING';
       };
@@ -4101,13 +4315,14 @@
       bossDone = false;
       gameState = 'BOSS_FIGHT';
       bossPhase = 1;
-      bossLungeTimer = 0;
+      // First telegraphed lunge happens within 1.5 seconds (interval 3.5s - 2.0s = 1.5s)
+      bossLungeTimer = 2.0;
       bossLungeState = 'IDLE';
       bossShieldHp = 100;
       bossSurgeTimer = 0;
       SFX.shadowGrowl();
-      speak("Passcode confirmed! Expose Shadow's toxic barrier with high-intensity flashlight!");
-      showToast("PHASE 1: FOCUS FLASHLIGHT TO BREAK TOXIC BARRIER!");
+      speak(t('bossPhase1Speak'));
+      showToast(t('phase1Toast'));
       if (shadow) {
         shadow.active = true;
         shadow.x = player.x + 320;
@@ -4118,8 +4333,8 @@
     function advanceBossPhase2() {
       bossPhase = 2;
       SFX.success();
-      speak("Barrier broken! Align bypass valve terminal to destabilize core!");
-      showToast("PHASE 2: ALIGN PIPES TO FLUSH SHADOW CORE!");
+      speak(t('bossPhase2Speak'));
+      showToast(t('phase2Toast'));
       startMiniGame('pipe_rotation', () => {
         advanceBossPhase3();
       });
@@ -4137,16 +4352,16 @@
         shadow.x = player.x - 300;
         shadow.y = currentLevelData.groundY;
       }
-      speak("Core destabilized! Shadow in RAGE mode! Sprint to the UV Cannon at the exit!");
-      showToast("⚠️ PHASE 3: SPRINT 730PX TO UV CANNON! SHADOW PURSUING!");
+      speak(t('bossPhase3Speak'));
+      showToast(t('phase3Toast'));
     }
 
     function triggerFinaleCannonBlast() {
       bossDone = true;
       gameState = 'FINALE_BLAST';
       SFX.success();
-      speak("UV Clarifier Cannons online! Dissolving Shadow of pollution forever!");
-      showToast("ULTRAVIOLET PURIFICATION BLAST FIRED!");
+      speak(t('cannonBlastSpeak'));
+      showToast(t('cannonBlastToast'));
 
       if (shadow) {
         for (let i = 0; i < 75; i++) {
@@ -4323,6 +4538,10 @@
 
     function triggerGameOver() {
       if (gameState === 'BOSS_FIGHT') {
+        if (bossPhase === 1) {
+          // Phase 1 lunge hit regenerates part of shield but never causes game over
+          return;
+        }
         SFX.warning();
         if (bossPhase === 3) {
           player.x = currentLevelData.width - 850; player.y = currentLevelData.groundY;
@@ -4330,19 +4549,12 @@
             shadow.x = player.x - 300; shadow.y = currentLevelData.groundY;
             shadow.rage = true; shadow.speed = 310;
           }
-          showToast("Caught! Retrying Phase 3 sprint...");
-          return;
-        } else if (bossPhase === 1) {
-          player.x = 220; player.y = currentLevelData.groundY;
-          bossShieldHp = 100;
-          bossLungeState = 'IDLE';
-          if (shadow) { shadow.x = player.x + 360; shadow.y = currentLevelData.groundY; }
-          showToast("Caught! Retrying Phase 1...");
+          showToast(t('phase3RetryToast'));
           return;
         }
       }
       gameState = 'GAMEOVER'; SFX.wrong();
-      speak("The toxic contamination forced a retreat.");
+      speak(t('retreatSpeak'));
       document.getElementById('gameover-layer').style.display = 'flex';
     }// 20. DETERMINISTIC DAILY CHALLENGE ENGINE (mulberry32)
     function mulberry32(seed) {
@@ -4496,8 +4708,8 @@
                 saveGameData();
               }
               SFX.badgeFound();
-              speak("Eco-Badge discovered!");
-              showToast("+150 Eco-Points: Badge Found!");
+              speak(t('badgeFoundSpeak'));
+              showToast(t('badgeFoundToast'));
             }
           }
         }
@@ -4554,6 +4766,7 @@
       }
 
       // Interaction prompts
+      const isHi = saveState.settings && saveState.settings.language === 'hi';
       const prompt = document.getElementById('interact-prompt');
       if (nearCol) {
         prompt.style.display = 'block';
@@ -4562,7 +4775,7 @@
           nearCol.collected = true; cluesCollected++; timeSinceLastProgress = 0;
           SFX.pickup(); Input.action = false;
           if (cluesCollected < currentLevelData.cluesNeeded) {
-            speak(`Clue secured: ${nearCol.label} (${cluesCollected}/${currentLevelData.cluesNeeded}).`);
+            speak(`${t('clueSecuredSpeak')}: ${nearCol.label} (${cluesCollected}/${currentLevelData.cluesNeeded}).`);
           } else {
             speak(t('allCluesFound')); SFX.success();
           }
@@ -4571,9 +4784,9 @@
       } else if (nearExit) {
         prompt.style.display = 'block';
         if (!isExitUnlocked) {
-          prompt.textContent = `[LOCKED] COLLECT ALL EVIDENCE FIRST (${cluesCollected}/${currentLevelData.cluesNeeded})`;
+          prompt.textContent = `${t('exitLocked')} (${cluesCollected}/${currentLevelData.cluesNeeded})`;
         } else {
-          prompt.textContent = `[E] EXTRACT: COMPLETE MISSION`;
+          prompt.textContent = (currentLevelData.id === 20 && !isDailyChallengeMode) ? (isHi ? "[E] अंतिम टर्मिनल खोलें" : "[E] ACCESS FINALE TERMINAL") : t('extractReady');
           if (Input.action || exitDist < 45) {
             Input.action = false;
             if (currentLevelData.id === 20 && !isDailyChallengeMode) {
@@ -4743,7 +4956,7 @@
         const exitX = currentLevelData.width - 150;
         const targetX = (cluesCollected >= currentLevelData.cluesNeeded) ? exitX : (currentLevelData.collectibles.find(c => !c.collected) || { x: exitX }).x;
         if (DOM.objArrow) DOM.objArrow.textContent = targetX > player.x ? '➔' : '⬅';
-        if (DOM.objText) DOM.objText.textContent = (cluesCollected >= currentLevelData.cluesNeeded) ? "HEAD TO SECTOR EXIT" : "LOCATE EVIDENCE CLUE";
+        if (DOM.objText) DOM.objText.textContent = (cluesCollected >= currentLevelData.cluesNeeded) ? t('headExit') : t('locateClue');
       } else if (DOM.objPointer) {
         DOM.objPointer.style.display = 'none';
       }
@@ -4794,13 +5007,13 @@
           if (currentLevelData.id === 1 && !isDailyChallengeMode) {
             if (!tutorialDone.move && (Input.left || Input.right)) {
               tutorialDone.move = true;
-              if (!tutorialDone.jump) showToast("Tutorial: Press [Space] or [JUMP] to leap!");
+              if (!tutorialDone.jump) showToast(t('tutJump'));
             } else if (tutorialDone.move && !tutorialDone.jump && Input.jump) {
               tutorialDone.jump = true;
-              if (!tutorialDone.light) showToast("Tutorial: Press [F] or [LIGHT] for your Flashlight!");
+              if (!tutorialDone.light) showToast(t('tutLight'));
             } else if (tutorialDone.jump && !tutorialDone.light && player.flashlightOn) {
               tutorialDone.light = true;
-              if (!tutorialDone.crouch) showToast("Tutorial: Press [C] or [HIDE] to crouch safely in Shelters!");
+              if (!tutorialDone.crouch) showToast(t('tutCrouch'));
             } else if (tutorialDone.light && !tutorialDone.crouch && player.isCrouching) {
               tutorialDone.crouch = true;
             }
@@ -4814,17 +5027,17 @@
               const distToShadow = Math.hypot((player ? player.x : 0) - (shadow ? shadow.x : 0), (player ? player.y : 0) - (shadow ? shadow.y : 0));
               const facingShadow = player && shadow && ((player.facing === 1 && shadow.x > player.x) || (player.facing === -1 && shadow.x < player.x));
 
-              // Active Lunge Cycle: Shadow telegraphs, then dashes!
-              bossLungeTimer += dt;
-              if (bossLungeTimer > 4.2) {
-                bossLungeTimer = 0;
-                bossLungeState = 'TELEGRAPH';
-                bossLungeSubTimer = 1.0;
-                SFX.shadowGrowl();
-                showToast("⚠️ SHADOW LUNGE TELEGRAPH! JUMP OR HIDE!");
-              }
-
-              if (bossLungeState === 'TELEGRAPH') {
+              // Active Lunge Cycle: Repeat every 3 to 4 seconds (3.5s interval)
+              if (bossLungeState === 'IDLE') {
+                bossLungeTimer += dt;
+                if (bossLungeTimer >= 3.5) {
+                  bossLungeTimer = 0;
+                  bossLungeState = 'TELEGRAPH';
+                  bossLungeSubTimer = 1.0;
+                  SFX.shadowGrowl();
+                  showToast(t('lungeTelegraphToast'));
+                }
+              } else if (bossLungeState === 'TELEGRAPH') {
                 bossLungeSubTimer -= dt;
                 if (shadow) {
                   spawnParticle(shadow.x + (Math.random()-0.5)*50, shadow.y - 70, (Math.random()-0.5)*60, -50, 0.5, 4, '#ef4444');
@@ -4840,10 +5053,11 @@
                   shadow.x += dir * 550 * dt;
                   if (!player.isHidden && !player.isCrouching && Math.abs(player.x - shadow.x) < 55 && Math.abs((player.y - 60) - (shadow.y - 70)) < 70) {
                     player.vx = dir * 350;
+                    // Lunge hit regenerates part of shield but NEVER causes game over
                     bossShieldHp = Math.min(100, bossShieldHp + 18);
                     SFX.caught();
                     screenShake = 0.35;
-                    showToast("Lunge Hit! Toxic barrier regenerated!");
+                    showToast(t('lungeHitToast'));
                     bossLungeState = 'IDLE';
                   }
                 }
@@ -4852,8 +5066,9 @@
                 }
               }
 
+              // Flashlight beam: loses ~8 HP/s only while beam is on it and player facing Shadow
               if (player && player.flashlightOn && player.flashlightBattery > 0 && facingShadow && distToShadow < 390 && bossLungeState !== 'LUNGE') {
-                bossShieldHp = Math.max(0, bossShieldHp - dt * 34);
+                bossShieldHp = Math.max(0, bossShieldHp - dt * 8);
                 if (Math.random() < 0.4 && shadow) {
                   spawnParticle(shadow.x + (Math.random()-0.5)*60, shadow.y - Math.random()*120, (Math.random()-0.5)*80, -40, 0.4, 3, '#38bdf8');
                 }
@@ -4861,7 +5076,8 @@
                   advanceBossPhase2();
                 }
               } else {
-                bossShieldHp = Math.min(100, bossShieldHp + dt * 8);
+                // Shield regenerates faster (14 HP/s) when beam is off
+                bossShieldHp = Math.min(100, bossShieldHp + dt * 14);
               }
             } else if (bossPhase === 3) {
               const cannonX = currentLevelData.width - 120;
@@ -5169,6 +5385,7 @@
         cipherBanner.style.display = 'block';
       }
 
+      const isHi = saveState.settings && saveState.settings.language === 'hi';
       LEVELS_DATA.forEach(lvl => {
         const clue = saveState.cluesFound[lvl.id];
         const card = document.createElement('div');
@@ -5176,18 +5393,19 @@
 
         const titleEl = document.createElement('strong');
         titleEl.style.color = "#38bdf8";
-        titleEl.textContent = `SECTOR ${lvl.id}: ${lvl.name}`;
+        titleEl.textContent = isHi ? `क्षेत्र ${lvl.id}: ${(I18N.hi.sectors && I18N.hi.sectors[lvl.id]) ? I18N.hi.sectors[lvl.id] : lvl.name}` : `SECTOR ${lvl.id}: ${lvl.name}`;
 
         const statusEl = document.createElement('div');
         statusEl.style.marginTop = "4px";
         statusEl.style.color = clue ? "#34d399" : "#64748b";
-        statusEl.textContent = clue ? `✓ Evidence: ${clue}` : "🔒 Evidence Missing (Replay Sector)";
+        statusEl.textContent = clue ? (isHi ? `✓ साक्ष्य: ${clue}` : `✓ Evidence: ${clue}`) : (isHi ? "🔒 साक्ष्य अनुपलब्ध (सेक्टर पुनः खेलें)" : "🔒 Evidence Missing (Replay Sector)");
 
         const factEl = document.createElement('div');
         factEl.style.fontSize = "10px";
         factEl.style.color = "#94a3b8";
         factEl.style.marginTop = "4px";
-        factEl.textContent = lvl.fact.slice(0, 75) + "...";
+        const fText = (isHi && I18N.hi.levelFacts && I18N.hi.levelFacts[lvl.id]) ? I18N.hi.levelFacts[lvl.id] : lvl.fact;
+        factEl.textContent = fText.slice(0, 75) + "...";
 
         card.appendChild(titleEl);
         card.appendChild(statusEl);
